@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baan Thai Massage Basel – exclusive by Virin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0b08;
+      --bg2: #1a1510;
+      --gold: #c8a45e;
+      --gold-light: #e8c88a;
+      --text: #f0ebe0;
+      --muted: #8a7d6a;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(13, 11, 8, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 164, 94, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--gold); }
+
+    .nav-btn {
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--gold-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        linear-gradient(to bottom, rgba(13,11,8,0.7) 0%, rgba(13,11,8,0.4) 50%, rgba(13,11,8,0.9) 100%),
+        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(240, 235, 224, 0.75);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-secondary {
+      border: 1px solid rgba(200,164,94,0.4);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* SECTION BASE */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .section-sub {
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    /* ANGEBOTE */
+    .angebote { background: var(--bg2); }
+
+    .angebote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .angebot-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,94,0.12);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .angebot-card:hover {
+      border-color: rgba(200,164,94,0.35);
+      transform: translateY(-4px);
+    }
+
+    .angebot-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .angebot-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .angebot-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .angebot-preise {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .preis-badge {
+      background: rgba(200,164,94,0.1);
+      border: 1px solid rgba(200,164,94,0.2);
+      color: var(--gold);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    /* BUCHUNG */
+    .buchung { background: var(--bg); }
+
+    .buchung-box {
+      background: var(--bg2);
+      border: 1px solid rgba(200,164,94,0.15);
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .buchung-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .buchung-box p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .buchung-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .step {
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .step-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .step h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    /* ÖFFNUNGSZEITEN */
+    .info { background: var(--bg2); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,164,94,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      font-size: 1.2rem;
+    }
+
+    .oeffnung-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+
+    .oeffnung-row:last-child { border-bottom: none; }
+    .oeffnung-row span:last-child { color: var(--gold); }
+
+    .kontakt-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .kontakt-item .icon { font-size: 1.2rem; margin-top: 2px; }
+    .kontakt-item a { color: var(--text); text-decoration: none; }
+    .kontakt-item a:hover { color: var(--gold); }
+    .kontakt-item small { display: block; color: var(--muted); font-size: 0.78rem; }
+
+    /* VIRIN */
+    .virin { background: var(--bg); }
+
+    .virin-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .virin-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: grayscale(20%);
+    }
+
+    .virin-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--bg2);
+      border-radius: 20px;
+      border: 1px solid rgba(200,164,94,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .virin-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .virin-quote::before { content: '"'; color: var(--gold); }
+    .virin-quote::after { content: '"'; color: var(--gold); }
+
+    /* STICKY BAR */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(13,11,8,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(200,164,94,0.2);
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sticky-bar p { font-size: 0.875rem; color: var(--muted); }
+    .sticky-bar strong { color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem;
+      text-align: center;
+      padding-bottom: 5rem;
+    }
+
+    footer p { color: var(--muted); font-size: 0.825rem; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .buchung-steps { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .virin-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      Baan Thai
+      <span>exclusive by Virin · Basel</span>
+    </div>
+    <ul>
+      <li><a href="#angebote">Angebote</a></li>
+      <li><a href="#buchung">Buchen</a></li>
+      <li><a href="#info">Kontakt</a></li>
+    </ul>
+    <a href="#buchung" class="nav-btn">Jetzt buchen</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-tag">Thai Massage · Basel</div>
+      <h1>Dein Moment<br>der <em>Ruhe</em></h1>
+      <p>Authentische Thai-Massagen in Basel – so schön wie ein Kurzurlaub. Exclusive by Virin.</p>
+      <div class="hero-btns">
+        <a href="#buchung" class="btn-primary">Termin online buchen</a>
+        <a href="#angebote" class="btn-secondary">Angebote entdecken</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANGEBOTE -->
+  <section class="angebote" id="angebote">
+    <div class="container">
+      <p class="section-tag">Unsere Massagen</p>
+      <h2 class="section-title">Was dich erwartet</h2>
+      <p class="section-sub">Jede Massage ist auf dein Wohlbefinden abgestimmt – von klassisch bis intensiv.</p>
+      <div class="angebote-grid">
+        <div class="angebot-card">
+          <div class="angebot-icon">🙏</div>
+          <h3>Traditionelle Thai Massage</h3>
+          <p>Strecken, Dehnen, Massieren. Blutzirkulation wird angeregt, Muskeln entspannt.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">60 min · CHF 80</span>
+            <span class="preis-badge">90 min · CHF 110</span>
+            <span class="preis-badge">120 min · CHF 150</span>
+          </div>
+        </div>
+        <div class="angebot-card">
+          <div class="angebot-icon">🌿</div>
+          <h3>Anti-Stress Massage</h3>
+          <p>Entspannung am Kopf, Schultern, Nacken und Rücken. Mit hochwertigem Massageöl.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">30 min · CHF 50</span>
+            <span class="preis-badge">60 min · CHF 80</span>
+            <span class="preis-badge">90 min · CHF 110</span>
+          </div>
+        </div>
+        <div class="angebot-card">
+          <div class="angebot-icon">🌸</div>
+          <h3>Aroma-Öl Massage</h3>
+          <p>Ätherische Öle verwöhnen die Sinne. Körper und Geist werden tief entspannt.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">60 min · CHF 80</span>
+            <span class="preis-badge">90 min · CHF 110</span>
+          </div>
+        </div>
+        <div class="angebot-card">
+          <div class="angebot-icon">🦶</div>
+          <h3>Thai Fussreflexzone</h3>
+          <p>Energiepunkte im Fuss werden massiert – sehr entspannend und regenerierend.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">30 min · CHF 50</span>
+            <span class="preis-badge">60 min · CHF 80</span>
+          </div>
+        </div>
+        <div class="angebot-card">
+          <div class="angebot-icon">💪</div>
+          <h3>Sport Massage</h3>
+          <p>Ideal nach dem Training. Löst Verspannungen und fördert die Regeneration.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">60 min · CHF 90</span>
+            <span class="preis-badge">90 min · CHF 130</span>
+          </div>
+        </div>
+        <div class="angebot-card">
+          <div class="angebot-icon">🤰</div>
+          <h3>Massage für Schwangere</h3>
+          <p>Sanfte Entspannung für Mutter und Kind. Löst Verspannungen an Becken und Rücken.</p>
+          <div class="angebot-preise">
+            <span class="preis-badge">30 min · CHF 50</span>
+            <span class="preis-badge">60 min · CHF 80</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUCHUNG -->
+  <section class="buchung" id="buchung">
+    <div class="container">
+      <div class="buchung-box">
+        <p class="section-tag">Online buchen</p>
+        <h2>Termin in 2 Minuten</h2>
+        <p>Wähle deine Massage, such dir einen Termin aus – und wir freuen uns auf dich.</p>
+        <div class="buchung-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h4>Massage wählen</h4>
+            <p>Art und Dauer nach deinem Bedürfnis</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h4>Datum & Zeit</h4>
+            <p>Freie Termine direkt einsehbar</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h4>Bestätigung</h4>
+            <p>Sofortige Bestätigung per E-Mail</p>
+          </div>
+        </div>
+        <a href="tel:+41782639342" class="btn-primary">📞 Jetzt anrufen: 078 263 93 42</a>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">Online-Buchung kommt bald · Mo–Sa 10–20 Uhr</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIRIN -->
+  <section class="virin">
+    <div class="container">
+      <div class="virin-inner">
+        <div class="virin-img-placeholder">Foto von Virin</div>
+        <div>
+          <p class="section-tag">Über uns</p>
+          <h2 class="section-title">Exclusive by Virin</h2>
+          <p class="virin-quote">Geniesse eine schöne Zeit bei uns – so schön wie ein Kurzurlaub in Thailand.</p>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">Baan Thai Massage steht für authentische Behandlungen mit echter Thai-Tradition. Jede Massage wird mit Sorgfalt und Leidenschaft durchgeführt.</p>
+          <a href="#buchung" class="btn-primary">Termin buchen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="info" id="info">
+    <div class="container">
+      <p class="section-tag">Infos</p>
+      <h2 class="section-title">So findest du uns</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Öffnungszeiten</h3>
+          <div class="oeffnung-row"><span>Montag – Samstag</span><span>10:00 – 20:00</span></div>
+          <div class="oeffnung-row"><span>Sonntag</span><span>Geschlossen</span></div>
+          <div class="oeffnung-row"><span>Feiertage</span><span>Geschlossen</span></div>
+          <div class="oeffnung-row"><span>24.–26. Dezember</span><span>Geschlossen</span></div>
+          <div class="oeffnung-row"><span>1.–2. Januar</span><span>Geschlossen</span></div>
+        </div>
+        <div class="info-card">
+          <h3>Kontakt & Adresse</h3>
+          <div class="kontakt-item">
+            <span class="icon">📍</span>
+            <div>
+              <strong>Friedrichstrasse 15, 1. Etage</strong>
+              <small>4055 Basel</small>
+              <small>Tram 1/6 oder Bus 50 → Brausebad (2 Min.)</small>
+            </div>
+          </div>
+          <div class="kontakt-item">
+            <span class="icon">📞</span>
+            <div>
+              <a href="tel:+41782639342"><strong>078 263 93 42</strong></a>
+              <small>Mo–Sa 10–20 Uhr</small>
+            </div>
+          </div>
+          <div class="kontakt-item">
+            <span class="icon">✉️</span>
+            <div>
+              <a href="mailto:basel1.baanthaimassage@gmail.com">basel1.baanthaimassage@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Baan Thai Massage Basel · exclusive by Virin · <a href="#">Datenschutz</a> · <a href="#">Impressum</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">Website by <a href="https://crowe-digital.ch">Crowe Digital</a></p>
+  </footer>
+
+  <!-- STICKY BAR -->
+  <div class="sticky-bar">
+    <p><strong>Baan Thai Basel</strong> · Mo–Sa 10–20 Uhr</p>
+    <a href="tel:+41782639342" class="btn-primary">📞 Anrufen</a>
+  </div>
+
+</body>
+</html>

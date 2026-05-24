@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JOHN Haustechnik AG – Ihr Spezialist seit 1932</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0d1f3c;
+      --navy2:   #162847;
+      --blue:    #1a4a8a;
+      --sky:     #00aaff;
+      --amber:   #f5a623;
+      --red:     #e53e3e;
+      --light:   #f0f4f8;
+      --white:   #ffffff;
+      --text:    #334155;
+      --muted:   #64748b;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(0,0,0,.12);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* ── EMERGENCY BANNER ───────────────────────────────────── */
+    .emergency-bar {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      position: relative;
+      z-index: 100;
+    }
+    .emergency-bar a { color: white; text-decoration: none; font-weight: 800; }
+    .emergency-bar .pulse {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse 1.4s infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(1.4); }
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    header {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--amber);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .logo-text { color: white; }
+    .logo-text strong { display: block; font-size: 1.15rem; font-weight: 800; letter-spacing: .04em; }
+    .logo-text span { font-size: .7rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .1em; }
+
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: .88rem;
+      font-weight: 500;
+      transition: all .2s;
+    }
+    nav a:hover { color: white; background: rgba(255,255,255,.1); }
+    .nav-cta {
+      background: var(--amber) !important;
+      color: var(--navy) !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+    .nav-cta:hover { background: #e09510 !important; transform: translateY(-1px); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 40%, #1a3a6a 100%);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,170,255,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,166,35,.05) 0%, transparent 60%);
+    }
+    /* Decorative water drops */
+    .hero-drops {
+      position: absolute;
+      right: 0; top: 0;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .06;
+    }
+    .drop {
+      position: absolute;
+      background: var(--sky);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float 6s ease-in-out infinite;
+    }
+    .drop:nth-child(1) { width: 200px; height: 250px; right: 15%; top: 10%; animation-delay: 0s; }
+    .drop:nth-child(2) { width: 120px; height: 150px; right: 35%; top: 40%; animation-delay: 1.5s; }
+    .drop:nth-child(3) { width: 80px;  height: 100px; right: 20%; top: 65%; animation-delay: 3s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.3);
+      color: var(--amber);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--sky);
+    }
+    .hero p {
+      color: rgba(255,255,255,.7);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--navy);
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+      box-shadow: 0 4px 16px rgba(245,166,35,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,166,35,.45); }
+    .btn-secondary {
+      background: rgba(255,255,255,.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.18); transform: translateY(-2px); }
+
+    /* Hero Card */
+    .hero-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(16px);
+    }
+    .hero-card h3 {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-icon.tel   { background: rgba(0,170,255,.2); }
+    .contact-icon.mail  { background: rgba(245,166,35,.2); }
+    .contact-icon.addr  { background: rgba(255,255,255,.1); }
+    .contact-icon.time  { background: rgba(229,62,62,.2); }
+    .contact-info strong { display: block; color: white; font-size: .95rem; }
+    .contact-info span   { color: rgba(255,255,255,.5); font-size: .78rem; }
+
+    /* ── STATS ──────────────────────────────────────────────── */
+    .stats {
+      background: var(--amber);
+      padding: 48px 24px;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      font-family: 'Playfair Display', serif;
+    }
+    .stat-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: rgba(13,31,60,.7);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ── SECTION COMMON ─────────────────────────────────────── */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(0,170,255,.1);
+      color: var(--blue);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+    .section-head { margin-bottom: 56px; }
+
+    /* ── SERVICES ───────────────────────────────────────────── */
+    .services { background: var(--light); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-emoji { font-size: 2.4rem; margin-bottom: 16px; display: block; }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.65; margin-bottom: 20px; }
+    .service-link {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: .88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap .2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ── EMERGENCY ──────────────────────────────────────────── */
+    .emergency-section {
+      background: linear-gradient(135deg, #e53e3e 0%, #c0392b 100%);
+      padding: 80px 24px;
+    }
+    .emergency-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    .emergency-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: white;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .emergency-inner p { color: rgba(255,255,255,.85); font-size: 1.1rem; }
+    .emergency-phone {
+      background: white;
+      color: var(--red);
+      padding: 20px 40px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 900;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.2);
+      transition: transform .2s;
+    }
+    .emergency-phone:hover { transform: scale(1.04); }
+
+    /* ── PROCESS ────────────────────────────────────────────── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(to right, var(--amber), var(--sky));
+      z-index: 0;
+    }
+    .step { text-align: center; position: relative; z-index: 1; }
+    .step-num {
+      width: 56px; height: 56px;
+      background: white;
+      border: 3px solid var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 16px rgba(245,166,35,.25);
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+
+    /* ── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials { background: var(--light); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .stars { color: var(--amber); font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-card blockquote {
+      color: var(--text);
+      font-size: .95rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .reviewer-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .reviewer-info strong { display: block; font-size: .9rem; color: var(--navy); }
+    .reviewer-info span { font-size: .8rem; color: var(--muted); }
+
+    /* ── CONTACT SECTION ────────────────────────────────────── */
+    .contact-section { background: var(--navy); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-section .section-tag { background: rgba(0,170,255,.15); color: var(--sky); }
+    .contact-section .section-title { color: white; }
+    .contact-section .section-sub { color: rgba(255,255,255,.6); }
+
+    .contact-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .cicon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact-row strong { display: block; color: white; font-size: .95rem; font-weight: 600; }
+    .contact-row span { color: rgba(255,255,255,.5); font-size: .85rem; }
+
+    /* Form */
+    .contact-form {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 36px;
+    }
+    .contact-form h3 { color: white; font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { color: rgba(255,255,255,.7); font-size: .85rem; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      color: white;
+      padding: 12px 16px;
+      font-size: .95rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color .2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--sky);
+      background: rgba(255,255,255,.1);
+    }
+    .form-group select option { background: var(--navy2); color: white; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--amber);
+      color: var(--navy);
+      border: none;
+      padding: 15px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all .2s;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .form-submit:hover { background: #e09510; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,166,35,.35); }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: #080f1e;
+      color: rgba(255,255,255,.6);
+      padding: 48px 24px 28px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 28px;
+    }
+    .footer-brand p { font-size: .88rem; line-height: 1.7; margin-top: 14px; max-width: 280px; }
+    .footer-col h4 { color: white; font-size: .9rem; font-weight: 700; margin-bottom: 14px; letter-spacing: .05em; text-transform: uppercase; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--sky); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; }
+    .footer-bottom a { color: rgba(255,255,255,.4); text-decoration: none; }
+    .footer-bottom a:hover { color: white; }
+
+    /* ── SCROLL ANIMATIONS ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .emergency-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Emergency Bar -->
+  <div class="emergency-bar">
+    <span class="pulse"></span>
+    24/7 Notfalldienst aktiv – Rohrbruch, Überschwemmung, Heizungsausfall?
+    <a href="tel:0619711329"> Jetzt anrufen: 061 971 13 29</a>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">🔧</div>
+        <div class="logo-text">
+          <strong>JOHN Haustechnik</strong>
+          <span>Seit 1932 – Sissach</span>
+        </div>
+      </a>
+      <nav>
+        <a href="#services">Leistungen</a>
+        <a href="#process">Ablauf</a>
+        <a href="#testimonials">Referenzen</a>
+        <a href="#contact">Kontakt</a>
+        <a href="tel:0619711329" class="nav-cta">📞 Jetzt anrufen</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-drops">
+      <div class="drop"></div>
+      <div class="drop"></div>
+      <div class="drop"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-content fade-up">
+        <div class="hero-badge">⭐ Ihr Vertrauen seit über 90 Jahren</div>
+        <h1>Haustechnik,<br>auf die Sie sich<br><em>verlassen können.</em></h1>
+        <p>Sanitär, Spenglerei, Badumbau und Wasserversorgung – von Profis mit Herz und handwerklicher Präzision. Seit 1932 zuverlässig für Basel-Landschaft.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">✉️ Offerte anfragen</a>
+          <a href="#services" class="btn-secondary">Alle Leistungen →</a>
+        </div>
+      </div>
+
+      <div class="hero-card fade-up">
+        <h3>📍 Direkt Kontakt</h3>
+        <div class="contact-item">
+          <div class="contact-icon tel">📞</div>
+          <div class="contact-info">
+            <strong>061 971 13 29</strong>
+            <span>Mo–Fr 07:00–17:00 Uhr</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon mail">✉️</div>
+          <div class="contact-info">
+            <strong>info@john-haustechnik.ch</strong>
+            <span>Antwort innert 24h</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon addr">📌</div>
+          <div class="contact-info">
+            <strong>Kollmattweg 7, 4450 Sissach</strong>
+            <span>Basel-Landschaft</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon time">🚨</div>
+          <div class="contact-info">
+            <strong>Notfalldienst 24/7</strong>
+            <span>Auch am Wochenende & Feiertagen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="fade-up">
+        <div class="stat-num">93+</div>
+        <div class="stat-label">Jahre Erfahrung</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num">31</div>
+        <div class="stat-label">Mitarbeitende</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num">7'500+</div>
+        <div class="stat-label">Zufriedene Kunden</div>
+      </div>
+      <div class="fade-up">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Notfalldienst</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <div class="section-head fade-up">
+        <span class="section-tag">Unsere Leistungen</span>
+        <h2 class="section-title">Alles aus einer Hand –<br>von der Planung bis zur Fertigstellung</h2>
+        <p class="section-sub">Ob kleiner Reparatureinsatz oder grosses Badumbauprojekt – wir haben die Expertise und das Team für jeden Auftrag.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">🚿</span>
+          <h3>Sanitärinstallationen</h3>
+          <p>Neu- und Umbauten, Reparaturen und Wartungen aller Sanitäranlagen – sauber, fachgerecht und termingerecht.</p>
+          <a href="#contact" class="service-link">Offerte anfragen →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">🛁</span>
+          <h3>Badumbau & Sanierung</h3>
+          <p>Ihr Traumbad realisieren wir von der Planung bis zur letzten Fliese. Modernes Design trifft auf bewährte Handwerkskunst.</p>
+          <a href="#contact" class="service-link">Badplanung anfragen →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">🏗️</span>
+          <h3>Spenglerei</h3>
+          <p>Dachrinnen, Wasserspeier, Fassadenverkleidungen und Blecharbeiten – präzise ausgeführt, dauerhaft geschützt.</p>
+          <a href="#contact" class="service-link">Beratung anfragen →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">💧</span>
+          <h3>Wasserversorgung</h3>
+          <p>Hausanschlüsse, Leitungsrenovationen und Druckprüfungen. Sauberes Wasser vom Anschluss bis zum Hahn.</p>
+          <a href="#contact" class="service-link">Mehr erfahren →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">🔍</span>
+          <h3>Leckortung</h3>
+          <p>Modernste Technik für zerstörungsfreie Leckortung. Wir finden das Problem, ohne unnötig aufzureissen.</p>
+          <a href="#contact" class="service-link">Termin buchen →</a>
+        </div>
+
+        <div class="service-card fade-up">
+          <span class="service-emoji">🚨</span>
+          <h3>Notfalldienst 24/7</h3>
+          <p>Rohrbruch um Mitternacht? Heizungsausfall am Sonntag? Wir sind rund um die Uhr für Sie erreichbar.</p>
+          <a href="tel:0619711329" class="service-link" style="color: var(--red);">Jetzt anrufen →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency CTA -->
+  <div class="emergency-section">
+    <div class="emergency-inner">
+      <div class="fade-up">
+        <h2>Notfall? Wir sind sofort da.</h2>
+        <p>Unser Pikettdienst ist 365 Tage im Jahr, rund um die Uhr erreichbar. Keine langen Wartezeiten – direkte Hilfe, wenn Sie sie brauchen.</p>
+      </div>
+      <a href="tel:0619711329" class="emergency-phone">
+        📞 061 971 13 29
+      </a>
+    </div>
+  </div>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="section-inner">
+      <div class="section-head fade-up" style="text-align: center;">
+        <span class="section-tag">So einfach geht's</span>
+        <h2 class="section-title">In 4 Schritten zum fertigen Projekt</h2>
+        <p class="section-sub" style="margin: 0 auto;">Von der ersten Anfrage bis zur Fertigstellung – transparent, verlässlich und ohne böse Überraschungen.</p>
+      </div>
+      <div class="process-steps">
+        <div class="step fade-up">
+          <div class="step-num">1</div>
+          <h4>Kontakt aufnehmen</h4>
+          <p>Anruf, Mail oder Offerte-Formular – wir melden uns innert eines Werktages.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">2</div>
+          <h4>Vor-Ort-Besichtigung</h4>
+          <p>Wir kommen zu Ihnen, schauen uns die Situation an und besprechen Ihre Wünsche.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">3</div>
+          <h4>Transparente Offerte</h4>
+          <p>Sie erhalten eine klare, verständliche Offerte – ohne versteckte Kosten.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">4</div>
+          <h4>Fachgerechte Ausführung</h4>
+          <p>Unser Team erledigt die Arbeit sauber und termingerecht – mit Qualitätsgarantie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-inner">
+      <div class="section-head fade-up" style="text-align: center;">
+        <span class="section-tag">Kundenstimmen</span>
+        <h2 class="section-title">Was unsere Kunden sagen</h2>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Rohrbruch am Samstagabend – innert 40 Minuten war jemand da. Unglaublich schnell und super professionell. Danke!"</blockquote>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: var(--blue);">MR</div>
+            <div class="reviewer-info">
+              <strong>Marcus R.</strong>
+              <span>Sissach</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Unser Bad wurde komplett saniert – von der Planung bis zur Schlüsselübergabe hat alles perfekt geklappt. Wir sind begeistert!"</blockquote>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: var(--sky);">SF</div>
+            <div class="reviewer-info">
+              <strong>Sandra F.</strong>
+              <span>Liestal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Jahrzehntelanger Stammkunde. John Haustechnik ist immer zuverlässig, fair im Preis und die Mitarbeiter sind sehr freundlich."</blockquote>
+          <div class="reviewer">
+            <div class="reviewer-avatar" style="background: var(--amber); color: var(--navy);">HP</div>
+            <div class="reviewer-info">
+              <strong>Hans-Peter M.</strong>
+              <span>Gelterkinden</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="fade-up">
+          <span class="section-tag">Kontakt</span>
+          <h2 class="section-title">Bereit für Ihr Projekt?</h2>
+          <p class="section-sub">Schreiben Sie uns oder rufen Sie an – wir freuen uns auf Ihre Anfrage und erstellen Ihnen gerne eine kostenlose Offerte.</p>
+
+          <div class="contact-list">
+            <div class="contact-row">
+              <div class="cicon">📞</div>
+              <div>
+                <strong>061 971 13 29</strong>
+                <span>Mo–Fr 07:00–17:00 Uhr</span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="cicon">✉️</div>
+              <div>
+                <strong>info@john-haustechnik.ch</strong>
+                <span>Antwort innert 24 Stunden</span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="cicon">📍</div>
+              <div>
+                <strong>Kollmattweg 7, 4450 Sissach</strong>
+                <span>Kostenloses Parkieren vor Ort</span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="cicon">🚨</div>
+              <div>
+                <strong>Notfall: 061 971 13 29</strong>
+                <span>24/7 – auch an Wochenenden</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form fade-up">
+          <h3>✉️ Kostenlose Offerte anfragen</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vorname</label>
+              <input type="text" placeholder="Max" />
+            </div>
+            <div class="form-group">
+              <label>Nachname</label>
+              <input type="text" placeholder="Muster" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-Mail</label>
+            <input type="email" placeholder="max@beispiel.ch" />
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" placeholder="079 123 45 67" />
+          </div>
+          <div class="form-group">
+            <label>Betreff</label>
+            <select>
+              <option>Sanitärinstallation / Reparatur</option>
+              <option>Badumbau / Sanierung</option>
+              <option>Spenglerei</option>
+              <option>Wasserversorgung</option>
+              <option>Leckortung</option>
+              <option>Notfalldienst</option>
+              <option>Anderes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nachricht</label>
+            <textarea placeholder="Beschreiben Sie kurz Ihr Anliegen..."></textarea>
+          </div>
+          <button class="form-submit" type="button" onclick="this.innerHTML='✅ Nachricht gesendet!'; this.style.background='#38a169'; this.style.color='white';">
+            Offerte anfragen →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo" style="margin-bottom: 0;">
+            <div class="logo-icon" style="width:36px;height:36px;font-size:18px;">🔧</div>
+            <div class="logo-text">
+              <strong style="font-size:1rem;">JOHN Haustechnik AG</strong>
+              <span>Seit 1932</span>
+            </div>
+          </a>
+          <p>Ihr zuverlässiger Partner für Sanitär, Spenglerei und Haustechnik in der Region Basel-Landschaft.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Leistungen</h4>
+          <ul>
+            <li><a href="#">Sanitärinstallationen</a></li>
+            <li><a href="#">Badumbau</a></li>
+            <li><a href="#">Spenglerei</a></li>
+            <li><a href="#">Wasserversorgung</a></li>
+            <li><a href="#">Leckortung</a></li>
+            <li><a href="#">Notfalldienst</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Unternehmen</h4>
+          <ul>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Karriere</a></li>
+            <li><a href="#">Referenzen</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Öffnungszeiten</h4>
+          <ul>
+            <li><a href="#">Mo–Fr: 07:00–17:00</a></li>
+            <li><a href="#">Sa: nach Absprache</a></li>
+            <li><a href="#">Notfall: 24/7</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 JOHN Haustechnik AG – Demo erstellt von Crowe Digital</span>
+        <div style="display:flex;gap:20px;">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animation observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Stagger children if parent has .fade-up children
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+      // Slight stagger for grid children
+      const parent = el.parentElement;
+      const siblings = [...parent.querySelectorAll(':scope > .fade-up')];
+      const idx = siblings.indexOf(el);
+      if (idx > 0) el.style.transitionDelay = `${idx * 0.08}s`;
+      observer.observe(el);
+    });
+
+    // Counter animation for stats
+    const animateCount = (el, target, suffix = '') => {
+      const formatted = target.includes("'") || target.includes('+') || target.includes('/');
+      if (formatted) return; // skip complex values
+      let start = 0;
+      const num = parseInt(target);
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * num) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(step);
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const num = e.target.querySelector('.stat-num');
+          const raw = num.textContent;
+          if (raw === '31') animateCount(num, '31');
+          statsObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stats-inner > div').forEach(el => statsObserver.observe(el));
+  </script>
+
+</body>
+</html>

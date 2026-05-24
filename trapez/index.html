@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Pizzeria Trapez – Reinach BL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terra:   #c4622d;
+      --dunkel:  #1c1410;
+      --creme:   #f7f0e6;
+      --warm:    #e8d9c0;
+      --gruen:   #3a5a40;
+      --text:    #2c1f15;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--creme); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(28, 20, 16, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196,98,45,0.2);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none;
+    }
+    .logo-shape {
+      width: 32px; height: 28px;
+      background: var(--terra);
+      clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--terra); }
+    .nav-cta {
+      display: flex; gap: 0.8rem;
+    }
+    .btn-order {
+      background: transparent;
+      border: 1px solid var(--terra);
+      color: var(--terra);
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-order:hover { background: var(--terra); color: white; }
+    .btn-reserve {
+      background: var(--terra);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-reserve:hover { background: #a8521f; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-left {
+      background: var(--dunkel);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -60px; top: 0; bottom: 0;
+      width: 120px;
+      background: var(--dunkel);
+      clip-path: polygon(0 0, 50% 0, 100% 100%, 50% 100%);
+      z-index: 2;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .hero-tag span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terra);
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 30px; height: 1px;
+      background: var(--terra);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--terra);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 340px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid var(--terra);
+      width: fit-content;
+    }
+    .rating-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: white;
+      line-height: 1;
+    }
+    .rating-right { }
+    .rating-stars { color: #f5a623; font-size: 0.85rem; }
+    .rating-count { color: rgba(255,255,255,0.4); font-size: 0.75rem; margin-top: 0.2rem; }
+    .hero-btns { display: flex; gap: 1rem; }
+    .btn-hero-primary {
+      background: var(--terra);
+      color: white;
+      padding: 0.9rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-hero-primary:hover { background: #a8521f; transform: translateY(-1px); }
+    .btn-hero-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      padding: 0.9rem 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-hero-ghost:hover { border-color: var(--terra); color: var(--terra); }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(196,98,45,0.3) 0%, transparent 60%);
+      z-index: 1;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 2.5rem; right: 2.5rem;
+      z-index: 2;
+      background: white;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .badge-top { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+    .badge-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--dunkel);
+      line-height: 1;
+      margin: 0.2rem 0;
+    }
+    .badge-sub { font-size: 0.72rem; color: #888; }
+
+    /* SECTION HELPERS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .label {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--terra);
+    }
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--dunkel);
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--terra);
+      margin-bottom: 2rem;
+    }
+
+    /* MERKMALE BAND */
+    .features {
+      background: var(--dunkel);
+      padding: 2.5rem;
+    }
+    .features-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .feat {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .feat:last-child { border-right: none; }
+    .feat-icon { font-size: 1.6rem; }
+    .feat-label {
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .feat-value {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    /* MENU */
+    .menu { background: white; }
+    .menu-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .menu-sticky { position: sticky; top: 6rem; }
+    .menu-cats { list-style: none; margin-top: 1.5rem; }
+    .menu-cats li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #ede5d4;
+      color: #8a7060;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-cats li:hover { color: var(--terra); }
+    .menu-cats li::after { content: '→'; opacity: 0; transition: opacity 0.2s; }
+    .menu-cats li:hover::after { opacity: 1; }
+    .menu-sections { }
+    .menu-section { margin-bottom: 3rem; }
+    .menu-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--dunkel);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #ede5d4;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .menu-section-title small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 400;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px dotted #ede5d4;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .item-name { color: var(--text); font-size: 0.95rem; }
+    .item-desc { color: #9a8878; font-size: 0.8rem; margin-top: 0.15rem; }
+    .item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--terra);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    /* REVIEWS */
+    .reviews { background: var(--creme); }
+    .reviews-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 4rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .reviews-score {
+      background: var(--dunkel);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      min-width: 180px;
+    }
+    .score-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--terra);
+      line-height: 1;
+    }
+    .score-stars { color: #f5a623; font-size: 1.1rem; margin: 0.3rem 0; }
+    .score-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+    .score-rank {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .score-rank strong { color: var(--terra); font-size: 1rem; }
+    .reviews-text { flex: 1; }
+    .reviews-text p { color: #5c4a38; line-height: 1.8; margin-bottom: 1rem; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: white;
+      padding: 1.8rem;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .review-card:hover { border-color: var(--terra); transform: translateY(-3px); }
+    .rc-stars { color: #f5a623; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .rc-text {
+      font-style: italic;
+      color: #4a3828;
+      line-height: 1.75;
+      font-size: 0.93rem;
+      margin-bottom: 1.2rem;
+    }
+    .rc-author { display: flex; align-items: center; gap: 0.8rem; }
+    .rc-avatar {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem; color: white;
+      clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+      flex-shrink: 0;
+    }
+    .rc-name { font-weight: 600; font-size: 0.88rem; }
+    .rc-meta { font-size: 0.75rem; color: #a08870; }
+
+    /* TERRASSE */
+    .terrasse {
+      background: var(--dunkel);
+      overflow: hidden;
+    }
+    .terrasse-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+    .terrasse-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .terrasse-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.7);
+    }
+    .terrasse-content {
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .terrasse-content .label { color: rgba(196,98,45,0.8); }
+    .terrasse-content .title { color: white; }
+    .terrasse-content p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .terrasse-tags { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .terrasse-tag {
+      border: 1px solid rgba(196,98,45,0.4);
+      color: rgba(196,98,45,0.9);
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* RESERVATION */
+    .reservation { background: var(--creme); }
+    .res-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .opening { margin-top: 2rem; }
+    .opening-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #ddd0bc;
+      font-size: 0.9rem;
+    }
+    .opening-row .day { color: #7a6858; }
+    .opening-row .time { font-weight: 500; }
+    .opening-row.closed .time { color: #bbb; }
+    .opening-row .late {
+      font-size: 0.7rem;
+      background: var(--terra);
+      color: white;
+      padding: 0.15rem 0.5rem;
+      letter-spacing: 1px;
+      margin-left: 0.5rem;
+    }
+    .form-box {
+      background: var(--dunkel);
+      padding: 2.5rem;
+    }
+    .form-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: white;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    .fg { margin-bottom: 1.2rem; }
+    .fg label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.4rem;
+    }
+    .fg input, .fg select, .fg textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .fg input::placeholder { color: rgba(255,255,255,0.25); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--terra); }
+    .fg select option { background: #2c1f15; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--terra);
+      color: white;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #a8521f; }
+
+    /* KONTAKT */
+    .kontakt { background: white; padding: 4rem 2rem; }
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .kontakt-card {
+      padding: 2rem;
+      border: 1px solid #ede5d4;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .kontakt-card:hover { border-color: var(--terra); }
+    .kontakt-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .kontakt-label {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.5rem;
+    }
+    .kontakt-val { font-size: 1rem; color: var(--dunkel); font-weight: 500; }
+    .kontakt-val a { color: var(--dunkel); text-decoration: none; }
+    .kontakt-val a:hover { color: var(--terra); }
+    .kontakt-sub { font-size: 0.8rem; color: #9a8878; margin-top: 0.3rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dunkel);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--terra); }
+    .footer-copy {
+      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem;
+    }
+
+    /* DEMO BANNER */
+    .demo-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(28,20,16,0.97);
+      border-top: 2px solid var(--terra);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 0.7rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+    .demo-banner strong { color: var(--terra); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left::after { display: none; }
+      .hero-right { height: 320px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .feat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .menu-layout { grid-template-columns: 1fr; }
+      .menu-sticky { position: static; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .terrasse-grid { grid-template-columns: 1fr; }
+      .res-grid { grid-template-columns: 1fr; }
+      .kontakt-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="logo-shape"></div>
+      <span class="logo-text">Trapez</span>
+    </a>
+    <ul>
+      <li><a href="#menu">Speisekarte</a></li>
+      <li><a href="#reviews">Bewertungen</a></li>
+      <li><a href="#terrasse">Terrasse</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#menu" class="btn-order">Bestellen</a>
+      <a href="#reservation" class="btn-reserve">Reservieren</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="hero-tag"><span>Restaurant Pizzeria · Reinach BL</span></div>
+      <h1>Echte<br><em>Cucina</em><br>italiana</h1>
+      <p class="hero-sub">Hausgemachte Pizza, frische Pasta, zartes Kalbfleisch – im Trapez kochen wir seit Jahren mit dem gleichen Herzblut. Willkommen.</p>
+      <div class="hero-rating">
+        <div class="rating-num">4.4</div>
+        <div class="rating-right">
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">413 Bewertungen · Google Maps</div>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#reservation" class="btn-hero-primary">Tisch reservieren</a>
+        <a href="#menu" class="btn-hero-ghost">Speisekarte</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80" alt="Frische Pizza im Trapez">
+      <div class="hero-badge">
+        <div class="badge-top">Ranking Reinach</div>
+        <div class="badge-main">#6</div>
+        <div class="badge-sub">von 27 Restaurants</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES BAND -->
+  <div class="features">
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon">🍕</div>
+        <div>
+          <div class="feat-label">Küche</div>
+          <div class="feat-value">Italienisch & Schweizer</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🌿</div>
+        <div>
+          <div class="feat-label">Terrasse</div>
+          <div class="feat-value">Überdacht, ganzjährig</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🌙</div>
+        <div>
+          <div class="feat-label">Fr & Sa</div>
+          <div class="feat-value">Geöffnet bis 01:00</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">♿</div>
+        <div>
+          <div class="feat-label">Zugang</div>
+          <div class="feat-value">Rollstuhlgerecht</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEISEKARTE -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="menu-layout">
+        <div class="menu-sticky">
+          <div class="label">La Cucina</div>
+          <h2 class="title">Unsere<br>Speisekarte</h2>
+          <div class="divider"></div>
+          <p style="color:#7a6858; font-size:0.9rem; line-height:1.7; margin-bottom:1.5rem;">Von hausgemachter Pasta bis zur knusprigen Pizza – alles frisch zubereitet, nach bewährten Rezepten.</p>
+          <ul class="menu-cats">
+            <li>Suppen</li>
+            <li>Salate</li>
+            <li>Pizza</li>
+            <li>Pasta</li>
+            <li>Risotto</li>
+            <li>Fleisch</li>
+            <li>Desserts</li>
+          </ul>
+          <div style="margin-top:2rem;">
+            <a href="#reservation" class="btn-hero-primary" style="display:inline-block">Tisch reservieren</a>
+          </div>
+        </div>
+        <div class="menu-sections">
+
+          <div class="menu-section">
+            <div class="menu-section-title">Suppen <small>Zuppe</small></div>
+            <div class="menu-item"><div><div class="item-name">Minestrone Maison</div></div><div class="item-price">Fr 8.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Tomatencrèmesuppe</div></div><div class="item-price">Fr 8.00</div></div>
+            <div class="menu-item"><div><div class="item-name">Tortelloni in Brodo</div><div class="item-desc">In hausgemachter Bouillon</div></div><div class="item-price">Fr 8.50</div></div>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-section-title">Salate <small>Insalate</small></div>
+            <div class="menu-item"><div><div class="item-name">Insalata mista</div><div class="item-desc">Gemischter Salat der Saison</div></div><div class="item-price">Fr 9.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Insalata Trapez</div><div class="item-desc">Hausspezialität mit Rucola, Parmesan, Cherrytomaten</div></div><div class="item-price">Fr 18.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Caprese</div><div class="item-desc">Mozzarella, Tomaten, Basilikum, Olivenöl</div></div><div class="item-price">Fr 15.50</div></div>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-section-title">Pizza <small>Ø 32 cm</small></div>
+            <div class="menu-item"><div><div class="item-name">Margherita</div><div class="item-desc">Tomatensauce, Mozzarella</div></div><div class="item-price">Fr 18.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Quattro Stagioni</div><div class="item-desc">Vier Jahreszeiten – Artischocken, Oliven, Schinken, Pilze</div></div><div class="item-price">Fr 23.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Diavola</div><div class="item-desc">Pikante Salami, Peperoni, Mozzarella</div></div><div class="item-price">Fr 22.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Pizza Trapez</div><div class="item-desc">Hausspezialität – fragen Sie Ihr Servicepersonal</div></div><div class="item-price">Fr 26.50</div></div>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-section-title">Pasta <small>Fatta in casa</small></div>
+            <div class="menu-item"><div><div class="item-name">Spaghetti Carbonara</div><div class="item-desc">Pancetta, Eigelb, Pecorino, Pfeffer</div></div><div class="item-price">Fr 21.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Penne all'Arrabbiata</div><div class="item-desc">Pikante Tomatensauce, Knoblauch</div></div><div class="item-price">Fr 19.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Tagliatelle al Ragù</div><div class="item-desc">Hausgemachte Nudeln mit langsam geschmortem Ragù</div></div><div class="item-price">Fr 24.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Ravioli della Casa</div><div class="item-desc">Täglich frisch, Füllung nach Saison</div></div><div class="item-price">Fr 25.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Gnocchi al Gorgonzola</div><div class="item-desc">Hausgemachte Gnocchi, Gorgonzola-Sahnesauce, Walnüsse</div></div><div class="item-price">Fr 23.50</div></div>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-section-title">Fleisch <small>Carne</small></div>
+            <div class="menu-item"><div><div class="item-name">Kalbsschnitzel Milanese</div><div class="item-desc">Paniert, mit Rosmarinkartoffeln und Salat</div></div><div class="item-price">Fr 34.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Cordon Bleu vom Schwein</div><div class="item-desc">Schinken, Käse, Pommes frites</div></div><div class="item-price">Fr 29.50</div></div>
+            <div class="menu-item"><div><div class="item-name">Poulet alla Parmigiana</div><div class="item-desc">Tomatensauce, Mozzarella überbacken, Tagliatelle</div></div><div class="item-price">Fr 28.50</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header">
+        <div class="reviews-score">
+          <div class="score-num">4.4</div>
+          <div class="score-stars">★★★★★</div>
+          <div class="score-label">413 Google Bewertungen</div>
+          <div class="score-rank"><strong>#6</strong><br>von 27 Restaurants<br>in Reinach</div>
+        </div>
+        <div class="reviews-text">
+          <div class="label">I Nostri Ospiti</div>
+          <h2 class="title">Was unsere<br>Gäste sagen</h2>
+          <div class="divider"></div>
+          <p>Über 400 Gäste haben das Trapez auf Google bewertet – mit einer klaren Botschaft: freundlicher Service, gutes Essen, faire Preise. Lesen Sie selbst.</p>
+        </div>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">«Freundliche Atmosphäre, perfekte Gastfreundschaft und tolles Essen zu einem sehr vernünftigen Preis. Die Mittagsmenüs sind ein echtes Schnäppchen!»</p>
+          <div class="rc-author">
+            <div class="rc-avatar" style="background:#3a5a40">AN</div>
+            <div>
+              <div class="rc-name">Alfred N.</div>
+              <div class="rc-meta">Reinach · Google</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">«Das Essen war ausgezeichnet – wir waren zu viert zum Mittagessen und alle waren begeistert. Der Service war aufmerksam und das Preis-Leistungs-Verhältnis stimmt.»</p>
+          <div class="rc-author">
+            <div class="rc-avatar" style="background:#c4622d">JM</div>
+            <div>
+              <div class="rc-name">Jim0</div>
+              <div class="rc-meta">Schweiz · TripAdvisor</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-stars">★★★★★</div>
+          <p class="rc-text">«Das Personal ist herzlich und zuvorkommend. Das Kalbfleisch war ausgezeichnet – perfekt zubereitet. Wir kommen sicher wieder.»</p>
+          <div class="rc-author">
+            <div class="rc-avatar" style="background:#1c1410">CB</div>
+            <div>
+              <div class="rc-name">Christopher B.</div>
+              <div class="rc-meta">London · TripAdvisor</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TERRASSE -->
+  <section class="terrasse" id="terrasse">
+    <div class="terrasse-grid">
+      <div class="terrasse-img">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&q=80" alt="Überdachte Terrasse">
+      </div>
+      <div class="terrasse-content">
+        <div class="label">La Terrazza</div>
+        <h2 class="title" style="color:white">Unsere überdachte<br>Terrasse</h2>
+        <div class="divider"></div>
+        <p>Sommerwind, gutes Essen, entspannte Atmosphäre – unsere überdachte Terrasse ist der perfekte Platz für einen langen Abend mit Familie oder Freunden.</p>
+        <p>Ob Apéro bei Feierabend oder Geburtstagsessen mit der ganzen Crew: das Trapez hat Platz für alle.</p>
+        <div class="terrasse-tags">
+          <span class="terrasse-tag">Überdacht</span>
+          <span class="terrasse-tag">Rollstuhlzugang</span>
+          <span class="terrasse-tag">Familienfreundlich</span>
+          <span class="terrasse-tag">Gruppenreservationen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section class="reservation" id="reservation">
+    <div class="container">
+      <div class="res-grid">
+        <div>
+          <div class="label">Prenota</div>
+          <h2 class="title">Tisch reservieren</h2>
+          <div class="divider"></div>
+          <p style="color:#7a6858; line-height:1.8; font-size:0.95rem; margin-bottom:0.5rem;">Sichern Sie sich Ihren Tisch – einfach, schnell und ohne Warteschleife.</p>
+          <div class="opening">
+            <div class="opening-row closed"><span class="day">Montag</span><span class="time">Ruhetag</span></div>
+            <div class="opening-row"><span class="day">Di – Do</span><span class="time">17:30 – 22:00</span></div>
+            <div class="opening-row"><span class="day">Freitag</span><span class="time">17:30 – 01:00 <span class="late">Nacht</span></span></div>
+            <div class="opening-row"><span class="day">Samstag</span><span class="time">17:30 – 01:00 <span class="late">Nacht</span></span></div>
+            <div class="opening-row"><span class="day">Sonntag</span><span class="time">17:30 – 22:00</span></div>
+          </div>
+        </div>
+        <div class="form-box">
+          <h3>Online reservieren</h3>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="fg"><label>Vorname</label><input type="text" placeholder="Marco"></div>
+              <div class="fg"><label>Nachname</label><input type="text" placeholder="Rossi"></div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>Datum</label><input type="date"></div>
+              <div class="fg"><label>Uhrzeit</label>
+                <select>
+                  <option>17:30</option><option>18:00</option><option>18:30</option>
+                  <option>19:00</option><option>19:30</option><option>20:00</option>
+                  <option>20:30</option><option>21:00</option><option>21:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg"><label>Personen</label>
+              <select>
+                <option>1 Person</option><option selected>2 Personen</option>
+                <option>3–4 Personen</option><option>5–6 Personen</option>
+                <option>7+ Personen</option>
+              </select>
+            </div>
+            <div class="fg"><label>Telefon</label><input type="text" placeholder="+41 79 000 00 00"></div>
+            <div class="fg"><label>Anmerkungen</label><textarea rows="2" placeholder="Geburtstag, Allergie, Kinderstuhl…" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:white; width:100%; padding:0.8rem; font-family:Inter; font-size:0.9rem; outline:none;"></textarea></div>
+            <button type="submit" class="btn-submit">Reservierung bestätigen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="kontakt" id="kontakt">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3rem;">
+        <div class="label" style="justify-content:center">Dove Siamo</div>
+        <h2 class="title">So erreichen Sie uns</h2>
+      </div>
+      <div class="kontakt-grid">
+        <div class="kontakt-card">
+          <div class="kontakt-icon">📍</div>
+          <div class="kontakt-label">Adresse</div>
+          <div class="kontakt-val">Sonnenweg 18<br>4153 Reinach BL</div>
+          <div class="kontakt-sub" style="margin-top:0.8rem;"><a href="https://maps.google.com/?q=Restaurant+Trapez+Sonnenweg+18+Reinach" target="_blank" style="color:var(--terra)">In Maps öffnen →</a></div>
+        </div>
+        <div class="kontakt-card">
+          <div class="kontakt-icon">📞</div>
+          <div class="kontakt-label">Telefon</div>
+          <div class="kontakt-val"><a href="tel:+41617114410">061 711 44 10</a></div>
+          <div class="kontakt-sub">Reservationen & Anfragen</div>
+        </div>
+        <div class="kontakt-card">
+          <div class="kontakt-icon">🚌</div>
+          <div class="kontakt-label">Anreise</div>
+          <div class="kontakt-val">Bus Linie 64/65</div>
+          <div class="kontakt-sub">Haltestelle Reinach Hauptstrasse<br>Parkplätze vorhanden</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <div class="logo-shape"></div>
+      <span class="logo-text" style="font-family:'Cormorant Garamond',serif; color:white; font-size:1.1rem; letter-spacing:3px;">TRAPEZ</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <a href="#reservation">Reservieren</a>
+    </div>
+    <div class="footer-copy">© 2026 Restaurant Pizzeria Trapez · Website by Crowe Digital</div>
+  </footer>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    ⚡ <strong>Demo-Website</strong> – erstellt von <strong>Crowe Digital</strong> für Restaurant Pizzeria Trapez · crowe-digital.ch
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Reservierung eingegangen – wir rufen zurück!';
+      btn.style.background = '#3a5a40';
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>
