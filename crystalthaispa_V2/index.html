@@ -530,6 +530,21 @@ footer {
 }
 .wa-float svg { width: 28px; height: 28px; fill: white; }
 
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-left: 1.2rem;
+}
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.18em; font-weight: 500;
+  color: rgba(247,242,234,0.3); padding: 0.2rem 0.35rem;
+  transition: color 0.3s;
+}
+.lang-btn.active { color: var(--gold); }
+.lang-sep { color: rgba(201,169,110,0.2); font-size: 0.55rem; user-select: none; }
+
 /* ── SCROLL REVEAL ── */
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -584,12 +599,17 @@ footer {
 <nav id="mainNav">
   <a href="#" class="nav-logo"><img src="images/logo.png" alt="Crystal Thai Spa & Therapy"></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#massagen">Massagen</a></li>
-    <li><a href="#galerie">Atmosphäre</a></li>
-    <li><a href="#about">Über Mich</a></li>
-    <li><a href="#bewertungen">Bewertungen</a></li>
-    <li><a href="#termin" class="nav-cta">Termin buchen</a></li>
+    <li><a href="#massagen" data-en="Massages">Massagen</a></li>
+    <li><a href="#galerie" data-en="Atmosphere">Atmosphäre</a></li>
+    <li><a href="#about" data-en="About">Über Mich</a></li>
+    <li><a href="#bewertungen" data-en="Reviews">Bewertungen</a></li>
+    <li><a href="#termin" class="nav-cta" data-en="Book Now">Termin buchen</a></li>
   </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+  </div>
   <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
@@ -604,42 +624,42 @@ footer {
   <div class="hero-content">
     <div class="hero-tag">Thai Spa & Therapy · Therwil, Basel-Land</div>
     <h1>
-      Wo Stille
-      <em>zur Kraft wird</em>
+      <span data-en="Where silence">Wo Stille</span>
+      <em data-en="becomes strength">zur Kraft wird</em>
     </h1>
-    <p class="hero-desc">
+    <p class="hero-desc" data-en="Traditional Thai massage in the ancient art — combined with genuine warmth from Thailand. Immerse yourself in a world of deep relaxation, in the heart of Birstal.">
       Traditionelle Thai-Massage nach uralter Kunst — gepaart mit echter Herzlichkeit aus Thailand. Tauchen Sie ein in eine Welt der tiefen Entspannung, mitten im Birstal.
     </p>
     <div class="hero-actions">
-      <a href="#termin" class="btn-primary"><span>Jetzt Termin buchen</span></a>
-      <a href="#massagen" class="btn-ghost">Alle Massagen entdecken</a>
+      <a href="#termin" class="btn-primary"><span data-en="Book Now">Jetzt Termin buchen</span></a>
+      <a href="#massagen" class="btn-ghost" data-en="Discover all massages">Alle Massagen entdecken</a>
     </div>
   </div>
 
   <div class="hero-badge">
     <div class="hero-badge-num">5★</div>
-    <div class="hero-badge-label">Google<br>Bewertung</div>
+    <div class="hero-badge-label" data-en-html="Google<br>Rating">Google<br>Bewertung</div>
   </div>
 
   <div class="scroll-hint">
     <div class="scroll-line"></div>
-    <span class="scroll-text">Entdecken</span>
+    <span class="scroll-text" data-en="Discover">Entdecken</span>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat reveal"><div class="stat-num">10+</div><div class="stat-label">Jahre Erfahrung</div></div>
-  <div class="stat reveal reveal-delay-1"><div class="stat-num">9</div><div class="stat-label">Massage-Arten</div></div>
-  <div class="stat reveal reveal-delay-2"><div class="stat-num">5★</div><div class="stat-label">Google Bewertung</div></div>
-  <div class="stat reveal reveal-delay-3"><div class="stat-num">∞</div><div class="stat-label">Entspannung</div></div>
+  <div class="stat reveal"><div class="stat-num">10+</div><div class="stat-label" data-en="Years of Experience">Jahre Erfahrung</div></div>
+  <div class="stat reveal reveal-delay-1"><div class="stat-num">9</div><div class="stat-label" data-en="Massage Types">Massage-Arten</div></div>
+  <div class="stat reveal reveal-delay-2"><div class="stat-num">5★</div><div class="stat-label" data-en="Google Rating">Google Bewertung</div></div>
+  <div class="stat reveal reveal-delay-3"><div class="stat-num">∞</div><div class="stat-label" data-en="Relaxation">Entspannung</div></div>
 </div>
 
 <!-- SERVICES -->
 <section id="massagen" class="services">
-  <span class="section-tag reveal">Unser Angebot</span>
-  <h2 class="section-title reveal">Die Kunst der <em>Thai-Massage</em></h2>
-  <p class="section-sub reveal">Jede Behandlung wird individuell auf Ihren Körper und Ihre Bedürfnisse abgestimmt — für tiefe Entspannung und nachhaltige Wirkung.</p>
+  <span class="section-tag reveal" data-en="Our Services">Unser Angebot</span>
+  <h2 class="section-title reveal" data-en-html="The Art of <em>Thai Massage</em>">Die Kunst der <em>Thai-Massage</em></h2>
+  <p class="section-sub reveal" data-en="Each treatment is individually tailored to your body and needs — for deep relaxation and lasting effects.">Jede Behandlung wird individuell auf Ihren Körper und Ihre Bedürfnisse abgestimmt — für tiefe Entspannung und nachhaltige Wirkung.</p>
   <div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line r"></div></div>
 
   <div class="services-grid reveal">
@@ -647,8 +667,8 @@ footer {
       <img src="images/massagen/m-01.jpg" alt="Traditionelle Thaimassage" class="service-img">
       <div class="service-body">
         <span class="service-num">01</span>
-        <div class="service-name">Traditionelle Thaimassage</div>
-        <p class="service-desc">Die klassische Ganzkörpermassage mit Dehntechniken und Akupressur entlang der Energielinien. Belebend, tiefenwirksam und seit Jahrhunderten erprobt.</p>
+        <div class="service-name" data-en="Traditional Thai Massage">Traditionelle Thaimassage</div>
+        <p class="service-desc" data-en="The classic full-body massage with stretching techniques and acupressure along energy lines. Invigorating, deeply effective and tried for centuries.">Die klassische Ganzkörpermassage mit Dehntechniken und Akupressur entlang der Energielinien. Belebend, tiefenwirksam und seit Jahrhunderten erprobt.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 100</div>
           <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
@@ -659,8 +679,8 @@ footer {
       <img src="images/massagen/m-02.jpg" alt="Kräuterstempel-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">02</span>
-        <div class="service-name">Kräuterstempel-Massage</div>
-        <p class="service-desc">Warme Kräuterpäckchen mit traditionellen Thai-Heilkräutern lösen Verspannungen, aktivieren die Durchblutung und schenken ein einzigartiges Wärmegefühl.</p>
+        <div class="service-name" data-en="Herbal Stamp Massage">Kräuterstempel-Massage</div>
+        <p class="service-desc" data-en="Warm herbal packages with traditional Thai healing herbs relieve tension, activate circulation and provide a unique feeling of warmth.">Warme Kräuterpäckchen mit traditionellen Thai-Heilkräutern lösen Verspannungen, aktivieren die Durchblutung und schenken ein einzigartiges Wärmegefühl.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 115</div>
           <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 180</div>
@@ -671,8 +691,8 @@ footer {
       <img src="images/massagen/m-03.jpg" alt="Kerzenwachs-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">03</span>
-        <div class="service-name">Kerzenwachs-Massage</div>
-        <p class="service-desc">Warmes Bio-Kerzenwachs gleitet sanft über die Haut. Tief pflegend, sinnlich entspannend — ein Erlebnis für alle Sinne.</p>
+        <div class="service-name" data-en="Candle Wax Massage">Kerzenwachs-Massage</div>
+        <p class="service-desc" data-en="Warm organic candle wax glides gently over the skin. Deeply nourishing, sensually relaxing — an experience for all the senses.">Warmes Bio-Kerzenwachs gleitet sanft über die Haut. Tief pflegend, sinnlich entspannend — ein Erlebnis für alle Sinne.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 115</div>
           <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 180</div>
@@ -683,8 +703,8 @@ footer {
       <img src="images/massagen/m-04.jpg" alt="Büro-Syndrom-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">04</span>
-        <div class="service-name">Büro-Syndrom-Massage</div>
-        <p class="service-desc">Gezielt gegen Nacken-, Schulter- und Rückenschmerzen durch langes Sitzen am Bildschirm. Ideal nach einem anstrengenden Arbeitstag.</p>
+        <div class="service-name" data-en="Office Syndrome Massage">Büro-Syndrom-Massage</div>
+        <p class="service-desc" data-en="Targeted relief for neck, shoulder and back pain from long hours at a screen. Ideal after a demanding workday.">Gezielt gegen Nacken-, Schulter- und Rückenschmerzen durch langes Sitzen am Bildschirm. Ideal nach einem anstrengenden Arbeitstag.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 95</div>
           <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
@@ -695,8 +715,8 @@ footer {
       <img src="images/massagen/m-05.jpg" alt="Sportmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">05</span>
-        <div class="service-name">Sportmassage</div>
-        <p class="service-desc">Intensive Tiefenarbeit für aktive Menschen. Fördert die Regeneration nach dem Sport, löst Muskelverspannungen und beugt Verletzungen vor.</p>
+        <div class="service-name" data-en="Sports Massage">Sportmassage</div>
+        <p class="service-desc" data-en="Intensive deep work for active people. Promotes recovery after sport, relieves muscle tension and helps prevent injuries.">Intensive Tiefenarbeit für aktive Menschen. Fördert die Regeneration nach dem Sport, löst Muskelverspannungen und beugt Verletzungen vor.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 99</div>
           <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
@@ -707,8 +727,8 @@ footer {
       <img src="images/massagen/m-06.jpg" alt="Fuss-Reflexzonenmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">06</span>
-        <div class="service-name">Fuss-Reflexzonenmassage</div>
-        <p class="service-desc">Stimuliert die Reflexzonen der Fusssohle und wirkt harmonisierend auf Organe und Körpersysteme. Tiefenentspannung vom Boden auf.</p>
+        <div class="service-name" data-en="Foot Reflexology">Fuss-Reflexzonenmassage</div>
+        <p class="service-desc" data-en="Stimulates the reflex zones of the sole and has a harmonising effect on organs and body systems. Deep relaxation from the ground up.">Stimuliert die Reflexzonen der Fusssohle und wirkt harmonisierend auf Organe und Körpersysteme. Tiefenentspannung vom Boden auf.</p>
         <div class="service-price-row">
           <div class="service-price">30 Min CHF 60</div>
           <div class="service-price-note">60 Min CHF 95</div>
@@ -719,8 +739,8 @@ footer {
       <img src="images/massagen/m-07.jpg" alt="Fuss- & Schultermassage" class="service-img">
       <div class="service-body">
         <span class="service-num">07</span>
-        <div class="service-name">Fuss- & Schultermassage</div>
-        <p class="service-desc">Die perfekte Kombination aus Reflexzonenmassage der Füsse und entspannender Schultermassage — wohltuend von Kopf bis Fuss.</p>
+        <div class="service-name" data-en="Foot &amp; Shoulder Massage">Fuss- &amp; Schultermassage</div>
+        <p class="service-desc" data-en="The perfect combination of foot reflexology and relaxing shoulder massage — beneficial from head to toe.">Die perfekte Kombination aus Reflexzonenmassage der Füsse und entspannender Schultermassage — wohltuend von Kopf bis Fuss.</p>
         <div class="service-price-row">
           <div class="service-price">30 Min CHF 60</div>
           <div class="service-price-note">60 Min CHF 90 &nbsp;·&nbsp; 90 Min CHF 120</div>
@@ -732,7 +752,7 @@ footer {
       <div class="service-body">
         <span class="service-num">08</span>
         <div class="service-name">Hot Stone Massage</div>
-        <p class="service-desc">Warme Basaltsteine entlang der Energiepunkte — Wärme dringt tief in die Muskulatur, löst chronische Verspannungen und beruhigt das Nervensystem.</p>
+        <p class="service-desc" data-en="Warm basalt stones along the energy points — heat penetrates deep into the muscles, releases chronic tension and calms the nervous system.">Warme Basaltsteine entlang der Energiepunkte — Wärme dringt tief in die Muskulatur, löst chronische Verspannungen und beruhigt das Nervensystem.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 120</div>
           <div class="service-price-note">90 Min CHF 150 &nbsp;·&nbsp; 120 Min CHF 190</div>
@@ -743,8 +763,8 @@ footer {
       <img src="images/massagen/m-09.jpg" alt="Lymph-Drainagemassage" class="service-img">
       <div class="service-body">
         <span class="service-num">09</span>
-        <div class="service-name">Lymph-Drainagemassage</div>
-        <p class="service-desc">Sanfte Grifftechniken aktivieren das Lymphsystem, fördern die Entgiftung und reduzieren Wassereinlagerungen. Wohltuend und entschlackend.</p>
+        <div class="service-name" data-en="Lymphatic Drainage Massage">Lymph-Drainagemassage</div>
+        <p class="service-desc" data-en="Gentle techniques activate the lymphatic system, promote detoxification and reduce water retention. Beneficial and cleansing.">Sanfte Grifftechniken aktivieren das Lymphsystem, fördern die Entgiftung und reduzieren Wassereinlagerungen. Wohltuend und entschlackend.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 95</div>
           <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 180</div>
@@ -755,8 +775,8 @@ footer {
       <img src="images/massagen/m-10.jpg" alt="Schwangerschaftsmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">10</span>
-        <div class="service-name">Schwangerschaftsmassage</div>
-        <p class="service-desc">Sanfte, auf die Bedürfnisse werdender Mütter abgestimmte Massage. Lindert Rückenschmerzen, Wassereinlagerungen und schenkt tiefe Entspannung.</p>
+        <div class="service-name" data-en="Pregnancy Massage">Schwangerschaftsmassage</div>
+        <p class="service-desc" data-en="Gentle massage tailored to expectant mothers. Relieves back pain, water retention and provides deep relaxation.">Sanfte, auf die Bedürfnisse werdender Mütter abgestimmte Massage. Lindert Rückenschmerzen, Wassereinlagerungen und schenkt tiefe Entspannung.</p>
         <div class="service-price-row">
           <div class="service-price">60 Min CHF 95</div>
           <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
@@ -764,7 +784,7 @@ footer {
       </div>
     </div>
   </div>
-  <p style="text-align:center;margin-top:2.5rem;font-size:0.78rem;color:var(--text-light);letter-spacing:0.05em;">
+  <p style="text-align:center;margin-top:2.5rem;font-size:0.78rem;color:var(--text-light);letter-spacing:0.05em;" data-en-html='Payment on site with <strong style="color:var(--text);">Cash or TWINT</strong>'>
     Zahlung vor Ort mit <strong style="color:var(--text);">Bargeld oder TWINT</strong>
   </p>
 </section>
@@ -772,8 +792,8 @@ footer {
 <!-- GALLERY -->
 <section id="galerie" class="gallery">
   <div class="gallery-header">
-    <span class="section-tag reveal">Unser Spa</span>
-    <h2 class="section-title reveal">Erleben Sie die <em>Atmosphäre</em></h2>
+    <span class="section-tag reveal" data-en="Our Spa">Unser Spa</span>
+    <h2 class="section-title reveal" data-en-html="Experience the <em>Atmosphere</em>">Erleben Sie die <em>Atmosphäre</em></h2>
   </div>
   <div class="gallery-grid">
     <div class="gallery-item large reveal">
@@ -801,24 +821,24 @@ footer {
 
 <!-- PILLARS -->
 <section class="pillars reveal">
-  <span class="section-tag">Warum Crystal Thai Spa</span>
-  <h2 class="section-title">Drei Versprechen, <em>ein Erlebnis</em></h2>
+  <span class="section-tag" data-en="Why Crystal Thai Spa">Warum Crystal Thai Spa</span>
+  <h2 class="section-title" data-en-html="Three Promises, <em>one experience</em>">Drei Versprechen, <em>ein Erlebnis</em></h2>
   <div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line r"></div></div>
   <div class="pillars-grid">
     <div class="pillar">
       <span class="pillar-icon">🏛️</span>
-      <div class="pillar-title">Tradition</div>
-      <p class="pillar-text">Unsere Techniken stammen aus über 2'500 Jahren Thai-Heilkunde. Kein Trend — echte Überlieferung, die wirkt.</p>
+      <div class="pillar-title" data-en="Tradition">Tradition</div>
+      <p class="pillar-text" data-en="Our techniques come from over 2,500 years of Thai healing. Not a trend — genuine tradition that works.">Unsere Techniken stammen aus über 2'500 Jahren Thai-Heilkunde. Kein Trend — echte Überlieferung, die wirkt.</p>
     </div>
     <div class="pillar">
       <span class="pillar-icon">🤲</span>
-      <div class="pillar-title">Individualität</div>
-      <p class="pillar-text">Jede Behandlung wird auf Ihren Körper abgestimmt. Kein Schema F — sondern Zuhören, Spüren, Reagieren.</p>
+      <div class="pillar-title" data-en="Individuality">Individualität</div>
+      <p class="pillar-text" data-en="Every treatment is tailored to your body. No one-size-fits-all — just listening, sensing, responding.">Jede Behandlung wird auf Ihren Körper abgestimmt. Kein Schema F — sondern Zuhören, Spüren, Reagieren.</p>
     </div>
     <div class="pillar">
       <span class="pillar-icon">🌺</span>
-      <div class="pillar-title">Atmosphäre</div>
-      <p class="pillar-text">Treten Sie ein und lassen Sie den Alltag hinter sich. Unser Spa ist ein Ort der Stille — mitten in Therwil.</p>
+      <div class="pillar-title" data-en="Atmosphere">Atmosphäre</div>
+      <p class="pillar-text" data-en="Step inside and leave everyday life behind. Our spa is a place of stillness — right in Therwil.">Treten Sie ein und lassen Sie den Alltag hinter sich. Unser Spa ist ein Ort der Stille — mitten in Therwil.</p>
     </div>
   </div>
 </section>
@@ -831,17 +851,17 @@ footer {
       <div class="about-photo-overlay"></div>
     </div>
     <div class="about-text reveal">
-      <span class="section-tag">Über Mich</span>
-      <h2 class="about-title">Sawasdee Kha —<br>ich bin <em>Bootsadee</em></h2>
-      <p class="about-body">
+      <span class="section-tag" data-en="About Me">Über Mich</span>
+      <h2 class="about-title" data-en-html="Sawasdee Kha —<br>I am <em>Bootsadee</em>">Sawasdee Kha —<br>ich bin <em>Bootsadee</em></h2>
+      <p class="about-body" data-en="Growing up in Thailand, I learned the art of massage from an early age. For me, it is more than technique: it is a form of care that I give with all my heart.">
         In Thailand aufgewachsen, habe ich die Kunst der Massage von klein auf gelernt. Für mich ist sie mehr als Technik: Es ist eine Form der Fürsorge, die ich mit ganzem Herzen weitergebe.
       </p>
-      <p class="about-body">
+      <p class="about-body" data-en="For over 10 years I have welcomed guests from the Birseck and all of North-West Switzerland at Crystal Thai Spa. Every treatment is a gift of trust — which I return with presence, experience and genuine Thai tradition.">
         Seit über 10 Jahren empfange ich im Crystal Thai Spa Gäste aus dem Birseck und der ganzen Nordwestschweiz. Jede Behandlung ist für mich ein Vertrauensgeschenk — das ich mit Präsenz, Erfahrung und echter Thai-Tradition zurückgebe.
       </p>
       <div class="about-certs">
         <img src="images/diplome.jpg" alt="Ausbildungszertifikate Bootsadee">
-        <span>Staatlich anerkannte Ausbildung<br>Offizielle Diplome &amp; Zertifikate</span>
+        <span data-en-html="Officially recognised training<br>Official Diplomas &amp; Certificates">Staatlich anerkannte Ausbildung<br>Offizielle Diplome &amp; Zertifikate</span>
       </div>
       <span class="about-signature">Bootsadee</span>
       <div class="about-contact">
@@ -855,28 +875,28 @@ footer {
 
 <!-- TESTIMONIALS -->
 <section id="bewertungen" class="testimonials">
-  <span class="section-tag reveal">Kundenstimmen</span>
-  <h2 class="section-title reveal">Was unsere <em>Gäste sagen</em></h2>
+  <span class="section-tag reveal" data-en="Customer Reviews">Kundenstimmen</span>
+  <h2 class="section-title reveal" data-en-html="What Our <em>Guests Say</em>">Was unsere <em>Gäste sagen</em></h2>
   <div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line r"></div></div>
   <div class="testi-grid reveal">
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <span class="testi-quote-mark">"</span>
-      <p class="testi-text">Absolute Empfehlung! Sehr professionell und ganzheitlich. Bootsadee kombinierte Thai-Massage mit verschiedenen Techniken — perfekt abgestimmt auf meine Bedürfnisse.</p>
+      <p class="testi-text" data-en="Absolute recommendation! Very professional and holistic. Bootsadee combined Thai massage with various techniques — perfectly tailored to my needs.">Absolute Empfehlung! Sehr professionell und ganzheitlich. Bootsadee kombinierte Thai-Massage mit verschiedenen Techniken — perfekt abgestimmt auf meine Bedürfnisse.</p>
       <div class="testi-author">Marina</div>
       <div class="testi-location">Therwil</div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <span class="testi-quote-mark">"</span>
-      <p class="testi-text">Zum Geburtstag eine Spezialbehandlung bekommen. Sie hat genau gespürt, wo mein Körper Arbeit brauchte. Ich kam völlig entspannt heraus und komme definitiv wieder.</p>
+      <p class="testi-text" data-en="Received a special treatment for my birthday. She sensed exactly where my body needed work. I left completely relaxed and will definitely come back.">Zum Geburtstag eine Spezialbehandlung bekommen. Sie hat genau gespürt, wo mein Körper Arbeit brauchte. Ich kam völlig entspannt heraus und komme definitiv wieder.</p>
       <div class="testi-author">Marcelina</div>
       <div class="testi-location">Basel</div>
     </div>
     <div class="testi-card">
       <div class="testi-stars">★★★★★</div>
       <span class="testi-quote-mark">"</span>
-      <p class="testi-text">Super freundlich, wunderschönes Ambiente und tolle Massage. Man merkt sofort die jahrelange Erfahrung und die Leidenschaft für die Arbeit. Komme immer wieder!</p>
+      <p class="testi-text" data-en="Super friendly, beautiful ambience and a wonderful massage. You can immediately feel the years of experience and passion for the work. I keep coming back!">Super freundlich, wunderschönes Ambiente und tolle Massage. Man merkt sofort die jahrelange Erfahrung und die Leidenschaft für die Arbeit. Komme immer wieder!</p>
       <div class="testi-author">Claudia</div>
       <div class="testi-location">Münchenstein</div>
     </div>
@@ -885,27 +905,27 @@ footer {
 
 <!-- HOURS -->
 <section class="hours">
-  <span class="section-tag reveal">Öffnungszeiten</span>
-  <h2 class="section-title reveal"><em>Wann</em> wir für Sie da sind</h2>
+  <span class="section-tag reveal" data-en="Opening Hours">Öffnungszeiten</span>
+  <h2 class="section-title reveal" data-en-html="<em>When</em> we're here for you"><em>Wann</em> wir für Sie da sind</h2>
   <div class="divider" style="margin-bottom:3rem;"><div class="divider-line" style="background:linear-gradient(to right, transparent, rgba(201,169,110,0.4));"></div><div class="divider-icon">✦</div><div class="divider-line r" style="background:linear-gradient(to left, transparent, rgba(201,169,110,0.4));"></div></div>
   <div class="hours-inner reveal">
-    <div class="hours-row"><span class="hours-day">Montag</span><span class="hours-time hours-closed">Geschlossen</span></div>
-    <div class="hours-row"><span class="hours-day">Dienstag</span><span class="hours-time hours-closed">Geschlossen</span></div>
-    <div class="hours-row"><span class="hours-day">Mittwoch</span><span class="hours-time">10:00 – 20:00</span></div>
-    <div class="hours-row"><span class="hours-day">Donnerstag</span><span class="hours-time">10:00 – 20:00</span></div>
-    <div class="hours-row"><span class="hours-day">Freitag</span><span class="hours-time">10:00 – 20:00</span></div>
-    <div class="hours-row"><span class="hours-day">Samstag</span><span class="hours-time">10:00 – 18:00</span></div>
-    <div class="hours-row"><span class="hours-day">Sonntag</span><span class="hours-time">10:00 – 18:00</span></div>
-    <p class="hours-note">Termine ausserhalb der Öffnungszeiten auf Anfrage möglich.<br>+41 79 907 90 99 · bootsadee@crystalthaispa.ch</p>
+    <div class="hours-row"><span class="hours-day" data-en="Monday">Montag</span><span class="hours-time hours-closed" data-en="Closed">Geschlossen</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Tuesday">Dienstag</span><span class="hours-time hours-closed" data-en="Closed">Geschlossen</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Wednesday">Mittwoch</span><span class="hours-time">10:00 – 20:00</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Thursday">Donnerstag</span><span class="hours-time">10:00 – 20:00</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Friday">Freitag</span><span class="hours-time">10:00 – 20:00</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Saturday">Samstag</span><span class="hours-time">10:00 – 18:00</span></div>
+    <div class="hours-row"><span class="hours-day" data-en="Sunday">Sonntag</span><span class="hours-time">10:00 – 18:00</span></div>
+    <p class="hours-note" data-en-html="Appointments outside opening hours on request.<br>+41 79 907 90 99 · bootsadee@crystalthaispa.ch">Termine ausserhalb der Öffnungszeiten auf Anfrage möglich.<br>+41 79 907 90 99 · bootsadee@crystalthaispa.ch</p>
   </div>
 </section>
 
 <!-- BOOKING -->
 <section id="termin" class="booking">
   <div class="booking-inner">
-    <span class="section-tag reveal">Jetzt buchen</span>
-    <h2 class="section-title reveal">Termin <em>vereinbaren</em></h2>
-    <p class="section-sub reveal">Wählen Sie Ihre Massage, Datum und Uhrzeit — direkt und unkompliziert online buchen.</p>
+    <span class="section-tag reveal" data-en="Book Now">Jetzt buchen</span>
+    <h2 class="section-title reveal" data-en-html="Schedule <em>an appointment</em>">Termin <em>vereinbaren</em></h2>
+    <p class="section-sub reveal" data-en="Choose your massage, date and time — book directly and easily online.">Wählen Sie Ihre Massage, Datum und Uhrzeit — direkt und unkompliziert online buchen.</p>
   </div>
   <div class="simplybook-wrap reveal">
     <div id="simplybook-widget"></div>
@@ -917,17 +937,17 @@ footer {
   <div class="footer-main">
     <div class="footer-brand">
       <img src="images/logo.png" alt="Crystal Thai Spa">
-      <p>Traditionelle Thai-Massage & Therapie im Herzen von Therwil — mit Erfahrung, Herz und echter Thai-Tradition.</p>
+      <p data-en="Traditional Thai Massage & Therapy in the heart of Therwil — with experience, heart and genuine Thai tradition.">Traditionelle Thai-Massage & Therapie im Herzen von Therwil — mit Erfahrung, Herz und echter Thai-Tradition.</p>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Massagen</div>
-      <a href="#massagen">Traditionelle Thaimassage</a>
-      <a href="#massagen">Kräuterstempel-Massage</a>
-      <a href="#massagen">Hot Stone Massage</a>
-      <a href="#massagen">Alle Behandlungen →</a>
+      <div class="footer-col-title" data-en="Massages">Massagen</div>
+      <a href="#massagen" data-en="Traditional Thai Massage">Traditionelle Thaimassage</a>
+      <a href="#massagen" data-en="Herbal Stamp Massage">Kräuterstempel-Massage</a>
+      <a href="#massagen" data-en="Hot Stone Massage">Hot Stone Massage</a>
+      <a href="#massagen" data-en="All treatments →">Alle Behandlungen →</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Kontakt</div>
+      <div class="footer-col-title" data-en="Contact">Kontakt</div>
       <a href="tel:+41799079099">+41 79 907 90 99</a>
       <a href="mailto:bootsadee@crystalthaispa.ch">bootsadee@crystalthaispa.ch</a>
       <a href="https://maps.google.com/?q=Mittlerer+Kreis+2+4106+Therwil" target="_blank">Mittlerer Kreis 2, 4106 Therwil</a>
@@ -936,9 +956,9 @@ footer {
   <div class="footer-bottom">
     <span class="footer-copy">© 2026 Crystal Thai Spa & Therapy · Therwil · Alle Rechte vorbehalten</span>
     <div class="footer-legal">
-      <a href="#">Impressum</a>
-      <a href="#">Datenschutz</a>
-      <a href="#">Stornierung</a>
+      <a href="#" data-en="Imprint">Impressum</a>
+      <a href="#" data-en="Privacy">Datenschutz</a>
+      <a href="#" data-en="Cancellation">Stornierung</a>
     </div>
   </div>
 </footer>
@@ -986,6 +1006,25 @@ footer {
 </script>
 
 <script>
+// Language toggle
+function setLang(l) {
+  localStorage.setItem('lang', l);
+  const isEn = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (!el.dataset.de) el.dataset.de = el.textContent;
+    el.textContent = isEn ? el.dataset.en : el.dataset.de;
+  });
+  document.querySelectorAll('[data-en-html]').forEach(el => {
+    if (!el.dataset.deHtml) el.dataset.deHtml = el.innerHTML;
+    el.innerHTML = isEn ? el.dataset.enHtml : el.dataset.deHtml;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  document.documentElement.lang = isEn ? 'en' : 'de';
+}
+const _savedLang = localStorage.getItem('lang');
+const _browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+if (_savedLang === 'en' || (!_savedLang && _browserLang.startsWith('en'))) setLang('en');
+
 // Nav scroll
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
