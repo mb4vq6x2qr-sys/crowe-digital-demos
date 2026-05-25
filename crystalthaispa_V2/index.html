@@ -75,6 +75,9 @@ nav.scrolled .nav-logo img { height: 42px; }
 .nav-cta:hover { background: var(--gold-light) !important; border-color: var(--gold-light) !important; }
 .nav-cta::after { display: none !important; }
 
+/* nav-end: toggle + hamburger always grouped on the right */
+.nav-end { display: flex; align-items: center; gap: 0.6rem; }
+
 /* hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
 .hamburger span { display: block; width: 24px; height: 1px; background: var(--gold-light); transition: all 0.3s; }
@@ -605,13 +608,15 @@ footer {
     <li><a href="#bewertungen" data-en="Reviews">Bewertungen</a></li>
     <li><a href="#termin" class="nav-cta" data-en="Book Now">Termin buchen</a></li>
   </ul>
-  <div class="lang-toggle">
-    <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
-    <span class="lang-sep">|</span>
-    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
-  </div>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+  <div class="nav-end">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -1007,6 +1012,10 @@ footer {
 
 <script>
 // Language toggle
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
+});
+
 function setLang(l) {
   localStorage.setItem('lang', l);
   const isEn = l === 'en';
