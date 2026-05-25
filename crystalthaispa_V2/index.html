@@ -472,43 +472,10 @@ section { padding: 8rem 4rem; }
 /* ── BOOKING ── */
 .booking { background: var(--cream2); }
 .booking-inner { max-width: 760px; margin: 0 auto; }
-.booking-form {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1.2rem; margin-top: 3rem;
-}
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-group.full { grid-column: 1 / -1; }
-label {
-  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--text-light); font-weight: 500;
-}
-input, select, textarea {
-  background: white; border: 1px solid rgba(61,50,40,0.12);
-  color: var(--text); padding: 0.9rem 1.1rem;
-  font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 300;
-  border-radius: 1px; outline: none; transition: border-color 0.3s, box-shadow 0.3s;
-}
-input:focus, select:focus, textarea:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,169,110,0.1);
-}
-textarea { resize: vertical; min-height: 110px; }
-.btn-book {
-  width: 100%; background: var(--dark); color: var(--gold-light);
-  border: 1px solid rgba(201,169,110,0.3);
-  padding: 1.1rem 2rem; font-family: 'Jost', sans-serif;
-  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em;
-  text-transform: uppercase; cursor: pointer; border-radius: 1px;
-  transition: all 0.35s;
-}
-.btn-book:hover {
-  background: var(--gold); color: var(--dark);
-  border-color: var(--gold);
-  box-shadow: 0 8px 30px rgba(201,169,110,0.25);
-}
-.privacy-note {
-  font-size: 0.72rem; color: var(--text-light); margin-top: 1rem;
-  line-height: 1.7; grid-column: 1 / -1; text-align: center; opacity: 0.7;
+.simplybook-wrap {
+  max-width: 1020px; margin: 3rem auto 0;
+  border: 1px solid rgba(201,169,110,0.15);
+  overflow: hidden; background: white;
 }
 
 /* ── FOOTER ── */
@@ -938,62 +905,10 @@ footer {
   <div class="booking-inner">
     <span class="section-tag reveal">Jetzt buchen</span>
     <h2 class="section-title reveal">Termin <em>vereinbaren</em></h2>
-    <p class="section-sub reveal">Wählen Sie Ihre Massage und Ihren Wunschtermin — Bootsadee bestätigt innerhalb weniger Stunden per WhatsApp oder E-Mail.</p>
-    <div class="booking-form reveal">
-      <div class="form-group">
-        <label>Vorname</label>
-        <input type="text" placeholder="Ihr Vorname">
-      </div>
-      <div class="form-group">
-        <label>Nachname</label>
-        <input type="text" placeholder="Ihr Nachname">
-      </div>
-      <div class="form-group">
-        <label>E-Mail</label>
-        <input type="email" placeholder="ihre@email.ch">
-      </div>
-      <div class="form-group">
-        <label>Telefon / WhatsApp</label>
-        <input type="tel" placeholder="+41 79 000 00 00">
-      </div>
-      <div class="form-group full">
-        <label>Massage wählen</label>
-        <select>
-          <option value="">– Bitte wählen –</option>
-          <option>Traditionelle Thaimassage</option>
-          <option>Kräuterstempel-Massage</option>
-          <option>Kerzenwachs-Massage (Bio)</option>
-          <option>Bürosyndrom-Massage</option>
-          <option>Sportmassage</option>
-          <option>Fuss-Reflexzonenmassage</option>
-          <option>Hot Stone Massage</option>
-          <option>Lymph-Drainagemassage</option>
-          <option>Schwangerschaftsmassage</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Wunschdatum</label>
-        <input type="date">
-      </div>
-      <div class="form-group">
-        <label>Gewünschte Dauer</label>
-        <select>
-          <option>30 Minuten</option>
-          <option>60 Minuten</option>
-          <option selected>90 Minuten</option>
-          <option>120 Minuten</option>
-        </select>
-      </div>
-      <div class="form-group full">
-        <label>Anmerkungen (optional)</label>
-        <textarea placeholder="Besondere Wünsche, Beschwerden, Fragen zur Behandlung …"></textarea>
-      </div>
-      <div class="form-group full">
-        <button class="btn-book">Terminanfrage senden →</button>
-      </div>
-      <p class="privacy-note">Ihre Daten werden ausschliesslich zur Terminvereinbarung verwendet und nicht weitergegeben.<br>
-      Es gelten unsere <a href="#" style="color:var(--gold-deep);">Datenschutzbestimmungen</a> und <a href="#" style="color:var(--gold-deep);">Stornierungsregeln</a>.</p>
-    </div>
+    <p class="section-sub reveal">Wählen Sie Ihre Massage, Datum und Uhrzeit — direkt und unkompliziert online buchen.</p>
+  </div>
+  <div class="simplybook-wrap reveal">
+    <div id="simplybook-widget"></div>
   </div>
 </section>
 
@@ -1034,6 +949,41 @@ footer {
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
+
+<!-- SimplyBook.me Widget -->
+<script src="//widget.simplybook.me/v2/widget/widget.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var widget = new SimplybookWidget({
+    "widget_type": "iframe",
+    "url": "https:\/\/crowedigitaldemo.simplybook.me",
+    "theme": "inspiration",
+    "theme_settings": {
+      "img_fit_mode": "1",
+      "timeline_hide_unavailable": "1",
+      "hide_past_days": "0",
+      "timeline_show_end_time": "0",
+      "timeline_modern_display": "as_slots",
+      "sb_base_color": "#c9a96e",
+      "display_item_mode": "block",
+      "booking_nav_bg_color": "#221c14",
+      "body_bg_color": "#f7f2ea",
+      "sb_review_image": "",
+      "dark_font_color": "#3d3228",
+      "light_font_color": "#f7f2ea",
+      "btn_color_1": "#c9a96e",
+      "sb_company_label_color": "#c9a96e",
+      "hide_img_mode": "0",
+      "show_sidebar": "1",
+      "sb_busy": "#b8a99a",
+      "sb_available": "#2d6b3a"
+    },
+    "timeline": "modern",
+    "datepicker": "top_calendar",
+    "is_rtl": false,
+    "app_config": {"clear_session": 0, "allow_switch_to_ada": 0, "predefined": []},
+    "container_id": "simplybook-widget"
+  });
+</script>
 
 <script>
 // Nav scroll
