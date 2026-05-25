@@ -186,12 +186,13 @@ nav.scrolled .nav-logo img { height: 42px; }
 
 .scroll-hint {
   position: absolute; bottom: 2.5rem; left: 5rem; z-index: 3;
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem;
   opacity: 0; animation: fadeIn 1s 1.8s ease forwards;
 }
 .scroll-line {
-  width: 50px; height: 1px;
-  background: linear-gradient(to right, var(--gold), transparent);
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin-left: 2px;
   animation: scrollPulse 2.5s infinite;
 }
 @keyframes scrollPulse {
@@ -576,6 +577,10 @@ footer {
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .gallery-item.large { grid-row: auto; }
   .footer-main { grid-template-columns: 1fr 1fr; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-photo { height: 420px; }
+  .about-photo img { object-position: center 20%; }
+  .about-photo-overlay { background: linear-gradient(to bottom, transparent 60%, var(--dark)); }
 }
 
 @media (max-width: 768px) {
@@ -869,7 +874,7 @@ footer {
       </p>
       <div class="about-certs">
         <img src="images/diplome.jpg" alt="Ausbildungszertifikate Bootsadee">
-        <span>Staatlich anerkannte Ausbildung<br>4 offizielle Diplome &amp; Zertifikate</span>
+        <span>Staatlich anerkannte Ausbildung<br>Offizielle Diplome &amp; Zertifikate</span>
       </div>
       <span class="about-signature">Bootsadee</span>
       <div class="about-contact">
