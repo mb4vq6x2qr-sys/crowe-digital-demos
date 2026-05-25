@@ -363,7 +363,7 @@ section { padding: 8rem 4rem; }
   position: relative; overflow: hidden;
 }
 .about-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center center;
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
   filter: brightness(0.85) contrast(1.05);
   transition: transform 0.8s ease;
 }
@@ -372,6 +372,15 @@ section { padding: 8rem 4rem; }
   position: absolute; inset: 0;
   background: linear-gradient(to right, transparent 60%, var(--dark));
 }
+.about-certs {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin-top: 0.5rem; margin-bottom: 1.5rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(201,169,110,0.15);
+  background: rgba(201,169,110,0.04);
+}
+.about-certs img { width: 90px; height: 62px; object-fit: cover; opacity: 0.85; }
+.about-certs span { font-size: 0.78rem; color: rgba(232,213,176,0.5); letter-spacing: 0.06em; font-weight: 300; line-height: 1.6; }
 .about-text {
   padding: 7rem 5rem; display: flex; flex-direction: column; justify-content: center;
 }
@@ -663,7 +672,7 @@ footer {
 
   <div class="services-grid reveal">
     <div class="service-card">
-      <img src="images/massagen/m-01.png" alt="Traditionelle Thaimassage" class="service-img">
+      <img src="images/massagen/m-01.jpg" alt="Traditionelle Thaimassage" class="service-img">
       <div class="service-body">
         <span class="service-num">01</span>
         <div class="service-name">Traditionelle Thaimassage</div>
@@ -675,7 +684,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-07.png" alt="Kräuterstempel-Massage" class="service-img">
+      <img src="images/massagen/m-02.jpg" alt="Kräuterstempel-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">02</span>
         <div class="service-name">Kräuterstempel-Massage</div>
@@ -687,7 +696,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-04.png" alt="Kerzenwachs-Massage" class="service-img">
+      <img src="images/massagen/m-03.jpg" alt="Kerzenwachs-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">03</span>
         <div class="service-name">Kerzenwachs-Massage</div>
@@ -699,7 +708,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-02.png" alt="Büro-Syndrom-Massage" class="service-img">
+      <img src="images/massagen/m-04.jpg" alt="Büro-Syndrom-Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">04</span>
         <div class="service-name">Büro-Syndrom-Massage</div>
@@ -711,7 +720,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-03.png" alt="Sportmassage" class="service-img">
+      <img src="images/massagen/m-05.jpg" alt="Sportmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">05</span>
         <div class="service-name">Sportmassage</div>
@@ -723,7 +732,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-06.png" alt="Fuss-Reflexzonenmassage" class="service-img">
+      <img src="images/massagen/m-06.jpg" alt="Fuss-Reflexzonenmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">06</span>
         <div class="service-name">Fuss-Reflexzonenmassage</div>
@@ -735,7 +744,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-09.png" alt="Fuss- & Schultermassage" class="service-img">
+      <img src="images/massagen/m-07.jpg" alt="Fuss- & Schultermassage" class="service-img">
       <div class="service-body">
         <span class="service-num">07</span>
         <div class="service-name">Fuss- & Schultermassage</div>
@@ -747,7 +756,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-10.png" alt="Hot Stone Massage" class="service-img">
+      <img src="images/massagen/m-08.jpg" alt="Hot Stone Massage" class="service-img">
       <div class="service-body">
         <span class="service-num">08</span>
         <div class="service-name">Hot Stone Massage</div>
@@ -759,7 +768,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-08.png" alt="Lymph-Drainagemassage" class="service-img">
+      <img src="images/massagen/m-09.jpg" alt="Lymph-Drainagemassage" class="service-img">
       <div class="service-body">
         <span class="service-num">09</span>
         <div class="service-name">Lymph-Drainagemassage</div>
@@ -771,7 +780,7 @@ footer {
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-05.png" alt="Schwangerschaftsmassage" class="service-img">
+      <img src="images/massagen/m-10.jpg" alt="Schwangerschaftsmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">10</span>
         <div class="service-name">Schwangerschaftsmassage</div>
@@ -796,7 +805,7 @@ footer {
   </div>
   <div class="gallery-grid">
     <div class="gallery-item large reveal">
-      <img src="images/hero.jpg" alt="Crystal Thai Spa Empfang">
+      <img src="images/gallery-main.jpg" alt="Crystal Thai Spa Empfang">
       <div class="gallery-item-overlay"></div>
     </div>
     <div class="gallery-item reveal reveal-delay-1">
@@ -858,6 +867,10 @@ footer {
       <p class="about-body">
         Seit über 10 Jahren empfange ich im Crystal Thai Spa Gäste aus dem Birseck und der ganzen Nordwestschweiz. Jede Behandlung ist für mich ein Vertrauensgeschenk — das ich mit Präsenz, Erfahrung und echter Thai-Tradition zurückgebe.
       </p>
+      <div class="about-certs">
+        <img src="images/diplome.jpg" alt="Ausbildungszertifikate Bootsadee">
+        <span>Staatlich anerkannte Ausbildung<br>4 offizielle Diplome &amp; Zertifikate</span>
+      </div>
       <span class="about-signature">Bootsadee</span>
       <div class="about-contact">
         <a href="tel:+41799079099"><span class="about-contact-icon">📞</span> +41 79 907 90 99</a>
