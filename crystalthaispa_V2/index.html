@@ -188,8 +188,8 @@ nav.scrolled .nav-logo img { height: 42px; }
 }
 
 .scroll-hint {
-  position: absolute; bottom: 2.5rem; left: 5rem; z-index: 3;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem;
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
   opacity: 0; animation: fadeIn 1s 1.8s ease forwards;
 }
 .scroll-line {
@@ -572,12 +572,12 @@ footer {
   nav { padding: 1rem 1.5rem; }
   nav.scrolled { padding: 0.8rem 1.5rem; }
   .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,8,5,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
-  .nav-links.open { display: flex; }
+  .nav-links.open { display: flex; z-index: 300; }
   .nav-links a { font-size: 1rem; }
   .hamburger { display: flex; }
   .hero-content { padding: 0 1.5rem; }
   .hero-badge { display: none; }
-  .scroll-hint { left: 1.5rem; }
+  .scroll-hint { left: 50%; transform: translateX(-50%); }
   section { padding: 5rem 1.5rem; }
   .stats { padding: 2rem 1.5rem; gap: 3rem; }
   .services-grid { grid-template-columns: 1fr; }
@@ -978,36 +978,7 @@ footer {
 <!-- SimplyBook.me Widget -->
 <script src="//widget.simplybook.me/v2/widget/widget.js" type="text/javascript"></script>
 <script type="text/javascript">
-  var widget = new SimplybookWidget({
-    "widget_type": "iframe",
-    "url": "https:\/\/crowedigitaldemo.simplybook.me",
-    "theme": "inspiration",
-    "theme_settings": {
-      "img_fit_mode": "1",
-      "timeline_hide_unavailable": "1",
-      "hide_past_days": "0",
-      "timeline_show_end_time": "0",
-      "timeline_modern_display": "as_slots",
-      "sb_base_color": "#c9a96e",
-      "display_item_mode": "block",
-      "booking_nav_bg_color": "#221c14",
-      "body_bg_color": "#f7f2ea",
-      "sb_review_image": "",
-      "dark_font_color": "#3d3228",
-      "light_font_color": "#f7f2ea",
-      "btn_color_1": "#c9a96e",
-      "sb_company_label_color": "#c9a96e",
-      "hide_img_mode": "0",
-      "show_sidebar": "1",
-      "sb_busy": "#b8a99a",
-      "sb_available": "#2d6b3a"
-    },
-    "timeline": "modern",
-    "datepicker": "top_calendar",
-    "is_rtl": false,
-    "app_config": {"clear_session": 0, "allow_switch_to_ada": 0, "predefined": []},
-    "container_id": "simplybook-widget"
-  });
+    var widget = new SimplybookWidget({"widget_type":"iframe","url":"https:\/\/crowedigitaldemo.simplybook.me","theme":"emeri","theme_settings":{"timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","sb_base_color":"#836055","display_item_mode":"block","booking_nav_bg_color":"#ffffff","body_bg_color":"#f7f7f7","sb_review_image":"","dark_font_color":"#443936","light_font_color":"#ffffff","btn_color_1":"#a1776a","sb_company_label_color":"#896d65","hide_img_mode":"0","sb_busy":"#c7b3b3","sb_available":"#e2eaec"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"container_id":"simplybook-widget"});
 </script>
 
 <script>
