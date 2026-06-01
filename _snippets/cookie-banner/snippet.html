@@ -1,0 +1,45 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — COOKIE BANNER (DSG Schweiz)
+   Nur einbinden wenn Tracking/Buchungs-Widget vorhanden.
+   Anpassen: Datenschutz-Link (data-modal oder href)
+══════════════════════════════════════════════ -->
+
+<!-- CSS — in <style> im <head> einfügen -->
+<style>
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #1a1510; border-top: 1px solid rgba(201,169,110,0.18);
+  padding: 1rem 2.5rem; display: flex; align-items: center;
+  justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;
+}
+.cookie-banner p { font-size: 0.78rem; color: rgba(232,213,176,0.5); line-height: 1.6; margin: 0; }
+.cookie-banner a { color: var(--gold, #c9a96e); text-decoration: none; }
+.cookie-banner a:hover { text-decoration: underline; }
+.cookie-accept {
+  background: var(--gold, #c9a96e); color: #0f0d0a; border: none;
+  padding: 0.55rem 1.4rem; font-size: 0.7rem; letter-spacing: 0.14em;
+  font-weight: 600; text-transform: uppercase; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0; transition: background 0.3s;
+}
+.cookie-accept:hover { background: #e8d5b0; }
+</style>
+
+<!-- HTML — direkt vor </body> einfügen -->
+<div id="cookie-banner" class="cookie-banner">
+  <p>
+    Diese Website verwendet Cookies für den technischen Betrieb.
+    <a href="#" data-modal="datenschutz">Mehr erfahren</a>
+    <!-- ALTERNATIVE ohne Modal: <a href="datenschutz.html">Mehr erfahren</a> -->
+  </p>
+  <button id="cookie-accept" class="cookie-accept">Verstanden</button>
+</div>
+
+<!-- JS — im Script-Block am Ende -->
+<script>
+const cookieBanner = document.getElementById('cookie-banner');
+if (localStorage.getItem('cookies-ok')) cookieBanner.style.display = 'none';
+document.getElementById('cookie-accept').addEventListener('click', () => {
+  localStorage.setItem('cookies-ok', '1');
+  cookieBanner.style.display = 'none';
+});
+</script>

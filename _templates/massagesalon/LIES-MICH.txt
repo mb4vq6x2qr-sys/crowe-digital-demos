@@ -1,0 +1,45 @@
+Massagesalon – Templates
+========================
+Erstellt aus: clients/crystalthaispa_V2/index.html
+Design-System: Monopo-Dark (Gold + Cream + Dark)
+Fonts: Cormorant Garamond (Headings) + Jost (Body)
+
+Reihenfolge beim Aufbau einer neuen Seite
+------------------------------------------
+00-css-base.html        → Immer zuerst: CSS-Variablen, Reset, Section-Base
+01-nav.html             → Navigation (sticky, scroll-aware, Mobile-Hamburger)
+11-intro-splash.html    → Optional: Logo-Animation beim Laden
+02-hero.html            → Hero / Banner mit Hintergrundbild
+03-stats.html           → Kennzahlen-Streifen (3–4 Zahlen)
+04-service-card.html    → Massagen-Sektion mit Service-Cards
+05-gallery.html         → Bildergalerie (5 Bilder, 1 gross + 4 klein)
+06-pillars.html         → 3 USP-Versprechen
+07-about.html           → Über uns / Inhaberin
+08-testimonials.html    → Kundenbewertungen (3er-Grid)
+09-hours.html           → Öffnungszeiten
+10-footer.html          → Footer mit 3 Spalten + Modals
+
+Aus _snippets/ dazu nehmen
+---------------------------
+modal-system.html       → CSS + JS für Impressum/Datenschutz/Stornierung
+impressum-ch.html       → Impressum-Modal
+datenschutz-ch.html     → Datenschutz-Modal (DSG CH)
+stornierung.html        → Stornierungsregeln-Modal
+cookie-banner.html      → Cookie-Hinweis (nur bei SimplyBook / Tracking)
+wa-float.html           → WhatsApp-Knopf
+meta-seo.html           → SEO Meta-Tags (nur echte Websites!)
+demo-banner.html        → Oranger Demo-Streifen (nur Demos!)
+
+Platzhalter zum Ersetzen
+-------------------------
+[SALON_NAME]            z.B. Crystal Thai Spa & Therapy
+[INHABER/IN]            z.B. Botsadee Crowe
+[STRASSE NR]            z.B. Mittlerer Kreis 2
+[PLZ]                   z.B. 4106
+[ORT]                   z.B. Therwil
+[KANTON]                z.B. Basel-Land
+[TELEFON]               z.B. +41 79 907 90 99
+[TELEFON_OHNE_LEERZEICHEN] z.B. +41799079099
+[EMAIL]                 z.B. info@beispielsalon.ch
+[NUMMER_OHNE_0]         z.B. 799079099 (für wa.me/41...)
+[JAHR]                  z.B. 2026

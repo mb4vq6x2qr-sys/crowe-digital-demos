@@ -1,0 +1,117 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — COMET CARD (3D Tilt + Glare)
+   Quelle: aceternity.com/components/comet-card
+
+   3D-Kippeffekt + Lichtreflex folgt dem Cursor.
+   Funktioniert mit beliebigem Inhalt.
+
+   Anpassen:
+   - data-rotate: Kippwinkel in Grad (Standard: 17.5)
+   - data-translate: Verschiebung in px (Standard: 20)
+   - Inhalt im .comet-content Block
+   - .comet-card border-radius / box-shadow
+══════════════════════════════════════════════ -->
+
+<style>
+.comet-wrap {
+  perspective: 1200px;
+  display: inline-block; /* oder block je nach Layout */
+}
+.comet-card {
+  position: relative;
+  border-radius: 1rem;
+  transform-origin: center center;
+  will-change: transform;
+  box-shadow:
+    rgba(0,0,0,0.01) 0px 520px 146px 0px,
+    rgba(0,0,0,0.04) 0px 333px 133px 0px,
+    rgba(0,0,0,0.26) 0px 83px 83px 0px,
+    rgba(0,0,0,0.29) 0px 21px 46px 0px;
+}
+.comet-glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  border-radius: inherit;
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+</style>
+
+<div class="comet-wrap" data-rotate="17.5" data-translate="20">
+  <div class="comet-card">
+
+    <!-- ── Inhalt hier anpassen ── -->
+    <div class="comet-content" style="padding: 2rem; background: white; border-radius: 1rem;">
+      <p>Dein Inhalt hier</p>
+    </div>
+    <!-- ── Ende Inhalt ── -->
+
+    <div class="comet-glare"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.comet-wrap').forEach(function (wrap) {
+    var card        = wrap.querySelector('.comet-card');
+    var glare       = wrap.querySelector('.comet-glare');
+    var rotD        = parseFloat(wrap.dataset.rotate    || 17.5);
+    var transD      = parseFloat(wrap.dataset.translate || 20);
+    var targetX = 0, targetY = 0;
+    var sx = { value: 0, velocity: 0 };
+    var sy = { value: 0, velocity: 0 };
+    var scaleVal    = 1;
+    var isHovered   = false;
+    var lastTime    = 0;
+
+    function spring(s, target, dt) {
+      s.velocity += ((target - s.value) * 100 - s.velocity * 10) * (dt / 1000);
+      s.value    += s.velocity * (dt / 1000);
+      return s.value;
+    }
+
+    function tick(time) {
+      var dt   = Math.min(time - lastTime, 32) || 16;
+      lastTime = time;
+
+      var svx = spring(sx, targetX, dt);
+      var svy = spring(sy, targetY, dt);
+
+      scaleVal += ((isHovered ? 1.05 : 1) - scaleVal) * 0.15;
+
+      card.style.transform =
+        'rotateX('    + (svy *  rotD   * 2) + 'deg) ' +
+        'rotateY('    + (svx * -rotD   * 2) + 'deg) ' +
+        'translateX(' + (svx *  transD * 2) + 'px) '  +
+        'translateY(' + (svy * -transD * 2) + 'px) '  +
+        'scale('      + scaleVal + ')';
+
+      if (glare) {
+        glare.style.opacity    = isHovered ? '0.6' : '0';
+        glare.style.background =
+          'radial-gradient(circle at ' +
+          ((svx + 0.5) * 100) + '% ' +
+          ((svy + 0.5) * 100) + '%, ' +
+          'rgba(255,255,255,0.9) 10%, rgba(255,255,255,0.75) 20%, rgba(255,255,255,0) 80%)';
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    card.addEventListener('mousemove', function (e) {
+      var r   = card.getBoundingClientRect();
+      targetX = (e.clientX - r.left) / r.width  - 0.5;
+      targetY = (e.clientY - r.top)  / r.height - 0.5;
+      isHovered = true;
+    });
+    card.addEventListener('mouseleave', function () {
+      targetX = 0; targetY = 0; isHovered = false;
+    });
+
+    requestAnimationFrame(tick);
+  });
+})();
+</script>

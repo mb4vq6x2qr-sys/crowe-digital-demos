@@ -1,0 +1,101 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — FOOTER (Massagesalon)
+   3-Spalten-Layout: Brand / Navigation / Kontakt
+   Anpassen:
+   - Logo, Kurztext
+   - Nav-Links (Ankerpunkte)
+   - Kontaktdaten
+   - Impressum/Datenschutz/Stornierung Modals verlinken
+   - Copyright-Jahr + Salon-Name
+   - «Website by» anpassen oder entfernen
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+footer {
+  background: var(--dark); padding: 4rem;
+  border-top: 1px solid rgba(201,169,110,0.08);
+}
+.footer-main {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem; max-width: 1100px; margin: 0 auto 3rem;
+}
+.footer-brand img { height: 50px; margin-bottom: 1.5rem; filter: brightness(1.1); }
+.footer-brand p {
+  font-size: 0.82rem; line-height: 1.8;
+  color: rgba(232,213,176,0.35); font-weight: 300; max-width: 280px;
+}
+.footer-col-title {
+  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem; font-weight: 500;
+}
+.footer-col a {
+  display: block; color: rgba(232,213,176,0.45); text-decoration: none;
+  font-size: 0.82rem; font-weight: 300; line-height: 2.2; transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom {
+  border-top: 1px solid rgba(201,169,110,0.06);
+  padding-top: 2rem; max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.7rem; color: rgba(232,213,176,0.2); letter-spacing: 0.1em; }
+.footer-legal { display: flex; gap: 2rem; }
+.footer-legal a {
+  color: rgba(232,213,176,0.2); text-decoration: none;
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s;
+}
+.footer-legal a:hover { color: var(--gold); }
+.footer-made {
+  width: 100%; text-align: center; margin-top: 1.8rem;
+  padding-top: 1.5rem; border-top: 1px solid rgba(201,169,110,0.06);
+  font-size: 0.65rem; letter-spacing: 0.14em; color: rgba(232,213,176,0.15); text-transform: uppercase;
+}
+.footer-made a { color: rgba(201,169,110,0.35); text-decoration: none; transition: color 0.3s; }
+.footer-made a:hover { color: var(--gold); }
+@media (max-width: 1024px) { .footer-main { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px)  { footer { padding: 2rem 1.5rem; } .footer-main { grid-template-columns: 1fr; gap: 2.5rem; } .footer-bottom { flex-direction: column; text-align: center; } }
+</style>
+
+<!-- HTML -->
+<footer>
+  <div class="footer-main">
+    <!-- Spalte 1: Brand -->
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="[SALON_NAME]">
+      <p>[Kurzer Beschreibungstext – 1–2 Sätze. Was macht den Salon aus?]</p>
+    </div>
+    <!-- Spalte 2: Navigation -->
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <a href="#massagen">Massagen</a>
+      <a href="#galerie">Atmosphäre</a>
+      <a href="#about">Über Uns</a>
+      <a href="#bewertungen">Bewertungen</a>
+      <a href="#termin">Termin buchen</a>
+    </div>
+    <!-- Spalte 3: Kontakt -->
+    <div class="footer-col">
+      <div class="footer-col-title">Kontakt</div>
+      <a href="tel:[TELEFON_OHNE_LEERZEICHEN]">[TELEFON]</a>
+      <a href="mailto:[EMAIL]">[EMAIL]</a>
+      <a href="#">[STRASSE NR], [PLZ] [ORT]</a>
+      <!-- Optional: Social Media -->
+      <!-- <a href="#" target="_blank" rel="noopener">Instagram</a> -->
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© [JAHR] [SALON_NAME] · [ORT] · Alle Rechte vorbehalten</span>
+    <div class="footer-legal">
+      <a href="#" data-modal="impressum">Impressum</a>
+      <a href="#" data-modal="datenschutz">Datenschutz</a>
+      <a href="#" data-modal="stornierung">Stornierung</a>
+    </div>
+  </div>
+
+  <div class="footer-made">
+    Website by <a href="https://crowe-digital.ch" target="_blank" rel="noopener">Crowe Digital</a>
+    <!-- Anpassen oder entfernen -->
+  </div>
+</footer>

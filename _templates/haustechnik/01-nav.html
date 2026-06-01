@@ -1,0 +1,80 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — NAV (Haustechnik / Reinigung)
+   Mit Info-Bar oben (Adresse, Tel, Email) — Desktop only
+   Sticky, wird bei Scroll weiss mit Shadow
+   Anpassen: Info-Bar Daten, Logo, Nav-Links, CTA
+══════════════════════════════════════════════ -->
+<style>
+.info-bar {
+  background: var(--primary); color: rgba(255,255,255,0.7);
+  font-size: 0.78rem; padding: 8px 0;
+}
+.info-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.info-bar a { color: rgba(255,255,255,0.7); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color var(--transition); }
+.info-bar a:hover { color: var(--accent-hover); }
+.info-bar-right { display: flex; gap: 1.5rem; }
+@media (max-width: 768px) { .info-bar { display: none; } }
+
+nav {
+  background: transparent; position: sticky; top: 0; z-index: 200;
+  transition: background var(--transition), box-shadow var(--transition);
+  padding: 1rem 0;
+}
+nav.scrolled { background: var(--white); box-shadow: var(--shadow-sm); }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+.nav-logo img { height: 48px; }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+.nav-links a { color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color var(--transition); }
+.nav-links a:hover { color: var(--accent); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+@media (max-width: 1024px) {
+  .nav-links { display: none; position: fixed; inset: 0; background: var(--white); flex-direction: column; justify-content: center; align-items: center; gap: 2rem; }
+  .nav-links.open { display: flex; z-index: 300; }
+  .nav-links a { font-size: 1.2rem; }
+  .hamburger { display: flex; }
+}
+</style>
+
+<!-- Info Bar -->
+<div class="info-bar">
+  <div class="container">
+    <a href="#">📍 [STRASSE NR], [PLZ] [ORT]</a>
+    <div class="info-bar-right">
+      <a href="tel:[TELEFON]">📞 [TELEFON]</a>
+      <a href="mailto:[EMAIL]">✉️ [EMAIL]</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="images/logo.png" alt="[FIRMENNAME]"><!-- Foto ersetzen -->
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#kontakt" class="btn btn-primary"><span>Offerte anfragen</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+const hbg = document.getElementById('hamburger');
+const nl = document.getElementById('navLinks');
+hbg.addEventListener('click', () => { hbg.classList.toggle('open'); nl.classList.toggle('open'); });
+nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hbg.classList.remove('open'); nl.classList.remove('open'); }));
+</script>

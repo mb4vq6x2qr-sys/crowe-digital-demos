@@ -1,0 +1,63 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — 3 PILLARS / USP-SEKTION (Massagesalon)
+   3 Kernversprechen des Salons auf hellem Hintergrund.
+   Anpassen:
+   - section-title + section-tag
+   - 3× pillar-icon (Emoji), pillar-title, pillar-text
+   - Ideen: Tradition / Individualität / Atmosphäre
+             Erfahrung / Qualität / Herzlichkeit
+             Entspannung / Kompetenz / Diskretion
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+.pillars { background: var(--cream2); }
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 3px; max-width: 1100px; margin: 0 auto;
+  background: rgba(201,169,110,0.12);
+}
+.pillar {
+  background: var(--cream2); padding: 4rem 3rem; text-align: center;
+  transition: background 0.4s;
+}
+.pillar:hover { background: white; }
+.pillar-icon { font-size: 2.5rem; margin-bottom: 1.8rem; display: block; }
+.pillar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 400; color: var(--dark); margin-bottom: 1rem;
+}
+.pillar-text { font-size: 0.85rem; line-height: 1.8; color: var(--text-light); font-weight: 300; }
+@media (max-width: 1024px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px)  { .pillars-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- HTML -->
+<section class="pillars reveal">
+  <span class="section-tag">Warum [SALON_NAME]</span>
+  <h2 class="section-title">Drei Versprechen, <em>ein Erlebnis</em></h2>
+  <div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line r"></div></div>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <span class="pillar-icon">🏛️</span>
+      <div class="pillar-title">Tradition</div>
+      <p class="pillar-text">
+        [Beschreibung: Woher kommt die Technik? Wie alt? Was macht sie authentisch?]
+      </p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🤲</span>
+      <div class="pillar-title">Individualität</div>
+      <p class="pillar-text">
+        [Beschreibung: Wie wird die Behandlung auf den Kunden abgestimmt?]
+      </p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🌺</span>
+      <div class="pillar-title">Atmosphäre</div>
+      <p class="pillar-text">
+        [Beschreibung: Wie fühlt sich der Raum an? Was ist das Besondere am Ambiente?]
+      </p>
+    </div>
+  </div>
+</section>

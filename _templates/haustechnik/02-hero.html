@@ -1,0 +1,82 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — HERO (Haustechnik / Reinigung)
+   Vollbild mit Hintergrundbild + dunklem Overlay
+   Staggered fadeInUp Animation
+   Anpassen: Hintergrundbild, Slogan, Subtext, CTAs
+══════════════════════════════════════════════ -->
+<style>
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center;
+  background: url('images/hero.jpg') center/cover no-repeat;<!-- Foto ersetzen -->
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(2,14,26,0.6);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 700px; padding: 0 15px;
+  color: var(--white);
+}
+.hero-label {
+  display: inline-block; background: var(--accent);
+  color: var(--white); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 4px; margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeInUp 0.6s 0.1s ease forwards;
+}
+.hero h1 {
+  color: var(--white); margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeInUp 0.6s 0.3s ease forwards;
+}
+.hero h1 span { color: var(--accent-hover); }
+.hero-desc {
+  font-size: 1rem; line-height: 1.8;
+  color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; max-width: 540px;
+  opacity: 0; animation: fadeInUp 0.6s 0.5s ease forwards;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeInUp 0.6s 0.7s ease forwards;
+}
+.hero-badge {
+  position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 1.5rem; text-align: center; box-shadow: var(--shadow-md);
+  opacity: 0; animation: fadeInUp 0.6s 0.9s ease forwards;
+}
+.hero-badge-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.hero-badge-label { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 768px) { .hero-badge { display: none; } }
+</style>
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-label">[KATEGORIE] — [ORT]</span>
+      <h1>[HAUPTZEILE] <span>[HERVORGEHOBENER TEIL]</span></h1>
+      <p class="hero-desc">
+        [Kurzbeschreibung: Was bietet die Firma? Für wen? Was ist besonders? 2–3 Sätze.]
+      </p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary">
+          <span>Offerte anfragen</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#leistungen" class="btn btn-outline">
+          <span>Unsere Leistungen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Badge oben rechts — entfernen falls unerwünscht -->
+  <div class="hero-badge">
+    <div class="hero-badge-num">10+</div>
+    <div class="hero-badge-label">Jahre<br>Erfahrung</div>
+  </div>
+</section>

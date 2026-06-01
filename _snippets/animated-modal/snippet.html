@@ -1,0 +1,151 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — ANIMATED MODAL
+   Quelle: aceternity.com/components/animated-modal
+
+   Modal mit 3D-Einblend-Animation (rotateX + scale).
+   Overlay: Blur-Hintergrund. Schliessen: X, Klick
+   ausserhalb, Escape.
+
+   Verwendung:
+   - data-modal-trigger="[id]" auf Button
+   - id="[id]" auf .am-modal
+   - Mehrere Modals pro Seite möglich
+
+   Anpassen:
+   - Inhalt in .am-content
+   - .am-footer für Aktions-Buttons
+   - max-width in .am-box
+══════════════════════════════════════════════ -->
+
+<style>
+/* Overlay */
+.am-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  perspective: 800px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+.am-overlay.open {
+  opacity: 1; pointer-events: all;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+/* Modal Box */
+.am-box {
+  position: relative; z-index: 10;
+  background: white;
+  border-radius: 1rem;
+  width: 90%; max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  /* 3D-Einblend-Startposition */
+  opacity: 0;
+  transform: scale(0.5) rotateX(40deg) translateY(40px);
+  transition: opacity 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+.am-overlay.open .am-box {
+  opacity: 1;
+  transform: scale(1) rotateX(0deg) translateY(0);
+}
+
+/* Schliess-Button */
+.am-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; cursor: pointer;
+  padding: 0.25rem; line-height: 0;
+  transition: transform 0.2s ease;
+}
+.am-close:hover { transform: scale(1.25) rotate(3deg); }
+.am-close svg { width: 1rem; height: 1rem; color: #000; }
+
+/* Content & Footer */
+.am-content {
+  padding: 2.5rem;
+  flex: 1;
+}
+.am-footer {
+  display: flex; justify-content: flex-end; gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: #f3f4f6;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+
+<!-- Trigger-Button -->
+<button class="am-trigger" data-modal-trigger="am-demo"
+  style="padding:0.6rem 1.4rem;border-radius:0.5rem;background:#000;color:#fff;border:none;cursor:pointer;font-family:inherit;">
+  Modal öffnen
+</button>
+
+<!-- Modal -->
+<div class="am-overlay" id="am-demo" role="dialog" aria-modal="true">
+  <div class="am-box">
+    <button class="am-close" aria-label="Schliessen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- ── Inhalt anpassen ── -->
+    <div class="am-content">
+      <h2 style="font-size:1.4rem;font-weight:700;margin:0 0 0.5rem;">Titel hier</h2>
+      <p style="color:#666;font-size:0.9rem;line-height:1.7;">
+        Inhalt des Modals hier einfügen. Bilder, Text, Formulare — alles möglich.
+      </p>
+    </div>
+    <div class="am-footer">
+      <button class="am-close" style="padding:0.5rem 1rem;border-radius:0.375rem;background:#e5e7eb;border:none;cursor:pointer;font-family:inherit;">
+        Schliessen
+      </button>
+    </div>
+    <!-- ── Ende Inhalt ── -->
+
+  </div>
+</div>
+
+<script>
+(function () {
+  /* Öffnen */
+  document.querySelectorAll('[data-modal-trigger]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.dataset.modalTrigger;
+      var overlay = document.getElementById(id);
+      if (!overlay) return;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  /* Schliessen: X-Button, Overlay-Klick, Escape */
+  function closeModal(overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.am-overlay').forEach(function (overlay) {
+    /* Klick ausserhalb */
+    overlay.addEventListener('mousedown', function (e) {
+      if (e.target === overlay) closeModal(overlay);
+    });
+    /* X-Buttons innerhalb */
+    overlay.querySelectorAll('.am-close').forEach(function (btn) {
+      btn.addEventListener('click', function () { closeModal(overlay); });
+    });
+  });
+
+  /* Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.am-overlay.open').forEach(closeModal);
+    }
+  });
+})();
+</script>

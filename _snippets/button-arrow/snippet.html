@@ -1,0 +1,58 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — BUTTON ARROW (Farbfolie + Pfeil)
+   Quelle: assgmbh.ch Design-Pattern
+   
+   Hover: Gelber Hintergrund schiebt sich von links rein.
+   Pfeil bewegt sich leicht nach rechts.
+   
+   Anpassen:
+   - --btn-bg: Hintergrundfarbe (Standard: #087CEB)
+   - --btn-hover: Hover-Farbe (Standard: #FEDB5D)
+   - --btn-text: Textfarbe
+   - --btn-text-hover: Textfarbe bei Hover
+══════════════════════════════════════════════ -->
+
+<style>
+.btn-arrow-wrap {
+  --btn-bg:         #087CEB;
+  --btn-hover:      #FEDB5D;
+  --btn-text:       #ffffff;
+  --btn-text-hover: #051729;
+}
+.btn-arrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 14px 24px; border-radius: 12px;
+  background: var(--btn-bg); color: var(--btn-text);
+  font-weight: 700; font-size: 0.85rem; font-family: inherit;
+  text-decoration: none; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: color 0.3s ease;
+}
+.btn-arrow::after {
+  content: ''; position: absolute; inset: 0;
+  background: var(--btn-hover);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 0;
+}
+.btn-arrow:hover { color: var(--btn-text-hover); }
+.btn-arrow:hover::after { transform: translateX(0); }
+.btn-arrow span { position: relative; z-index: 1; }
+.btn-arrow svg {
+  position: relative; z-index: 1;
+  width: 16px; height: 16px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.btn-arrow:hover svg { transform: translateX(3px); }
+</style>
+
+<!-- Verwendung als Link -->
+<div class="btn-arrow-wrap">
+  <a href="#kontakt" class="btn-arrow">
+    <span>Offerte anfragen</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+</div>

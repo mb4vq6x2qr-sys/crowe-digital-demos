@@ -1,0 +1,113 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — ABOUT / ÜBER UNS (Massagesalon)
+   Bild links, Text rechts auf dunklem Hintergrund.
+   Anpassen:
+   - images/about.jpg → Portraitfoto Inhaberin/Inhaber
+   - about-title + about-body
+   - about-signature → Name (handschriftlich wirkend)
+   - Kontakt-Links (Telefon, E-Mail, WhatsApp)
+   - about-certs: Zertifikate-Bilder + Text (optional)
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+.about { background: var(--dark); padding: 0; overflow: hidden; }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.about-photo { position: relative; overflow: hidden; }
+.about-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  filter: brightness(0.85) contrast(1.05); transition: transform 0.8s ease;
+}
+.about-photo:hover img { transform: scale(1.03); }
+.about-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, var(--dark));
+}
+.about-certs {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin-top: 0.5rem; margin-bottom: 1.5rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(201,169,110,0.15);
+  background: rgba(201,169,110,0.04);
+}
+.about-certs img { width: 90px; height: 62px; object-fit: cover; opacity: 0.85; }
+.about-certs span { font-size: 0.78rem; color: rgba(232,213,176,0.5); letter-spacing: 0.06em; font-weight: 300; line-height: 1.6; }
+.about-text { padding: 7rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+.about-text .section-tag { text-align: left; }
+.about-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 300;
+  color: var(--cream); line-height: 1.15; margin-bottom: 2rem;
+}
+.about-title em { font-style: italic; color: var(--gold-light); }
+.about-body {
+  font-size: 0.9rem; line-height: 1.95;
+  color: rgba(232,213,176,0.6); font-weight: 300; margin-bottom: 1.5rem;
+}
+.about-signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-style: italic; color: var(--gold);
+  display: block; margin-top: 2rem; margin-bottom: 2.5rem;
+}
+.about-contact { display: flex; flex-direction: column; gap: 0.8rem; }
+.about-contact a {
+  color: rgba(232,213,176,0.5); text-decoration: none;
+  font-size: 0.82rem; display: flex; align-items: center; gap: 0.8rem;
+  transition: color 0.3s; font-weight: 300;
+}
+.about-contact a:hover { color: var(--gold); }
+.about-contact-icon { color: var(--gold); font-size: 0.9rem; opacity: 0.7; }
+@media (max-width: 1024px) {
+  .about-inner { grid-template-columns: 1fr; }
+  .about-photo { height: 420px; }
+  .about-photo img { object-position: center 20%; }
+  .about-photo-overlay { background: linear-gradient(to bottom, transparent 60%, var(--dark)); }
+}
+@media (max-width: 768px) {
+  .about-photo { height: 350px; }
+  .about-text { padding: 3rem 1.5rem; }
+}
+</style>
+
+<!-- HTML -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-photo">
+      <img src="images/about.jpg" alt="[INHABERIN/INHABER NAME] – Inhaberin [SALON_NAME]"><!-- Foto ersetzen -->
+      <div class="about-photo-overlay"></div>
+    </div>
+    <div class="about-text reveal">
+      <span class="section-tag">Über Mich</span>
+      <h2 class="about-title">
+        [KURZNAME],<br>
+        <em>[TITEL ODER HERKUNFT]</em>
+      </h2>
+      <p class="about-body">
+        [Absatz 1: Wer ist die Person? Woher kommt sie? Was treibt sie an?]
+      </p>
+      <p class="about-body">
+        [Absatz 2: Ausbildung, Erfahrung, besondere Qualifikationen oder Philosophie.]
+      </p>
+
+      <!-- Zertifikate-Block: entfernen falls keine Zertifikate vorhanden -->
+      <div class="about-certs">
+        <img src="images/cert-1.jpg" alt="Zertifikat"><!-- Foto ersetzen -->
+        <span>[Zertifikat-Beschreibung, z.B. «Zertifizierte Thai-Masseurin, Bangkok 2015»]</span>
+      </div>
+
+      <span class="about-signature">[VOLLSTÄNDIGER NAME]</span>
+
+      <div class="about-contact">
+        <a href="tel:[TELEFON_OHNE_LEERZEICHEN]">
+          <span class="about-contact-icon">☎</span> [TELEFON]
+        </a>
+        <a href="mailto:[EMAIL]">
+          <span class="about-contact-icon">✉</span> [EMAIL]
+        </a>
+        <a href="https://wa.me/41[NUMMER_OHNE_0]" target="_blank" rel="noopener">
+          <span class="about-contact-icon">💬</span> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

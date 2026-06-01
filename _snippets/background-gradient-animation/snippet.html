@@ -1,0 +1,195 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — BACKGROUND GRADIENT ANIMATION
+   Quelle: aceternity.com/components/background-gradient-animation
+
+   Vollbild-Hintergrund mit 5 animierten Farbblobs.
+   Blobs verschmelzen durch SVG-Goo-Filter (Blur + ColorMatrix).
+   Optional: 6. Blob folgt dem Cursor (data-interactive="true").
+
+   Anpassen:
+   - --bga-bg-start / --bga-bg-end: Hintergrundfarbe
+   - --bga-c1 bis --bga-c5: Blob-Farben (RGB ohne Klammern)
+   - --bga-pointer: Cursor-Blob-Farbe
+   - --bga-size: Blob-Grösse (Standard: 80%)
+   - --bga-blend: mix-blend-mode (Standard: hard-light)
+   - data-interactive="false" um Cursor-Blob zu deaktivieren
+   - Inhalt in .bga-content
+══════════════════════════════════════════════ -->
+
+<style>
+/* Keyframes für die 5 Blobs */
+@keyframes bgaMoveVertical {
+  0%   { transform: translateY(-50%); }
+  50%  { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes bgaMoveCircle {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes bgaMoveHorizontal {
+  0%   { transform: translateX(-50%) translateY(-10%); }
+  50%  { transform: translateX(50%)  translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+.bga-container {
+  /* Farben hier anpassen */
+  --bga-bg-start: rgb(108, 0, 162);
+  --bga-bg-end:   rgb(0, 17, 82);
+  --bga-c1:       18, 113, 255;
+  --bga-c2:       221, 74, 255;
+  --bga-c3:       100, 220, 255;
+  --bga-c4:       200, 50, 50;
+  --bga-c5:       180, 180, 50;
+  --bga-pointer:  140, 100, 255;
+  --bga-size:     80%;
+  --bga-blend:    hard-light;
+
+  position: relative;
+  width: 100%; height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(40deg, var(--bga-bg-start), var(--bga-bg-end));
+}
+
+/* SVG-Filter — unsichtbar, nur als Definitionscontainer */
+.bga-svg { display: none; }
+
+/* Content über den Blobs */
+.bga-content {
+  position: relative;
+  z-index: 10;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+
+/* Blob-Container: Goo-Filter + Blur */
+.bga-blobs {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  /* Safari bekommt einfacheres Blur, Rest bekommt SVG-Goo-Filter */
+  filter: url(#bga-goo) blur(40px);
+}
+.bga-blobs.is-safari { filter: blur(24px); }
+
+/* Basis-Blob */
+.bga-blob {
+  position: absolute;
+  width:  var(--bga-size);
+  height: var(--bga-size);
+  top:  calc(50% - var(--bga-size) / 2);
+  left: calc(50% - var(--bga-size) / 2);
+  mix-blend-mode: var(--bga-blend);
+  border-radius: 50%; /* sicherheitshalber, obwohl radial-gradient */
+}
+
+/* 5 animierte Blobs */
+.bga-blob-1 {
+  background: radial-gradient(circle at center, rgb(var(--bga-c1)) 0, rgb(var(--bga-c1)) 50%) no-repeat;
+  transform-origin: center center;
+  animation: bgaMoveVertical 30s ease infinite;
+  opacity: 1;
+}
+.bga-blob-2 {
+  background: radial-gradient(circle at center, rgba(var(--bga-c2), 0.8) 0, rgba(var(--bga-c2), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 400px);
+  animation: bgaMoveCircle 20s reverse infinite;
+  opacity: 1;
+}
+.bga-blob-3 {
+  background: radial-gradient(circle at center, rgba(var(--bga-c3), 0.8) 0, rgba(var(--bga-c3), 0) 50%) no-repeat;
+  transform-origin: calc(50% + 400px);
+  animation: bgaMoveCircle 40s linear infinite;
+  opacity: 1;
+}
+.bga-blob-4 {
+  background: radial-gradient(circle at center, rgba(var(--bga-c4), 0.8) 0, rgba(var(--bga-c4), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 200px);
+  animation: bgaMoveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+.bga-blob-5 {
+  background: radial-gradient(circle at center, rgba(var(--bga-c5), 0.8) 0, rgba(var(--bga-c5), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 800px) calc(50% + 800px);
+  animation: bgaMoveCircle 20s ease infinite;
+  opacity: 1;
+}
+
+/* Interaktiver Cursor-Blob */
+.bga-blob-interactive {
+  background: radial-gradient(circle at center, rgba(var(--bga-pointer), 0.8) 0, rgba(var(--bga-pointer), 0) 50%) no-repeat;
+  mix-blend-mode: var(--bga-blend);
+  width: 100%; height: 100%;
+  top: -50%; left: -50%;
+  opacity: 0.7;
+}
+</style>
+
+<!-- SVG-Filter (unsichtbar) -->
+<svg class="bga-svg">
+  <defs>
+    <filter id="bga-goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+        result="goo"/>
+      <feBlend in="SourceGraphic" in2="goo"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="bga-container" data-interactive="true">
+
+  <!-- ── Inhalt hier ── -->
+  <div class="bga-content">
+    <h1 style="color:white;font-size:clamp(2rem,6vw,4rem);font-weight:700;text-align:center;">
+      Überschrift hier
+    </h1>
+  </div>
+  <!-- ── Ende Inhalt ── -->
+
+  <div class="bga-blobs" id="bga-blobs">
+    <div class="bga-blob bga-blob-1"></div>
+    <div class="bga-blob bga-blob-2"></div>
+    <div class="bga-blob bga-blob-3"></div>
+    <div class="bga-blob bga-blob-4"></div>
+    <div class="bga-blob bga-blob-5"></div>
+    <div class="bga-blob bga-blob-interactive" id="bga-cursor"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var container   = document.querySelector('.bga-container');
+  var blobsEl     = document.getElementById('bga-blobs');
+  var cursorBlob  = document.getElementById('bga-cursor');
+  var interactive = container && container.dataset.interactive !== 'false';
+
+  /* Safari-Erkennung: einfacheres Blur statt SVG-Filter */
+  if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+    blobsEl && blobsEl.classList.add('is-safari');
+  }
+
+  if (!interactive || !cursorBlob) return;
+
+  /* Cursor-Blob mit Lerp (Faktor 0.05 = träge, wie Original 1/20) */
+  var curX = 0, curY = 0, tgX = 0, tgY = 0;
+
+  container.addEventListener('mousemove', function (e) {
+    var rect = container.getBoundingClientRect();
+    tgX = e.clientX - rect.left;
+    tgY = e.clientY - rect.top;
+  });
+
+  (function tick() {
+    curX += (tgX - curX) / 20;
+    curY += (tgY - curY) / 20;
+    cursorBlob.style.transform =
+      'translate(' + Math.round(curX) + 'px, ' + Math.round(curY) + 'px)';
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>

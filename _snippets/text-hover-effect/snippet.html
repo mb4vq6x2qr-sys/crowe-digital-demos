@@ -1,0 +1,111 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — TEXT HOVER EFFECT
+   Quelle: aceternity.com/components/text-hover-effect
+
+   3 SVG-Layer übereinander:
+   1. Outline — erscheint beim Hover
+   2. Zeichnet sich beim Laden ein (stroke-dashoffset)
+   3. Farbverlauf folgt dem Cursor via Radial-Maske
+
+   Anpassen:
+   - Text bei allen 3 .th-text Elementen (gleicher Text 3×)
+   - Farben im linearGradient
+   - font-size (SVG-Einheiten, Standard: 50)
+   - max-width im .text-hover-wrap
+   - Bei mehrfacher Verwendung: IDs th-* eindeutig machen
+══════════════════════════════════════════════ -->
+
+<style>
+.text-hover-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.text-hover-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  cursor: default;
+}
+.th-text {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  fill: transparent;
+  stroke-width: 0.3;
+}
+.th-outline {
+  stroke: #e5e5e5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.text-hover-svg.is-hovered .th-outline { opacity: 0.7; }
+.th-draw {
+  stroke: #e5e5e5;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: thDraw 4s ease-in-out forwards;
+}
+@keyframes thDraw { to { stroke-dashoffset: 0; } }
+.th-gradient { stroke: url(#th-textGradient); }
+</style>
+
+<div class="text-hover-wrap">
+  <svg class="text-hover-svg" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="th-textGradient" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="300" y2="50">
+        <stop offset="0%"   stop-color="#eab308" stop-opacity="0"/>
+        <stop offset="25%"  stop-color="#ef4444" stop-opacity="0"/>
+        <stop offset="50%"  stop-color="#3b82f6" stop-opacity="0"/>
+        <stop offset="75%"  stop-color="#06b6d4" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+      </linearGradient>
+      <radialGradient id="th-revealMask" gradientUnits="userSpaceOnUse" cx="150" cy="50" r="60">
+        <stop offset="0%"   stop-color="white"/>
+        <stop offset="100%" stop-color="black"/>
+      </radialGradient>
+      <mask id="th-textMask">
+        <rect x="0" y="0" width="300" height="100" fill="url(#th-revealMask)"/>
+      </mask>
+    </defs>
+
+    <!-- Text hier 3× anpassen (gleicher Wert) -->
+    <text x="150" y="50" text-anchor="middle" dominant-baseline="middle" class="th-text th-outline">CRYSTAL</text>
+    <text x="150" y="50" text-anchor="middle" dominant-baseline="middle" class="th-text th-draw">CRYSTAL</text>
+    <text x="150" y="50" text-anchor="middle" dominant-baseline="middle" class="th-text th-gradient" mask="url(#th-textMask)">CRYSTAL</text>
+  </svg>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.text-hover-svg').forEach(function (svg) {
+    var revealMask   = svg.querySelector('radialGradient');
+    var gradStops    = svg.querySelectorAll('linearGradient stop');
+    var targetX = 150, targetY = 50;
+    var currentX = 150, currentY = 50;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    (function tick() {
+      currentX = lerp(currentX, targetX, 0.12);
+      currentY = lerp(currentY, targetY, 0.12);
+      revealMask.setAttribute('cx', currentX);
+      revealMask.setAttribute('cy', currentY);
+      requestAnimationFrame(tick);
+    })();
+    svg.addEventListener('mouseenter', function () {
+      svg.classList.add('is-hovered');
+      gradStops.forEach(function (s) { s.setAttribute('stop-opacity', '1'); });
+    });
+    svg.addEventListener('mouseleave', function () {
+      svg.classList.remove('is-hovered');
+      gradStops.forEach(function (s) { s.setAttribute('stop-opacity', '0'); });
+    });
+    svg.addEventListener('mousemove', function (e) {
+      var r = svg.getBoundingClientRect();
+      targetX = ((e.clientX - r.left) / r.width)  * 300;
+      targetY = ((e.clientY - r.top)  / r.height) * 100;
+    });
+  });
+})();
+</script>

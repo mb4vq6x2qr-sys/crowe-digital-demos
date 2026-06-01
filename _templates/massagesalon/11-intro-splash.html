@@ -1,0 +1,73 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — INTRO SPLASH ANIMATION (optional)
+   Logo-Einblendung beim ersten Laden der Seite.
+   Anpassen:
+   - images/logo.png → Logo-Datei (transparenter Hintergrund!)
+   - Dauer: setTimeout 1200ms (= wie lange splash sichtbar)
+   - Weglassen falls kein Splash gewünscht
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+#intro {
+  position: fixed; inset: 0; z-index: 900;
+  background: var(--dark);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  transition: opacity 0.7s ease;
+}
+#intro.hide { opacity: 0; pointer-events: none; }
+#intro-logo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+#intro-logo {
+  height: 68px;
+  -webkit-mask-image: conic-gradient(from -90deg at 50% 50%, black 0deg, transparent 0deg);
+  mask-image: conic-gradient(from -90deg at 50% 50%, black 0deg, transparent 0deg);
+  animation: logoSweep 0.85s 0.1s linear forwards;
+}
+@keyframes logoSweep {
+  0%  { -webkit-mask-image: conic-gradient(from -90deg at 50% 50%, black 0deg, transparent 0deg); mask-image: conic-gradient(from -90deg at 50% 50%, black 0deg, transparent 0deg); }
+  88% { -webkit-mask-image: conic-gradient(from -90deg at 50% 50%, black 360deg, transparent 360deg); mask-image: conic-gradient(from -90deg at 50% 50%, black 360deg, transparent 360deg); filter: drop-shadow(0 0 10px rgba(201,169,110,0.9)); }
+  100%{ -webkit-mask-image: conic-gradient(from -90deg at 50% 50%, black 360deg, transparent 360deg); mask-image: conic-gradient(from -90deg at 50% 50%, black 360deg, transparent 360deg); filter: drop-shadow(0 0 3px rgba(201,169,110,0.35)); }
+}
+#intro-spark {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px 2px var(--gold), 0 0 14px 6px rgba(201,169,110,0.5);
+  top: 50%; left: 50%; margin: -2.5px 0 0 -2.5px;
+  transform: rotate(-90deg) translateY(-46px);
+  animation: sparkOrbit 0.85s 0.1s linear forwards; opacity: 0;
+}
+@keyframes sparkOrbit {
+  0%  { opacity: 1; transform: rotate(-90deg) translateY(-46px); }
+  94% { opacity: 1; transform: rotate(270deg) translateY(-46px); }
+  100%{ opacity: 0; transform: rotate(270deg) translateY(-46px); }
+}
+#intro-line {
+  width: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  animation: introLine 0.45s 0.95s ease forwards;
+}
+@keyframes introLine { to { width: 80px; } }
+</style>
+
+<!-- HTML — direkt nach <body> (vor allem anderen) -->
+<div id="intro">
+  <div id="intro-logo-wrap">
+    <img id="intro-logo" src="images/logo.png" alt="[SALON_NAME]">
+    <div id="intro-spark"></div>
+  </div>
+  <div id="intro-line"></div>
+</div>
+
+<!-- JS (am Ende der Seite) -->
+<script>
+const intro = document.getElementById('intro');
+// Scroll-Verhalten zurücksetzen damit Seite oben startet
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (window.location.hash) history.replaceState(null, null, ' ');
+window.scrollTo(0, 0);
+// Splash nach 1.2s ausblenden
+setTimeout(() => {
+  intro.classList.add('hide');
+  setTimeout(() => intro.remove(), 700);
+}, 1200);
+</script>

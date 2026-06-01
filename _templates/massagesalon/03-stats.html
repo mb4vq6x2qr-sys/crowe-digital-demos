@@ -1,0 +1,47 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — STATS STREIFEN (Massagesalon)
+   3–4 Kennzahlen auf dunklem Hintergrund.
+   Anpassen: Zahlen und Labels nach Kunde.
+   Ideen: Jahre Erfahrung / Massage-Arten / Google Bewertung /
+          Zufriedene Kunden / Behandlungen / Zertifikate
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+.stats {
+  background: var(--warm);
+  padding: 2.5rem 4rem;
+  display: flex; justify-content: center; gap: 6rem; flex-wrap: wrap;
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
+}
+.stat-label {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(232,213,176,0.45); margin-top: 0.4rem;
+}
+@media (max-width: 768px) { .stats { padding: 2rem 1.5rem; gap: 3rem; } }
+</style>
+
+<!-- HTML -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Jahre Erfahrung</div>
+  </div>
+  <div class="stat reveal reveal-delay-1">
+    <div class="stat-num">9</div>
+    <div class="stat-label">Massage-Arten</div>
+  </div>
+  <div class="stat reveal reveal-delay-2">
+    <div class="stat-num">5★</div>
+    <div class="stat-label">Google Bewertung</div>
+  </div>
+  <div class="stat reveal reveal-delay-3">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Entspannung</div>
+  </div>
+</div>

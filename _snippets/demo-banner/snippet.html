@@ -1,0 +1,26 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — DEMO BANNER (oben auf Seite)
+   Nur für Demo-Websites einbinden, bei echter Website entfernen.
+   Direkt nach <body> einfügen.
+══════════════════════════════════════════════ -->
+
+<!-- CSS -->
+<style>
+.demo-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: #e65100; color: #fff;
+  text-align: center; padding: 0.45rem 1rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.demo-banner a { color: #fff; text-decoration: underline; }
+/* Schiebt die ganze Seite nach unten damit Nav nicht überlappt */
+body { padding-top: 34px; }
+</style>
+
+<!-- HTML — direkt nach <body> -->
+<div class="demo-banner">
+  Demo-Website — kein echtes Angebot · Kontakt &amp; Preise sind Platzhalter
+  <!-- Optional: Link zur echten Website -->
+  <!-- · <a href="https://echte-website.ch" target="_blank">Zur echten Website</a> -->
+</div>

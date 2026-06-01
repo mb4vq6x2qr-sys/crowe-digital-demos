@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Muster Haustechnik AG – Ihr Spezialist</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0c1a2e;
+      --gold:  #c28412;
+      --gold-l:#e8a830;
+      --f: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: var(--f);
+      background: var(--navy);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: 62px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.3rem;
+      background: rgba(12,26,46,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; }
+    .nav-badge {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-badge svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-name { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-name strong { font-size: .82rem; font-weight: 800; color: #fff; letter-spacing: .03em; }
+    .nav-name span { font-size: .6rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; }
+    .hamburger {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span { display: block; width: 18px; height: 1.5px; background: rgba(255,255,255,.75); border-radius: 2px; }
+
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: flex-end;
+      padding-bottom: 3.5rem; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=85') center/cover no-repeat;
+      opacity: .25;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(12,26,46,.98) 35%, rgba(12,26,46,.7) 100%);
+    }
+    .hero-inner { position: relative; padding: 0 1.4rem; width: 100%; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(194,132,18,.15);
+      border: 1px solid rgba(194,132,18,.38);
+      border-radius: 100px; padding: .28rem .85rem;
+      font-size: .65rem; font-weight: 700; color: var(--gold-l);
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: 1rem;
+    }
+    .hero-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold-l); }
+    .hero h1 {
+      font-size: 2.5rem; font-weight: 900;
+      color: #fff; line-height: 1.05;
+      letter-spacing: -.025em; margin-bottom: .85rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-l); }
+    .hero-sub {
+      font-size: .88rem; color: rgba(255,255,255,.62);
+      line-height: 1.65; margin-bottom: 1.5rem; font-weight: 300;
+    }
+    .hero-stats {
+      display: flex; gap: 1.5rem; margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-n { font-size: 1.3rem; font-weight: 900; color: var(--gold-l); line-height: 1; }
+    .stat-l { font-size: .6rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; margin-top: .15rem; }
+    .hero-cta {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gold); color: #fff;
+      padding: .88rem 1.8rem; border-radius: 10px;
+      font-weight: 700; font-size: .9rem; text-decoration: none;
+      width: 100%;
+    }
+    .hero-cta-s {
+      display: flex; align-items: center; justify-content: center;
+      margin-top: .75rem;
+      color: rgba(255,255,255,.5); font-size: .8rem;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-badge">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="nav-name">
+        <strong>MUSTER HAUSTECHNIK</strong>
+        <span>Sanitär · Spenglerei · Haustechnik</span>
+      </div>
+    </a>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-badge"><span>Notfalldienst 24/7</span></div>
+      <h1>Haustechnik,<br>auf die Sie sich<br><em>verlassen können.</em></h1>
+      <p class="hero-sub">Sanitär, Spenglerei & Badumbau — zuverlässig, sauber, termingerecht.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Jahre Erfahrung</div></div>
+        <div class="stat"><div class="stat-n">4.8★</div><div class="stat-l">Google Rating</div></div>
+        <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Notfalldienst</div></div>
+      </div>
+      <a href="tel:0611234567" class="hero-cta">Jetzt anrufen — 061 123 45 67</a>
+      <a href="#" class="hero-cta-s">Offerte anfragen →</a>
+    </div>
+  </section>
+
+</body>
+</html>

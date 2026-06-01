@@ -1,0 +1,95 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — LEISTUNGEN (Haustechnik / Reinigung)
+   3-Spalten Grid mit Icon-Cards
+   Anpassen: section-label, Titel, Cards (Icon, Name, Text)
+   Icons: SVG oder Emoji
+══════════════════════════════════════════════ -->
+<style>
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 1rem;
+}
+@media (max-width: 992px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 576px)  { .services-grid { grid-template-columns: 1fr; } }
+
+.service-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 2rem 1.75rem; border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+}
+.service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); border-color: var(--accent); }
+.service-icon {
+  width: 56px; height: 56px; border-radius: var(--radius-sm);
+  background: var(--bg-light); display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.25rem;
+  transition: background var(--transition);
+}
+.service-card:hover .service-icon { background: var(--accent); }
+.service-card:hover .service-icon svg { stroke: var(--white); }
+.service-icon svg { width: 28px; height: 28px; stroke: var(--accent); }
+.service-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem; }
+.service-desc { font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); }
+</style>
+
+<section id="leistungen">
+  <div class="container">
+    <span class="section-label reveal">Unser Angebot</span>
+    <h2 class="section-title reveal">Unsere <span style="color:var(--accent)">Leistungen</span></h2>
+    <p class="section-sub reveal">[Kurzer Intro-Text zu den Leistungen. Was macht die Firma besonders gut?]</p>
+
+    <div class="services-grid">
+
+      <!-- Card 01 — kopieren für weitere Leistungen -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 1]</div>
+        <p class="service-desc">[Beschreibung der Leistung. Was wird gemacht? Für wen? Welcher Nutzen?]</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 2]</div>
+        <p class="service-desc">[Beschreibung]</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 3]</div>
+        <p class="service-desc">[Beschreibung]</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 4]</div>
+        <p class="service-desc">[Beschreibung]</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 5]</div>
+        <p class="service-desc">[Beschreibung]</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="service-name">[LEISTUNG 6]</div>
+        <p class="service-desc">[Beschreibung]</p>
+      </div>
+
+    </div>
+  </div>
+</section>

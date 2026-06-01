@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Haustec GmbH – Heizung & Sanitär im Laufental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+  /* ═══════════════════════════════════════════
+     CSS BASIS — Haustechnik / Clean Corporate
+  ═══════════════════════════════════════════ */
+  :root {
+    --primary:      #051729;
+    --accent:       #087CEB;
+    --accent-hover: #FEDB5D;
+    --bg-light:     #ECF1F5;
+    --text:         #051729;
+    --text-muted:   #7A7F88;
+    --white:        #ffffff;
+    --border:       #DCE4ED;
+    --shadow-sm:    0 2px 12px rgba(5,23,41,0.08);
+    --shadow-md:    0 6px 30px rgba(5,23,41,0.14);
+    --radius-sm:    8px;
+    --radius-md:    12px;
+    --radius-lg:    25px;
+    --transition:   0.3s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; font-weight: 500;
+    color: var(--text-muted); line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 38px;
+  }
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+  .section-bg { background: var(--bg-light); }
+
+  h1, h2, h3, h4 { color: var(--primary); line-height: 1.2; font-weight: 700; }
+  h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+  h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+  h3 { font-size: 1.15rem; }
+
+  .section-label {
+    display: inline-block; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title { margin-bottom: 1rem; }
+  .section-title span { color: var(--accent); }
+  .section-sub { color: var(--text-muted); max-width: 580px; margin-bottom: 3rem; line-height: 1.8; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 14px 30px; border-radius: var(--radius-md);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    text-decoration: none; border: none; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: color var(--transition);
+  }
+  .btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--accent-hover);
+    transform: translateX(-101%);
+    transition: transform 0.4s ease-in-out;
+    z-index: 0;
+  }
+  .btn:hover::after { transform: translateX(0); }
+  .btn span, .btn svg { position: relative; z-index: 1; }
+  .btn svg { width: 16px; height: 16px; transition: transform 0.3s; }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn svg.icon-phone { transform: none !important; }
+
+  .btn-primary { background: var(--accent); color: var(--white); }
+  .btn-primary:hover { color: var(--primary); }
+  .btn-outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+  .btn-outline:hover { color: var(--primary); border-color: var(--accent-hover); }
+  .btn-white { background: var(--white); color: var(--primary); }
+  .btn-white:hover { color: var(--primary); }
+
+  /* ── Image Shine ── */
+  .img-shine { position: relative; overflow: hidden; }
+  .img-shine::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.22);
+    width: 60%; height: 0;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    top: 50%; left: 50%;
+    transition: height 600ms linear;
+  }
+  .img-shine:hover::after { height: 260%; }
+
+  /* ── Scroll Reveal ── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (max-width: 768px) { section { padding: 64px 0; } }
+
+  /* ═══════════════════════════════════════════
+     DEMO BANNER
+  ═══════════════════════════════════════════ */
+  .demo-banner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: #1a1a1a; color: rgba(255,255,255,0.7);
+    text-align: center; padding: 0.5rem 1rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .demo-banner a { color: rgba(255,255,255,0.9); text-decoration: underline; }
+  .demo-banner a:hover { color: var(--accent-hover); }
+
+  /* ═══════════════════════════════════════════
+     INFO BAR
+  ═══════════════════════════════════════════ */
+  .info-bar {
+    background: var(--primary); color: rgba(255,255,255,0.65);
+    font-size: 0.78rem; padding: 9px 0;
+  }
+  .info-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+  .info-bar a { color: rgba(255,255,255,0.65); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: color var(--transition); }
+  .info-bar a:hover { color: var(--accent-hover); }
+  .info-bar-right { display: flex; gap: 1.5rem; }
+  @media (max-width: 768px) { .info-bar { display: none; } }
+
+  /* ═══════════════════════════════════════════
+     NAV
+  ═══════════════════════════════════════════ */
+  nav {
+    background: var(--white); position: sticky; top: 0; z-index: 200;
+    box-shadow: var(--shadow-sm);
+    padding: 0.75rem 0;
+  }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo {
+    text-decoration: none; display: flex; align-items: center;
+  }
+  .nav-logo img { height: 42px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--primary); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color var(--transition); }
+  .nav-links a:hover { color: var(--accent); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--primary); border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+  @media (max-width: 1024px) {
+    .nav-links { display: none; position: fixed; inset: 0; background: var(--primary); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; }
+    .nav-links.open { display: flex; z-index: 300; }
+    .nav-links a { font-size: 1.3rem; color: rgba(255,255,255,0.85) !important; }
+    .hamburger { display: flex; z-index: 400; }
+  }
+
+  /* ═══════════════════════════════════════════
+     HERO
+  ═══════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center;
+    background: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;/* Foto ersetzen */
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(5,23,41,0.85) 0%, rgba(5,23,41,0.55) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 740px; padding: 120px 0 60px;
+    color: var(--white);
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(8,124,235,0.25); border: 1px solid rgba(8,124,235,0.5);
+    color: #a8d4ff; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 50px; margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeInUp 0.6s 0.1s ease forwards;
+  }
+  .hero h1 {
+    color: var(--white); margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeInUp 0.6s 0.3s ease forwards;
+    line-height: 1.15;
+  }
+  .hero h1 .ctf-container {
+    font-size: inherit; font-weight: 800;
+    background: linear-gradient(to bottom, #FEDB5D, #f0c800);
+    box-shadow: inset 0 -1px #d4a800, inset 0 0 0 1px #d4a800, 0 4px 10px rgba(254,219,93,0.3);
+    color: var(--primary);
+    border-radius: 0.4rem;
+    padding: 0.15rem 0 0.3rem;
+  }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.85;
+    color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; max-width: 540px;
+    opacity: 0; animation: fadeInUp 0.6s 0.5s ease forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeInUp 0.6s 0.7s ease forwards;
+  }
+  .hero-notfall {
+    position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+    background: var(--white); border-radius: var(--radius-md);
+    padding: 1.75rem 2rem; text-align: center; box-shadow: var(--shadow-md);
+    opacity: 0; animation: fadeInUp 0.6s 0.9s ease forwards;
+    min-width: 180px;
+  }
+  .hero-notfall-icon {
+    width: 52px; height: 52px; background: #dc2626;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 0.75rem;
+    animation: pulse-red 2s infinite;
+  }
+  .hero-notfall-icon svg { width: 26px; height: 26px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; }
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(220,38,38,0); }
+  }
+  .hero-notfall-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #dc2626; margin-bottom: 0.25rem; }
+  .hero-notfall-num { font-size: 1.5rem; font-weight: 800; color: var(--primary); line-height: 1; }
+  .hero-notfall-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem; font-weight: 500; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 1024px) { .hero-notfall { display: none; } }
+  @media (max-width: 768px) { .hero-content { padding: 100px 0 60px; } }
+
+  /* ═══════════════════════════════════════════
+     STATS BAR
+  ═══════════════════════════════════════════ */
+  .stats-bar {
+    background: var(--primary); padding: 0;
+  }
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+  .stat-item {
+    padding: 2rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); font-weight: 500; letter-spacing: 0.05em; }
+  @media (max-width: 768px) { .stats-inner { grid-template-columns: repeat(2, 1fr); } .stat-item { border-bottom: 1px solid rgba(255,255,255,0.08); } }
+
+  /* ═══════════════════════════════════════════
+     LEISTUNGEN
+  ═══════════════════════════════════════════ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 992px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 576px)  { .services-grid { grid-template-columns: 1fr; } }
+
+  .service-card {
+    background: var(--white); border-radius: var(--radius-md);
+    padding: 2rem 1.75rem; border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  }
+  .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-5px); border-color: var(--accent); }
+  .service-card-img {
+    height: 180px; border-radius: var(--radius-sm); margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .service-card-img img { height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .service-card:hover .service-card-img img { transform: scale(1.05); }
+  .service-icon {
+    width: 52px; height: 52px; border-radius: var(--radius-sm);
+    background: var(--bg-light); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background var(--transition);
+  }
+  .service-card:hover .service-icon { background: var(--accent); }
+  .service-card:hover .service-icon svg { stroke: var(--white); }
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; }
+  .service-name { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 0.6rem; }
+  .service-desc { font-size: 0.85rem; line-height: 1.75; color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     24H NOTFALL SECTION
+  ═══════════════════════════════════════════ */
+  .notfall-section {
+    background: #0a1929;
+    position: relative; overflow: hidden;
+  }
+  .notfall-section::before {
+    content: ''; position: absolute; top: -40%; right: -10%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(220,38,38,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .notfall-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  @media (max-width: 768px) { .notfall-grid { grid-template-columns: 1fr; gap: 3rem; } }
+  .notfall-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(220,38,38,0.2); border: 1px solid rgba(220,38,38,0.4);
+    color: #fca5a5; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 50px; margin-bottom: 1.5rem;
+  }
+  .notfall-label-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #ef4444;
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .notfall-section h2 { color: var(--white); margin-bottom: 1.25rem; }
+  .notfall-section h2 span { color: #ef4444; }
+  .notfall-section p { color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 2rem; }
+  .notfall-features { list-style: none; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .notfall-features li {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: rgba(255,255,255,0.75); font-size: 0.9rem; font-weight: 500;
+  }
+  .notfall-features li::before {
+    content: ''; width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+  .notfall-cta-box {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md); padding: 2rem;
+    text-align: center;
+  }
+  .notfall-phone {
+    font-size: 2rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em;
+    display: block; margin: 1rem 0;
+    transition: color var(--transition);
+  }
+  .notfall-phone:hover { color: var(--accent-hover); }
+  .notfall-phone-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; }
+  .notfall-available {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+    color: #86efac; font-size: 0.75rem; font-weight: 600;
+    padding: 5px 14px; border-radius: 50px; margin-top: 1rem;
+  }
+  .notfall-available-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: blink 1.5s infinite; }
+
+  /* ═══════════════════════════════════════════
+     ÜBER UNS
+  ═══════════════════════════════════════════ */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-main {
+    border-radius: var(--radius-md); height: 480px;
+    overflow: hidden;
+  }
+  .about-img-main img { height: 100%; object-fit: cover; }
+  .about-badge {
+    position: absolute; bottom: -1rem; right: -1rem;
+    background: var(--accent); color: var(--white);
+    border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
+    text-align: center; box-shadow: var(--shadow-md);
+  }
+  .about-badge-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+  .about-badge-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; opacity: 0.85; }
+  .about-trust {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+  }
+  .trust-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 1rem; background: var(--bg-light); border-radius: var(--radius-sm);
+  }
+  .trust-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .trust-text strong { display: block; font-size: 0.85rem; color: var(--primary); font-weight: 700; }
+  .trust-text span { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     PORTFOLIO
+  ═══════════════════════════════════════════ */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 1rem;
+  }
+  @media (max-width: 992px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 576px)  { .portfolio-grid { grid-template-columns: 1fr; } }
+  .portfolio-card {
+    border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: var(--shadow-sm); background: var(--white);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .img-placeholder {
+    height: 220px; background: var(--bg-light);
+    border-bottom: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.6rem; color: var(--text-muted);
+  }
+  .img-placeholder svg { width: 32px; height: 32px; opacity: 0.4; }
+  .img-placeholder span { font-size: 0.78rem; font-weight: 600; opacity: 0.5; letter-spacing: 0.06em; }
+  .portfolio-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .portfolio-img {
+    height: 220px; overflow: hidden;
+  }
+  .portfolio-img img { height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .portfolio-card:hover .portfolio-img img { transform: scale(1.06); }
+  .portfolio-body { padding: 1.25rem 1.5rem; }
+  .portfolio-cat {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .portfolio-title { font-size: 0.95rem; font-weight: 700; color: var(--primary); }
+  .portfolio-loc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  /* ═══════════════════════════════════════════
+     GOOGLE BEWERTUNGEN
+  ═══════════════════════════════════════════ */
+  .reviews-section { background: var(--white); }
+  .reviews-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+  .reviews-google-badge {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--bg-light); border-radius: var(--radius-md);
+    padding: 0.75rem 1.25rem;
+  }
+  .reviews-google-badge .g-icon {
+    width: 24px; height: 24px; flex-shrink: 0;
+  }
+  .reviews-google-badge .g-score { font-size: 1.5rem; font-weight: 800; color: var(--primary); line-height: 1; }
+  .reviews-google-badge .g-stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 0.05em; }
+  .reviews-google-badge .g-label { font-size: 0.72rem; color: var(--text-muted); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  @media (max-width: 992px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 576px)  { .reviews-grid { grid-template-columns: 1fr; } }
+  .review-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .review-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .review-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+  .review-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 0.05em; }
+  .review-g-icon { width: 18px; height: 18px; opacity: 0.6; }
+  .review-text { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.25rem; }
+  .review-author { display: flex; align-items: center; gap: 0.75rem; }
+  .review-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+  }
+  .review-name { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+  .review-loc { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     KI-OFFERTEN SECTION
+  ═══════════════════════════════════════════ */
+  .ki-section { background: var(--bg-light); }
+  .ki-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  @media (max-width: 768px) { .ki-grid { grid-template-columns: 1fr; gap: 3rem; } }
+  .ki-mockup {
+    background: var(--white); border-radius: var(--radius-md);
+    padding: 1.5rem; box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+  .ki-mockup-header {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem;
+  }
+  .ki-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .ki-mockup-title { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-left: 0.5rem; }
+  .ki-step {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.875rem; border-radius: var(--radius-sm); margin-bottom: 0.75rem;
+    background: var(--bg-light);
+  }
+  .ki-step-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+    color: white; font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .ki-step-text strong { display: block; font-size: 0.85rem; color: var(--primary); font-weight: 600; }
+  .ki-step-text span { font-size: 0.78rem; color: var(--text-muted); }
+  .ki-result {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25);
+    border-radius: var(--radius-sm); padding: 0.875rem;
+  }
+  .ki-result-icon { font-size: 1.5rem; }
+  .ki-result-text strong { display: block; font-size: 0.85rem; color: var(--primary); font-weight: 600; }
+  .ki-result-text span { font-size: 0.78rem; color: var(--text-muted); }
+  .ki-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(8,124,235,0.1); border: 1px solid rgba(8,124,235,0.2);
+    color: var(--accent); font-size: 0.72rem; font-weight: 700;
+    padding: 5px 14px; border-radius: 50px; margin-bottom: 1.25rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .ki-highlights { list-style: none; margin: 1.5rem 0 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .ki-highlights li { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .ki-highlights li .ki-hi-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .ki-highlights li .ki-hi-text strong { display: block; font-size: 0.88rem; color: var(--primary); font-weight: 700; }
+  .ki-highlights li .ki-hi-text span { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* ═══════════════════════════════════════════
+     KONTAKT
+  ═══════════════════════════════════════════ */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; align-items: start;
+  }
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+  .contact-info-items { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.25rem; background: var(--bg-light); border-radius: var(--radius-sm);
+  }
+  .contact-info-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-sm);
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-info-icon svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; }
+  .contact-info-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.2rem; }
+  .contact-info-val { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+  .contact-form {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .form-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; }
+  .form-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 576px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 0.4rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 500;
+    color: var(--text); background: var(--white);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(8,124,235,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit { width: 100%; justify-content: center; padding: 16px; font-size: 0.9rem; margin-top: 0.5rem; }
+
+  /* ═══════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════ */
+  footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 64px 0 0; }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .footer-brand-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-logo .nav-logo-icon { background: var(--accent); }
+  .footer-brand-name { font-size: 1.1rem; font-weight: 800; color: var(--white); }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.85; max-width: 280px; }
+  .footer-col h4 { color: var(--white); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.25rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.65rem; }
+  .footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color var(--transition); display: flex; align-items: center; gap: 0.4rem; }
+  .footer-col a:hover { color: var(--accent-hover); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem; padding: 1.5rem 0;
+    font-size: 0.75rem; color: rgba(255,255,255,0.3);
+  }
+  .footer-legal { display: flex; gap: 1.5rem; }
+  .footer-legal a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color var(--transition); font-size: 0.75rem; }
+  .footer-legal a:hover { color: var(--accent-hover); }
+  .footer-credit { color: rgba(255,255,255,0.2); }
+  .footer-credit a { color: rgba(255,255,255,0.35); transition: color var(--transition); }
+  .footer-credit a:hover { color: var(--accent-hover); }
+
+  /* ═══════════════════════════════════════════
+     MODAL SYSTEM — angepasst auf Haustechnik-Palette
+  ═══════════════════════════════════════════ */
+  .modal {
+    display: none; position: fixed; inset: 0; z-index: 600;
+    background: rgba(0,0,0,0.75);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal.open { display: flex; }
+  .modal-inner {
+    background: var(--primary); max-width: 660px; width: 100%;
+    max-height: 82vh; overflow-y: auto;
+    padding: 3rem; position: relative;
+    border: 1px solid rgba(8,124,235,0.2);
+    border-radius: var(--radius-md);
+    scrollbar-width: thin; scrollbar-color: rgba(8,124,235,0.2) transparent;
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    background: none; border: none; color: rgba(255,255,255,0.3);
+    font-size: 1.3rem; cursor: pointer; transition: color 0.3s;
+  }
+  .modal-close:hover { color: var(--accent); }
+  .modal-title {
+    font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 700;
+    color: var(--white); margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .modal-body h3 {
+    font-size: 0.85rem; font-weight: 700; color: var(--accent);
+    margin: 1.6rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .modal-body p, .modal-body li {
+    color: rgba(255,255,255,0.6); font-size: 0.83rem; line-height: 1.85;
+  }
+  .modal-body ul { padding-left: 1.2rem; margin: 0.4rem 0; }
+  .modal-body strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+  .modal-body a { color: var(--accent); }
+  .modal-note {
+    margin-top: 2rem; padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.72rem; color: rgba(255,255,255,0.2); font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════════
+     CONTAINER TEXT FLIP
+  ═══════════════════════════════════════════ */
+  .ctf-container {
+    display: inline-block; border-radius: 0.4rem;
+    padding: 0.15rem 0 0.3rem; text-align: center; font-weight: inherit;
+    color: var(--primary); font-family: inherit;
+    background: linear-gradient(to bottom, #FEDB5D, #f0c800);
+    box-shadow: inset 0 -1px #d4a800, inset 0 0 0 1px #d4a800, 0 4px 10px rgba(254,219,93,0.35);
+    white-space: nowrap; overflow: hidden;
+    transition: width 0.35s ease;
+  }
+  .ctf-word { display: inline-block; padding: 0 14px; }
+  .ctf-letter { display: inline-block; opacity: 0; filter: blur(10px); transition: opacity 0.2s ease, filter 0.2s ease; }
+  .ctf-letter.visible { opacity: 1; filter: blur(0); }
+
+  /* ═══════════════════════════════════════════
+     WHATSAPP FLOAT
+  ═══════════════════════════════════════════ */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+    animation: waPulse 3s infinite;
+  }
+  .wa-float:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50%       { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+  }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+
+<!-- ── DEMO BANNER ── -->
+<div class="demo-banner">
+  Demo-Seite – erstellt von <a href="https://crowe-digital.ch" target="_blank" rel="noopener">Crowe Digital</a>
+</div>
+
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Haustec GmbH">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#notfall">24h-Service</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li>
+          <a href="tel:+41795105507" class="btn btn-primary">
+            <svg class="icon-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.16 21 3 13.84 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
+            <span>Jetzt anrufen</span>
+          </a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1>
+        Ihr Spezialist für<br>
+        <span
+          class="ctf-container"
+          data-words='["Heizung","Sanitär","Badezimmer","Wartung"]'
+          data-interval="2800"
+          data-duration="600"
+          id="ctf-hero"
+        ><span class="ctf-word" id="ctf-hero-text"></span></span><br>
+        im Laufental
+      </h1>
+      <p class="hero-desc">
+        Haustec GmbH — Ihr zuverlässiger Partner für Heizung, Sanitär und Badezimmersanierung in der Region Laufental. Schnell, sauber und mit echtem Handwerk.
+      </p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary">
+          <span>Offerte anfragen</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#leistungen" class="btn btn-outline" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.45);">
+          <span>Unsere Leistungen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- 24h Notfall Badge -->
+  <div class="hero-notfall">
+    <div class="hero-notfall-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+    </div>
+    <div class="hero-notfall-title">Notfall?</div>
+    <a href="tel:+41795105507" class="hero-notfall-num">+41 79 510 55 07</a>
+    <div class="hero-notfall-sub">24 Stunden erreichbar</div>
+    <div class="notfall-available" style="margin-top:0.75rem;">
+      <span class="notfall-available-dot"></span>
+      Jetzt verfügbar
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Notfallservice</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Jahre Erfahrung</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Zufriedene Kunden</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">⌀ 2h</div>
+        <div class="stat-label">Reaktionszeit Notfall</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEISTUNGEN ── -->
+<section id="leistungen">
+  <div class="container">
+    <span class="section-label reveal">Unser Angebot</span>
+    <h2 class="section-title reveal">Unsere <span>Leistungen</span></h2>
+    <p class="section-sub reveal">Von der kleinen Reparatur bis zur kompletten Badezimmersanierung — Haustec löst Ihre Anliegen professionell und termingerecht.</p>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1650551182956-47efa0f90b64?auto=format&fit=crop&w=800&q=80" alt="Heizungsinstallation"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">Heizungsinstallation & -service</div>
+        <p class="service-desc">Einbau, Wartung und Reparatur von Gas-, Öl- und Wärmepumpenheizungen. Energieeffiziente Lösungen für Ihr Zuhause.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80" alt="Sanitäranlagen"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">Sanitäranlagen & Leitungen</div>
+        <p class="service-desc">Installation und Reparatur von Wasserleitungen, Armaturen und Sanitäranlagen. Schnelle Hilfe bei Rohrbrüchen und Leckagen.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80" alt="Badezimmersanierung"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">Badezimmersanierung</div>
+        <p class="service-desc">Komplette Badsanierungen von der Planung bis zur Fertigstellung. Moderne Designs, hochwertige Materialien.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Wartung"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">Wartung & Unterhalt</div>
+        <p class="service-desc">Regelmässige Inspektion und Wartung Ihrer Heizungs- und Sanitäranlagen. Probleme erkennen, bevor sie entstehen.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?auto=format&fit=crop&w=800&q=80" alt="Notfallservice"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">24h Notfallservice</div>
+        <p class="service-desc">Heizungsausfall mitten in der Nacht? Rohrbruch am Wochenende? Wir sind 24 Stunden, 7 Tage die Woche für Sie erreichbar.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-card-img img-shine">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Planung und Offerten"><!-- Foto ersetzen -->
+        </div>
+        <div class="service-name">Planung & Offerten</div>
+        <p class="service-desc">Transparente Kostenvoranschläge ohne versteckte Kosten. Wir beraten Sie von Anfang an ehrlich und kompetent.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 24H NOTFALL ── -->
+<section class="notfall-section" id="notfall">
+  <div class="container">
+    <div class="notfall-grid">
+      <div class="reveal">
+        <span class="notfall-label">
+          <span class="notfall-label-dot"></span>
+          24h Notfallservice
+        </span>
+        <h2>Wir sind da, wenn <span>es zählt</span></h2>
+        <p>Ein Heizungsausfall im Winter oder ein Rohrbruch um 3 Uhr nachts kann nicht warten. Haustec GmbH ist rund um die Uhr erreichbar — auch an Feiertagen.</p>
+        <ul class="notfall-features">
+          <li>24/7 telefonisch erreichbar, auch an Feiertagen</li>
+          <li>Durchschnittliche Reaktionszeit unter 2 Stunden</li>
+          <li>Heizungsnotfall, Rohrbruch, Wasserschaden</li>
+          <li>Transparente Notfallpauschale — keine bösen Überraschungen</li>
+          <li>Direkt aus der Region — kurze Anfahrtswege</li>
+        </ul>
+        <a href="tel:+41795105507" class="btn btn-white" style="background:var(--white);color:var(--primary);">
+          <svg class="icon-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.16 21 3 13.84 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
+          <span>Jetzt anrufen</span>
+        </a>
+      </div>
+      <div class="notfall-cta-box reveal reveal-delay-2">
+        <div class="notfall-phone-label">Notfallnummer</div>
+        <a href="tel:+41795105507" class="notfall-phone">+41 79 510 55 07</a>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:1.25rem;">Direkt mit Herrn Ademi verbunden<br>Keine Warteschleife, keine Umwege</p>
+        <a href="tel:+41795105507" class="btn btn-primary" style="width:100%;justify-content:center;">
+          <svg class="icon-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.16 21 3 13.84 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
+          <span>Notfall melden</span>
+        </a>
+        <div class="notfall-available" style="margin: 1rem auto 0; width:fit-content;">
+          <span class="notfall-available-dot"></span>
+          Erreichbar · 24 Stunden · 7 Tage
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:center;gap:2rem;">
+          <div style="text-align:center;">
+            <div style="font-size:1.4rem;font-weight:800;color:var(--white);">&lt; 2h</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;">Reaktionszeit</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-size:1.4rem;font-weight:800;color:var(--white);">365</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;">Tage/Jahr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ÜBER UNS ── -->
+<section id="ueber-uns">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-main" style="background:var(--bg-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--border)" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span style="font-size:0.78rem;font-weight:600;color:var(--border);letter-spacing:0.06em;">Foto Herr Ademi</span>
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num">20+</div>
+          <div class="about-badge-label">Jahre<br>Erfahrung</div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <span class="section-label">Über uns</span>
+        <h2 class="section-title">20 Jahre Erfahrung,<br><span>jetzt für Sie direkt</span></h2>
+        <p style="line-height:1.85;margin-bottom:1.5rem;">Nach 20 Jahren als Heizungs- und Servicemonteur bei der Spaar AG in Breitenbach, Gerster & Co in Laufen und der EBL habe ich mich für die Selbständigkeit entschlossen. So kann ich meine Ideen für einen professionellen und persönlichen Service besser und direkter in meine Arbeit einbringen.</p>
+        <p style="line-height:1.85;margin-bottom:2rem;">Ich empfehle mich für sämtliche Wartungs- und Servicearbeiten für Heizungs- und Sanitärinstallationen — und plane mit Ihnen den Umbau, die Renovation oder auch Ihren Neubau.</p>
+        <div class="about-trust">
+          <div class="trust-item">
+            <span class="trust-icon">🔧</span>
+            <div class="trust-text">
+              <strong>Zertifizierter Fachbetrieb</strong>
+              <span>Suissetec-geprüft</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">📍</span>
+            <div class="trust-text">
+              <strong>Aus der Region</strong>
+              <span>Kurze Anfahrtswege</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">💬</span>
+            <div class="trust-text">
+              <strong>Direkte Kommunikation</strong>
+              <span>Kein Call-Center</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">✅</span>
+            <div class="trust-text">
+              <strong>Festpreisofferten</strong>
+              <span>Keine Überraschungen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO / REFERENZEN ── -->
+<section id="referenzen" class="section-bg">
+  <div class="container">
+    <span class="section-label reveal">Abgeschlossene Projekte</span>
+    <h2 class="section-title reveal">Unsere <span>Referenzen</span></h2>
+    <p class="section-sub reveal">Ein Einblick in abgeschlossene Projekte aus der Region Laufental.</p>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card reveal">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Badezimmersanierung</div>
+          <div class="portfolio-title">Komplettes Bad neu — EFH Laufen</div>
+          <div class="portfolio-loc">📍 Laufen BL · 3 Wochen Projektdauer</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal reveal-delay-1">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Heizungsersatz</div>
+          <div class="portfolio-title">Ölheizung → Wärmepumpe · MFH Zwingen</div>
+          <div class="portfolio-loc">📍 Zwingen BL · Effizienz +40%</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal reveal-delay-2">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Sanitär</div>
+          <div class="portfolio-title">Komplette Neuverrohrung · EFH Brislach</div>
+          <div class="portfolio-loc">📍 Brislach BL · Altbau-Sanierung</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Notfallreparatur</div>
+          <div class="portfolio-title">Rohrbruch Reaktion · Wohnblock Aesch</div>
+          <div class="portfolio-loc">📍 Aesch BL · Einsatz in 90 Minuten</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal reveal-delay-1">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Heizungsinstallation</div>
+          <div class="portfolio-title">Neue Gasheizung · EFH Aesch</div>
+          <div class="portfolio-loc">📍 Aesch BL · Inkl. Boiler & Verrohrung</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal reveal-delay-2">
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Ihr Bild</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-cat">Badezimmersanierung</div>
+          <div class="portfolio-title">Walk-In Dusche & neue Armaturen · Reinach</div>
+          <div class="portfolio-loc">📍 Reinach BL · Modernes Design</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GOOGLE BEWERTUNGEN ── -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div>
+        <span class="section-label">Kundenstimmen</span>
+        <h2 class="section-title" style="margin-bottom:0;">Google <span>Bewertungen</span></h2>
+      </div>
+      <div class="reviews-google-badge">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.4rem;">
+            <span class="g-score">5.0</span>
+            <span class="g-stars">★★★★★</span>
+          </div>
+          <div class="g-label">4 Bewertungen · local.ch</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card reveal">
+        <div class="review-card-top">
+          <span class="review-stars">★★★★★</span>
+          <span style="font-size:0.65rem;color:var(--text-muted);">Feb. 2025</span>
+        </div>
+        <p class="review-text">„Haustec hat unsere alte Gasheizung mit einer Luft-Wasser Wärmepumpe ersetzt. Die Planung war intelligent auf unsere Situation abgestimmt, die Montage sauber und termingerecht. Rundum zufrieden."</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div>
+            <div class="review-name">Kunde</div>
+            <div class="review-loc">local.ch · verifiziert</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-card-top">
+          <span class="review-stars">★★★★★</span>
+          <svg class="review-g-icon" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
+        <p class="review-text">„Unser altes Bad wurde komplett erneuert — von der Planung bis zur Fertigstellung. Das Ergebnis ist wunderschön und alles lief reibungslos. Klare Empfehlung."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="background:#087CEB;">S</div>
+          <div>
+            <div class="review-name">Sandra K.</div>
+            <div class="review-loc">Zwingen BL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-card-top">
+          <span class="review-stars">★★★★★</span>
+          <svg class="review-g-icon" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
+        <p class="review-text">„Rohrbruch am Samstagabend — und Haustec war in 90 Minuten vor Ort. Schnell, kompetent und ohne Extrakosten. Das nenne ich Service."</p>
+        <div class="review-author">
+          <div class="review-avatar" style="background:#34A853;">T</div>
+          <div>
+            <div class="review-name">Thomas M.</div>
+            <div class="review-loc">Aesch BL</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ── -->
+<section id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-title">Ihre Offerte —<br><span>schnell und unkompliziert</span></h2>
+        <p style="line-height:1.85;margin-bottom:1.75rem;">Kein langes Hin und Her. Beschreiben Sie kurz Ihr Anliegen, und wir melden uns mit einer klaren, transparenten Offerte — ohne versteckte Kosten, ohne Überraschungen.</p>
+        <ul class="ki-highlights">
+          <li>
+            <div class="ki-hi-icon">⚡</div>
+            <div class="ki-hi-text">
+              <strong>Schnelle Rückmeldung</strong>
+              <span>Wir antworten innert 24 Stunden — oft noch am selben Tag</span>
+            </div>
+          </li>
+          <li>
+            <div class="ki-hi-icon">📋</div>
+            <div class="ki-hi-text">
+              <strong>Klare Kostenübersicht</strong>
+              <span>Alle Leistungen aufgelistet — Sie wissen vorher, was es kostet</span>
+            </div>
+          </li>
+          <li>
+            <div class="ki-hi-icon">✅</div>
+            <div class="ki-hi-text">
+              <strong>Unverbindlich und kostenlos</strong>
+              <span>Eine Offerte verpflichtet Sie zu nichts — fragen Sie einfach an</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <div class="form-title">Offerte anfragen</div>
+        <div class="form-sub">Wir melden uns innert 24 Stunden bei Ihnen.</div>
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" placeholder="Max Mustermann" required>
+            </div>
+            <div class="form-group">
+              <label for="tel">Telefon *</label>
+              <input type="tel" id="tel" placeholder="+41 79 000 00 00" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" placeholder="max@beispiel.ch">
+          </div>
+          <div class="form-group">
+            <label for="service">Leistung</label>
+            <select id="service">
+              <option value="">Bitte wählen</option>
+              <option>Heizungsinstallation / -service</option>
+              <option>Sanitär / Leitungen</option>
+              <option>Badezimmersanierung</option>
+              <option>Wartung & Unterhalt</option>
+              <option>Anderes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht *</label>
+            <textarea id="message" placeholder="Beschreiben Sie kurz Ihr Anliegen..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <span>Offerte anfragen</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <img src="logo.png" alt="Haustec GmbH" style="height:38px;width:auto;margin-bottom:1rem;">
+        </div>
+        <p>Ihr zuverlässiger Haustechnik-Spezialist für Heizung, Sanitär und Badezimmersanierung in der Region Laufental, Basel-Landschaft.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="#leistungen">Heizungsinstallation</a></li>
+          <li><a href="#leistungen">Sanitäranlagen</a></li>
+          <li><a href="#leistungen">Badezimmersanierung</a></li>
+          <li><a href="#leistungen">Wartung & Unterhalt</a></li>
+          <li><a href="#notfall">24h Notfallservice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+41795105507">📞 +41 79 510 55 07</a></li>
+          <li><a href="mailto:info@haus-tec.ch">✉️ info@haus-tec.ch</a></li>
+          <li><a href="#">📍 Region Laufental, BL</a></li>
+          <li><a href="https://wa.me/41795105507" target="_blank" rel="noopener">💬 WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Haustec GmbH · Alle Rechte vorbehalten</span>
+      <div class="footer-legal">
+        <a href="#" data-modal="impressum">Impressum</a>
+        <a href="#" data-modal="datenschutz">Datenschutz</a>
+      </div>
+      <span class="footer-credit">Website von <a href="#">Crowe Digital</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MODAL: IMPRESSUM ── -->
+<div id="modal-impressum" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" data-close>&#x2715;</button>
+    <h2 class="modal-title">Impressum</h2>
+    <div class="modal-body">
+      <p>
+        <strong>Haustec GmbH</strong><br>
+        [INHABER]<br>
+        [STRASSE NR]<br>
+        [PLZ] Laufental<br>
+        Schweiz
+      </p>
+      <p>
+        Telefon: <a href="tel:+41795105507">+41 79 510 55 07</a><br>
+        E-Mail: <a href="mailto:info@haus-tec.ch">info@haus-tec.ch</a><br>
+        Website: haus-tec.ch
+      </p>
+      <div class="modal-note">Demo-Website — Impressum enthält Platzhalter. Auf der echten Website werden alle Angaben vollständig eingetragen.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL: DATENSCHUTZ ── -->
+<div id="modal-datenschutz" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" data-close>&#x2715;</button>
+    <h2 class="modal-title">Datenschutzerklärung</h2>
+    <div class="modal-body">
+      <p style="font-size:0.72rem;color:rgba(255,255,255,0.25)">Letzte Aktualisierung: [DATUM]</p>
+
+      <h3>1. Verantwortliche Person</h3>
+      <p>
+        <strong>Haustec GmbH</strong><br>
+        [ADRESSE], [PLZ] Laufental<br>
+        E-Mail: <a href="mailto:info@haus-tec.ch">info@haus-tec.ch</a><br>
+        Telefon: +41 79 510 55 07
+      </p>
+
+      <h3>2. Welche Daten wir bearbeiten</h3>
+      <p><strong>Kontaktformular</strong><br>
+      Über unser Kontaktformular erhobene Daten (Name, Telefon, E-Mail, Nachricht) werden ausschliesslich für die Bearbeitung Ihrer Anfrage verwendet.</p>
+      <p><strong>Technische Daten</strong><br>
+      Beim Besuch dieser Website werden technische Informationen gespeichert (IP-Adresse, Browsertyp, Zugriffszeit). Diese Daten sind für den sicheren Betrieb nötig und werden nicht mit Ihren persönlichen Angaben verknüpft.</p>
+
+      <h3>3. Weitergabe an Dritte</h3>
+      <p>Ihre Daten werden nicht verkauft oder zu Werbezwecken weitergegeben.</p>
+
+      <h3>4. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten. Kontakt: <a href="mailto:info@haus-tec.ch">info@haus-tec.ch</a></p>
+
+      <div class="modal-note">Demo-Website — Datenschutzerklärung enthält Platzhalter. Auf der echten Website wird eine vollständige DSG-konforme Erklärung eingetragen.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a href="https://wa.me/41795105507" class="wa-float" target="_blank" rel="noopener" title="Auf WhatsApp schreiben">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+/* ── Nav Scroll ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80));
+const hbg = document.getElementById('hamburger');
+const nl = document.getElementById('navLinks');
+hbg.addEventListener('click', () => { hbg.classList.toggle('open'); nl.classList.toggle('open'); });
+nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hbg.classList.remove('open'); nl.classList.remove('open'); }));
+
+/* ── Scroll Reveal ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Modal System ── */
+function openModal(id) { document.getElementById('modal-' + id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(modal) { modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('[data-modal]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); openModal(el.dataset.modal); }));
+document.querySelectorAll('.modal').forEach(modal => modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); }));
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('.modal'))));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(closeModal); });
+
+/* ── Container Text Flip ── */
+(function () {
+  document.querySelectorAll('.ctf-container').forEach(function (container) {
+    var textEl   = container.querySelector('.ctf-word');
+    var words    = JSON.parse(container.dataset.words || '["Heizung"]');
+    var interval = parseInt(container.dataset.interval || 3000);
+    var duration = parseInt(container.dataset.duration || 700);
+    var index    = 0;
+    function showWord(word) {
+      textEl.innerHTML = word.split('').map(function (l) {
+        return '<span class="ctf-letter">' + (l === ' ' ? '&nbsp;' : l) + '</span>';
+      }).join('');
+      var tempWidth = textEl.scrollWidth + 28;
+      container.style.width = tempWidth + 'px';
+      textEl.querySelectorAll('.ctf-letter').forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('visible'); }, i * 25);
+      });
+    }
+    function next() {
+      textEl.querySelectorAll('.ctf-letter').forEach(function (el) { el.classList.remove('visible'); });
+      setTimeout(function () { index = (index + 1) % words.length; showWord(words[index]); }, duration / 2);
+    }
+    container.style.width = '120px';
+    showWord(words[0]);
+    setInterval(next, interval);
+  });
+})();
+
+
+/* ── Mock Form ── */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  alert('Danke für Ihre Anfrage! Dies ist eine Demo-Website — es wird keine echte Anfrage versendet.');
+  e.target.reset();
+}
+</script>
+</body>
+</html>

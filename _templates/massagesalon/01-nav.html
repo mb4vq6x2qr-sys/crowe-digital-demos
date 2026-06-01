@@ -1,0 +1,121 @@
+<!-- ══════════════════════════════════════════════
+   TEMPLATE — NAV (Massagesalon)
+   Anpassen:
+   - logo.png → Pfad zum Logo
+   - [SALON_NAME] → Name des Salons
+   - Nav-Links nach Bedarf anpassen (Ankerpunkte)
+   - .nav-cta → CTA-Text und Ziel
+   - Lang-Toggle entfernen falls einsprachig
+══════════════════════════════════════════════ -->
+
+<!-- CSS (in <head>) -->
+<style>
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 1.5rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: padding 0.5s ease;
+}
+nav::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15,13,10,0.96);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+  opacity: 0; transition: opacity 0.5s ease; z-index: -1; pointer-events: none;
+}
+nav.scrolled { padding: 1rem 4rem; }
+nav.scrolled::before { opacity: 1; }
+.nav-logo img { height: 52px; transition: height 0.4s; mix-blend-mode: lighten; }
+nav.scrolled .nav-logo img { height: 42px; }
+.nav-logo { margin-right: 1rem; }
+.nav-links {
+  display: flex; gap: 1.6rem; list-style: none; align-items: center;
+  padding-left: 2rem; border-left: 1px solid rgba(201,169,110,0.2);
+}
+.nav-links a {
+  color: rgba(247,242,234,0.8); text-decoration: none;
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  transition: color 0.3s; position: relative; white-space: nowrap;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--gold) !important; border: 1px solid var(--gold) !important;
+  color: var(--dark) !important; padding: 0.45rem 1.2rem !important;
+  border-radius: 1px; font-weight: 600 !important; white-space: nowrap !important;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; }
+.nav-cta::after { display: none !important; }
+.nav-end { display: flex; align-items: center; gap: 0.6rem; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 1px; background: var(--gold-light); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+.lang-toggle { display: flex; align-items: center; gap: 0.4rem; margin-left: 1.2rem; }
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 0.65rem; letter-spacing: 0.18em; font-weight: 500;
+  color: rgba(247,242,234,0.3); padding: 0.2rem 0.35rem; transition: color 0.3s;
+}
+.lang-btn.active { color: var(--gold); }
+.lang-sep { color: rgba(201,169,110,0.2); font-size: 0.55rem; user-select: none; }
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,8,5,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; border-left: none; padding-left: 0; }
+  .nav-links.open { display: flex; z-index: 300; }
+  .nav-links a { font-size: 1rem; }
+  .hamburger { display: flex; }
+}
+</style>
+
+<!-- HTML -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="images/logo.png" alt="[SALON_NAME]">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#massagen">Massagen</a></li>
+    <li><a href="#galerie">Atmosphäre</a></li>
+    <li><a href="#about">Über Uns</a></li>
+    <li><a href="#bewertungen">Bewertungen</a></li>
+    <li><a href="#termin" class="nav-cta">Termin buchen</a></li>
+  </ul>
+  <div class="nav-end">
+    <!-- Lang-Toggle: entfernen falls einsprachig -->
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="de">DE</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- JS (am Ende der Seite) -->
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+</script>

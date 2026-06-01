@@ -1,0 +1,34 @@
+_snippets/ — Wiederverwendbare Code-Blöcke
+==========================================
+
+Jeder Snippet hat einen eigenen Ordner mit:
+  snippet.html   → fertiger Vanilla HTML/CSS/JS Code
+  info.md        → Beschreibung, Verwendungszweck, Branchen, Anpassungen
+
+Keine Branchen-Unterordner mehr — Claude liest die info.md
+und wählt / empfiehlt passende Snippets für jedes Projekt.
+
+Snippet hinzufügen
+------------------
+1. TSX/JSX Code hier in den Chat kopieren
+2. Claude konvertiert zu snippet.html
+3. Claude erstellt info.md mit Beschreibung
+
+Verfügbare Snippets
+-------------------
+UI-Komponenten (Aceternity):
+  noise-background-button/   Animierter Gradient-Button
+  text-hover-effect/         SVG-Überschrift mit Cursor-Gradient
+  animated-testimonials/     Bewertungen mit Bild-Stack
+  comet-card/                3D-Tilt Karte mit Glare-Effekt
+  container-text-flip/       Wechselnde Wörter mit Blur-Animation
+
+Rechtliches & Infrastruktur:
+  modal-system/              CSS+JS Basis für alle Modals (immer zuerst)
+  cookie-banner/             Cookie-Hinweis (DSG CH)
+  impressum-ch/              Impressum für Schweizer Einzelfirma
+  datenschutz-ch/            Datenschutzerklärung (DSG-konform)
+  stornierung/               Stornierungsregeln für Terminbetriebe
+  wa-float/                  WhatsApp Floating Button
+  demo-banner/               Oranger Demo-Streifen (nur Demos!)
+  meta-seo/                  SEO Meta-Tags + Structured Data (nur echte Sites!)

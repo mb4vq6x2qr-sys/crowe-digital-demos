@@ -1,0 +1,74 @@
+<!-- ══════════════════════════════════════════════
+   SNIPPET — DATENSCHUTZERKLÄRUNG MODAL (DSG-konform, CH)
+   Anpassen: [FIRMENNAME], [INHABER], [ADRESSE], [PLZ_ORT],
+             [EMAIL], [TELEFON], [DATUM_AKTUALISIERUNG]
+   Bei Buchungs-Widget: SimplyBook.me-Absatz drin lassen oder anpassen
+   Bei eigenem Formular: Formspree-Absatz verwenden
+══════════════════════════════════════════════ -->
+
+<!-- Trigger-Link im Footer -->
+<a href="#" data-modal="datenschutz">Datenschutz</a>
+
+<!-- Modal HTML -->
+<div id="modal-datenschutz" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" data-close>&#x2715;</button>
+    <h2 class="modal-title">Datenschutzerklärung</h2>
+    <div class="modal-body">
+      <p style="font-size:0.72rem;color:rgba(232,213,176,0.3)">
+        Letzte Aktualisierung: [DATUM_AKTUALISIERUNG]
+      </p>
+
+      <h3>1. Verantwortliche Person</h3>
+      <p>
+        <strong>[INHABER]</strong><br>
+        [STRASSE NR], [PLZ] [ORT]<br>
+        E-Mail: <a href="mailto:[EMAIL]">[EMAIL]</a><br>
+        Telefon: [TELEFON]
+      </p>
+
+      <h3>2. Welche Daten wir bearbeiten</h3>
+
+      <!-- Option A: Buchung via SimplyBook.me -->
+      <p><strong>Terminbuchung (SimplyBook.me)</strong><br>
+      Für die Online-Buchung nutzen wir SimplyBook.me (Simplydo Ltd., Irland / EU).
+      Dabei werden Name, E-Mail-Adresse und Terminangaben übermittelt.
+      SimplyBook.me verarbeitet diese Daten gemäss den europäischen Datenschutzstandards.
+      Weitere Informationen: <a href="https://simplybook.me/privacy" target="_blank">simplybook.me/privacy</a></p>
+
+      <!-- Option B: Kontaktformular via Formspree — einkommentieren falls verwendet -->
+      <!--
+      <p><strong>Kontaktformular (Formspree)</strong><br>
+      Über unser Kontaktformular erhobene Daten (Name, E-Mail, Nachricht) werden via
+      Formspree (Formspree Inc., USA) verarbeitet. Weitere Informationen: formspree.io/legal/privacy-policy</p>
+      -->
+
+      <p><strong>Technische Daten</strong><br>
+      Beim Besuch dieser Website werden automatisch technische Informationen gespeichert
+      (IP-Adresse, Browsertyp, Zugriffszeit). Diese Daten sind für den sicheren Betrieb
+      nötig und werden nicht mit Ihren persönlichen Angaben verknüpft.</p>
+
+      <p><strong>Cookies</strong><br>
+      Diese Website verwendet Cookies für den technischen Betrieb. Sie können Cookies in
+      Ihrem Browser deaktivieren – gewisse Funktionen stehen dann möglicherweise nicht
+      vollständig zur Verfügung.</p>
+
+      <h3>3. Weitergabe an Dritte</h3>
+      <p>Ihre Daten werden nicht verkauft oder zu Werbezwecken weitergegeben.</p>
+
+      <h3>4. Datenspeicherung</h3>
+      <p>Wir speichern Ihre Daten nur so lange, wie es für die genannten Zwecke notwendig
+      ist oder gesetzliche Aufbewahrungspflichten es erfordern.</p>
+
+      <h3>5. Ihre Rechte</h3>
+      <p>
+        Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer gespeicherten Daten.<br>
+        Anfragen per E-Mail an: <a href="mailto:[EMAIL]">[EMAIL]</a>
+      </p>
+
+      <p class="modal-note">
+        Erstellt gemäss Schweizer Datenschutzgesetz (DSG), in Kraft seit 1. September 2023.
+      </p>
+    </div>
+  </div>
+</div>
