@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cueni Maler GmbH – Maler in Röschenz</title>
+<link rel="icon" href="images/favicon.jpg" type="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ── VARIABLEN ── */
+:root {
+  --red: #3da99a;
+  --red-dark: #2d8a7e;
+  --red-light: #5ec4b8;
+  --dark: #1a1918;
+  --dark2: #242220;
+  --mid: #3c3a37;
+  --warm: #f5f2ee;
+  --light: #faf9f7;
+  --white: #ffffff;
+  --text: #2c2a28;
+  --text-light: #787068;
+  --border: rgba(0,0,0,0.09);
+}
+
+/* ── RESET ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+/* ── DEMO BANNER ── */
+.demo-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: rgba(26,25,24,0.92); backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.4);
+  text-align: center; padding: 0.4rem 1rem;
+  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  padding: 0.8rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--white);
+  box-shadow: 0 1px 0 var(--border);
+  transition: padding 0.4s ease;
+}
+nav.scrolled { padding: 0.6rem 4rem; }
+.nav-logo-link { text-decoration: none; display: block; flex-shrink: 0; }
+.nav-logo-img { height: 42px; width: auto; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--text-light); text-decoration: none;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--red) !important; }
+.nav-cta {
+  background: var(--red) !important; color: var(--white) !important;
+  padding: 0.5rem 1.3rem !important; border-radius: 2px;
+  transition: background 0.3s !important;
+}
+.nav-cta:hover { background: var(--red-dark) !important; color: var(--white) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; position: relative;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.hero-left {
+  background: var(--dark);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 5rem 6rem;
+  position: relative; overflow: hidden;
+}
+.hero-left::before {
+  content: '';
+  position: absolute; bottom: -60px; right: -60px;
+  width: 260px; height: 260px; border-radius: 50%;
+  border: 60px solid rgba(61,169,154,0.12);
+  pointer-events: none;
+}
+.hero-tag {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.8rem;
+}
+.hero-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--red); }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+  font-weight: 700; line-height: 1.1; color: var(--white);
+  margin-bottom: 1.8rem;
+}
+.hero h1 em { font-style: italic; color: var(--red-light); display: block; }
+.hero-sub {
+  font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.45);
+  font-weight: 300; max-width: 420px; margin-bottom: 3rem;
+}
+.hero-actions { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; background: var(--red); color: var(--white);
+  padding: 0.9rem 2.2rem; text-decoration: none;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  border-radius: 2px; transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(61,169,154,0.3); }
+.btn-ghost {
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 2px;
+  transition: all 0.3s;
+}
+.btn-ghost:hover { color: var(--white); border-color: var(--white); }
+.hero-right {
+  position: relative; overflow: hidden;
+}
+.hero-right img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85);
+}
+.hero-right::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--dark) 0%, transparent 30%);
+}
+
+/* ── SCROLL HINT ── */
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  z-index: 3;
+  animation: fadeIn 1s 1.2s ease both;
+}
+.scroll-text {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+  animation: scrollPulse 2.5s infinite;
+}
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── STATS ── */
+.stats {
+  background: var(--red);
+  display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+}
+.stat {
+  text-align: center; padding: 2rem 3.5rem;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem; font-weight: 700; color: var(--white); line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-top: 0.3rem;
+}
+
+/* ── SEKTION BASIS ── */
+section { padding: 7rem 4rem; }
+.section-label {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1rem;
+}
+.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--red); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700; color: var(--dark); line-height: 1.15; margin-bottom: 1.2rem;
+}
+.section-title em { font-style: italic; color: var(--red); font-weight: 400; }
+.section-sub {
+  color: var(--text-light); font-size: 0.9rem; line-height: 1.85;
+  font-weight: 300; max-width: 560px; margin-bottom: 4rem;
+}
+
+/* ── LEISTUNGEN ── */
+.leistungen { background: var(--light); }
+.leistungen .section-title,
+.leistungen .section-label { text-align: left; }
+.leistungen-header { max-width: 1200px; margin: 0 auto 0; }
+.leistungen-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  max-width: 1200px; margin: 0 auto;
+  border: 1px solid var(--border);
+}
+.leistung-card {
+  background: var(--white); overflow: hidden; position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s;
+}
+.leistung-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); z-index: 1; }
+.leistung-img-wrap { position: relative; overflow: hidden; height: 200px; }
+.leistung-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.92); }
+.leistung-card:hover .leistung-img-wrap img { transform: scale(1.05); }
+.leistung-body { padding: 2rem; }
+.leistung-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 700; color: rgba(61,169,154,0.08);
+  line-height: 1; position: absolute; top: 1rem; right: 1.2rem;
+}
+.leistung-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 600; color: var(--dark);
+  margin-bottom: 0.7rem;
+}
+.leistung-text { font-size: 0.83rem; line-height: 1.75; color: var(--text-light); font-weight: 300; }
+.leistung-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--red); transition: width 0.5s;
+}
+.leistung-card:hover::after { width: 100%; }
+
+/* ── ÜBER UNS ── */
+.about { background: var(--white); }
+.about-inner { max-width: 1100px; margin: 0 auto; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--border); }
+.team-card {
+  background: var(--warm); padding: 3.5rem;
+  display: flex; flex-direction: column;
+}
+.team-photo-wrap {
+  width: 90px; height: 90px; border-radius: 50%;
+  overflow: hidden; margin-bottom: 1.5rem;
+  border: 3px solid var(--white);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.team-avatar {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem; font-weight: 700; color: white; letter-spacing: -0.02em;
+}
+.team-role {
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.4rem; font-weight: 600;
+}
+.team-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--dark); margin-bottom: 1.2rem;
+}
+.team-text { font-size: 0.83rem; line-height: 1.8; color: var(--text-light); font-weight: 300; margin-bottom: 1.5rem; flex: 1; }
+.team-contact a {
+  display: block; color: var(--text-light); text-decoration: none;
+  font-size: 0.78rem; line-height: 2; transition: color 0.3s;
+}
+.team-contact a:hover { color: var(--red); }
+
+/* ── REFERENZEN ── */
+.referenzen { background: var(--dark); }
+.referenzen .section-label { color: var(--red-light); }
+.referenzen .section-label::before { background: var(--red-light); }
+.referenzen .section-title { color: var(--white); }
+.ref-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 3px; max-width: 1200px; margin: 0 auto;
+}
+.ref-item {
+  position: relative; overflow: hidden; cursor: pointer;
+  aspect-ratio: 4/3;
+}
+.ref-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; filter: brightness(0.8); }
+.ref-item:hover img { transform: scale(1.08); filter: brightness(0.6); }
+.ref-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding: 1.5rem; background: linear-gradient(to top, rgba(26,25,24,0.85) 0%, transparent 60%);
+}
+.ref-logo-center {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.ref-logo-center img {
+  width: 110px; height: auto;
+  mix-blend-mode: multiply; opacity: 0.85;
+  filter: brightness(0.95);
+}
+.schimmel-x {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 2; pointer-events: none;
+}
+.ref-label {
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.9); font-weight: 500; text-align: center;
+}
+.ref-item.large { grid-column: span 2; }
+
+/* ── KONTAKT ── */
+.kontakt { background: var(--warm); }
+.kontakt-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+}
+.kontakt-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); font-weight: 500; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--white); border: 1px solid var(--border);
+  padding: 0.85rem 1rem; font-family: 'Inter', sans-serif;
+  font-size: 0.88rem; color: var(--text); outline: none;
+  transition: border-color 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--red); }
+.form-group textarea { resize: vertical; min-height: 130px; }
+.kontakt-info { padding-top: 0.5rem; }
+.kontakt-info .section-sub { margin-bottom: 2.5rem; }
+.info-row {
+  display: flex; gap: 1rem; align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+.info-icon {
+  width: 36px; height: 36px; background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.9rem;
+}
+.info-text { font-size: 0.85rem; line-height: 1.6; }
+.info-text strong { display: block; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.15rem; }
+.info-text a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+.info-text a:hover { color: var(--red); }
+.bexio-note {
+  margin-top: 2rem; padding: 1rem 1.2rem;
+  border-left: 2px solid var(--red); background: rgba(61,169,154,0.04);
+  font-size: 0.75rem; color: var(--text-light); line-height: 1.7;
+}
+.bexio-note strong { color: var(--red); display: block; margin-bottom: 0.2rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── FOOTER MAP ── */
+.footer-map {
+  width: 100%; height: 260px; display: block; border: none;
+  filter: grayscale(20%) brightness(0.95);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark2);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer-main {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem; max-width: 1100px; margin: 0 auto;
+  padding: 4rem 4rem 3rem;
+}
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem;
+}
+.footer-brand-tag {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1rem;
+}
+.footer-brand p {
+  font-size: 0.8rem; line-height: 1.75; color: rgba(255,255,255,0.3);
+  font-weight: 300; max-width: 260px;
+}
+.footer-col-title {
+  font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.2rem; font-weight: 600;
+}
+.social-btns { display: flex; gap: 1.2rem; margin-top: 0.4rem; }
+.social-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.35); text-decoration: none;
+  font-size: 0.78rem; font-weight: 400; letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+.social-btn:hover { color: var(--red); }
+.social-btn svg { opacity: 0.7; }
+.footer-col a {
+  display: block; color: rgba(255,255,255,0.35); text-decoration: none;
+  font-size: 0.8rem; font-weight: 300; line-height: 2.2; transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 1.5rem 4rem; max-width: 100%;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.18); letter-spacing: 0.08em; }
+.footer-legal { display: flex; gap: 2rem; }
+.footer-legal a {
+  color: rgba(255,255,255,0.2); text-decoration: none;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s;
+}
+.footer-legal a:hover { color: var(--red); }
+.footer-made {
+  width: 100%; text-align: center; padding: 1rem 4rem 1.5rem;
+  font-size: 0.62rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.12);
+  text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer-made a { color: rgba(61,169,154,0.5); text-decoration: none; transition: color 0.3s; }
+.footer-made a:hover { color: var(--red); }
+
+/* ── MODALS ── */
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 600;
+  background: rgba(0,0,0,0.72);
+  align-items: center; justify-content: center; padding: 1.5rem;
+}
+.modal.open { display: flex; }
+.modal-inner {
+  background: var(--dark); max-width: 660px; width: 100%;
+  max-height: 82vh; overflow-y: auto;
+  padding: 3rem; position: relative;
+  border: 1px solid rgba(61,169,154,0.2);
+  scrollbar-width: thin; scrollbar-color: rgba(61,169,154,0.2) transparent;
+}
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.5rem;
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  font-size: 1.3rem; cursor: pointer; line-height: 1; transition: color 0.3s;
+}
+.modal-close:hover { color: var(--red); }
+.modal-title {
+  font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400;
+  color: var(--white); margin-bottom: 2rem; padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(61,169,154,0.15);
+}
+.modal-body h3 {
+  font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600;
+  color: var(--red-light); margin: 1.8rem 0 0.5rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.modal-body p, .modal-body li { color: rgba(255,255,255,0.5); font-size: 0.83rem; line-height: 1.85; }
+.modal-body ul { padding-left: 1.2rem; margin: 0.4rem 0; }
+.modal-body strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+.modal-body a { color: var(--red-light); }
+.modal-note { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(61,169,154,0.1); font-size: 0.72rem; color: rgba(255,255,255,0.2); font-style: italic; }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 3.2rem; right: 2rem; z-index: 300;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+  animation: waPulse 3s infinite;
+}
+.wa-float:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50%       { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+}
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ── SCROLL TRACK ── */
+.scroll-track {
+  position: fixed; left: 1.4rem; top: 12vh; height: 76vh;
+  width: 26px; z-index: 400; display: flex; justify-content: center;
+  pointer-events: none;
+}
+.scroll-track-line {
+  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; background: rgba(0,0,0,0.1); border-radius: 1px;
+}
+.scroll-track-brush {
+  position: absolute; top: 0; left: 0;
+  width: 26px; height: 26px; border-radius: 6px; object-fit: cover;
+  will-change: transform;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+@media (max-width: 900px) { .scroll-track { display: none; } }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .leistungen-grid { grid-template-columns: repeat(2, 1fr); }
+  .ref-grid { grid-template-columns: repeat(2, 1fr); }
+  .ref-item.large { grid-column: span 1; }
+  .footer-main { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  nav { padding: 0.75rem 1.5rem; }
+  nav.scrolled { padding: 0.6rem 1.5rem; }
+  .nav-links {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--dark); flex-direction: column; align-items: center;
+    justify-content: center; gap: 2.5rem; z-index: 490;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1.1rem; color: rgba(255,255,255,0.8) !important; }
+  .hamburger { display: flex; z-index: 501; position: relative; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { height: 50vh; }
+  .hero-left { padding: 5rem 2rem 3rem; }
+}
+@media (max-width: 768px) {
+  section { padding: 5rem 1.5rem; }
+  .stats { gap: 0; }
+  .stat { padding: 1.5rem 2rem; flex: 1; }
+  .kontakt-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .leistungen-grid { grid-template-columns: 1fr; }
+  .ref-grid { grid-template-columns: 1fr 1fr; }
+  .footer-main { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+  .footer-bottom { padding: 1.2rem 1.5rem; flex-direction: column; text-align: center; }
+  .footer-made { padding: 1rem 1.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo-link">
+    <img src="images/logo.png" alt="Cueni Maler GmbH" class="nav-logo-img">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#referenzen">Referenzen</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- SCROLL TRACK -->
+<div class="scroll-track">
+  <div class="scroll-track-line"></div>
+  <img class="scroll-track-brush" id="scrollBrush" src="images/favicon.jpg" alt="">
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Malerbetrieb seit 2012</div>
+    <h1>Farbe<br>die <em>begeistert.</em></h1>
+    <p class="hero-sub">Professionelles Malen, Tapezieren und Renovieren für Privat und Gewerbe — mit Qualität, Zuverlässigkeit und echter Leidenschaft für Farbe.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Jetzt anfragen</a>
+      <a href="#leistungen" class="btn-ghost">Leistungen ansehen</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-text">Entdecken</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=900&q=80" alt="Cueni Maler bei der Arbeit">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Jahre Erfahrung</div></div>
+  <div class="stat"><div class="stat-num">5</div><div class="stat-label">Leistungen</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Qualitätsversprechen</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Farbenvielfalt</div></div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen" class="leistungen">
+  <div class="leistungen-header reveal">
+    <div class="section-label">Was wir machen</div>
+    <h2 class="section-title">Unsere <em>Leistungen</em></h2>
+    <p class="section-sub">Von der klassischen Innenmalerei über Tapezierarbeiten bis zur kreativen Farbgestaltung — wir übernehmen Ihr Projekt von A bis Z.</p>
+  </div>
+  <div class="leistungen-grid">
+    <div class="leistung-card reveal">
+      <div class="leistung-img-wrap">
+        <img src="images/malen.jpg" alt="Malen">
+      </div>
+      <div class="leistung-body">
+        <span class="leistung-num">01</span>
+        <div class="leistung-name">Malen</div>
+        <p class="leistung-text">Qualitative Malerarbeiten für Innen und Aussen — auf unterschiedlichsten Untergründen. Auf Wunsch mit biologischen, schadstofffreien Farben.</p>
+      </div>
+    </div>
+    <div class="leistung-card reveal reveal-delay-1">
+      <div class="leistung-img-wrap">
+        <img src="images/tapezieren.jpg" alt="Tapezieren">
+      </div>
+      <div class="leistung-body">
+        <span class="leistung-num">02</span>
+        <div class="leistung-name">Tapezieren</div>
+        <p class="leistung-text">Tausende von Tapetenvariationen — klassisch dezent oder extravagant. Geben Sie Ihren Räumen das gewisse Etwas, das nur eine gute Tapete bringen kann.</p>
+      </div>
+    </div>
+    <div class="leistung-card reveal reveal-delay-2">
+      <div class="leistung-img-wrap">
+        <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=80" alt="Renovieren">
+      </div>
+      <div class="leistung-body">
+        <span class="leistung-num">03</span>
+        <div class="leistung-name">Renovieren</div>
+        <p class="leistung-text">Fassaden verputzen, Wärmedämmung, Innenrenovation, Bodenbeläge — wir übernehmen auch die Bauleitung für Ihr Projekt.</p>
+      </div>
+    </div>
+    <div class="leistung-card reveal reveal-delay-1">
+      <div class="leistung-img-wrap">
+        <img src="images/schimmel.jpg" alt="Schimmelsanierung">
+        <svg class="schimmel-x" viewBox="0 0 200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="0" x2="200" y2="200" stroke="rgba(200,40,40,0.72)" stroke-width="8"/>
+          <line x1="200" y1="0" x2="0" y2="200" stroke="rgba(200,40,40,0.72)" stroke-width="8"/>
+        </svg>
+      </div>
+      <div class="leistung-body">
+        <span class="leistung-num">04</span>
+        <div class="leistung-name">Schimmelsanierungen</div>
+        <p class="leistung-text">Fachgerechte und langfristige Schimmelentfernung. Wir eruieren die Ursachen, beheben sie und schützen Ihre Gesundheit.</p>
+      </div>
+    </div>
+    <div class="leistung-card reveal reveal-delay-2">
+      <div class="leistung-img-wrap">
+        <img src="images/kreativ.jpg" alt="Kreativgestaltung">
+      </div>
+      <div class="leistung-body">
+        <span class="leistung-num">05</span>
+        <div class="leistung-name">Kreativgestaltung</div>
+        <p class="leistung-text">Farbberatung, Raumgestaltung und Dekorativarbeiten — jeder Auftrag beginnt mit einer persönlichen Beratung, weil Farbe Spass macht!</p>
+      </div>
+    </div>
+    <div class="leistung-card reveal reveal-delay-3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:3rem 2rem;background:var(--dark);cursor:default;">
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:rgba(255,255,255,0.15);line-height:1.3;margin-bottom:1.5rem;">"weil Farbe<br>Spass macht!"</div>
+      <a href="#kontakt" class="btn-primary">Jetzt anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="reveal" style="max-width:560px;margin-bottom:3rem;">
+      <div class="section-label">Das Team</div>
+      <h2 class="section-title">Persönlich. <em>Erfahren. Verlässlich.</em></h2>
+      <p class="section-sub" style="margin-bottom:0;">Seit über 12 Jahren stehen wir unseren Kundinnen und Kunden mit Leidenschaft zur Seite — mit einem kleinen, eingespielten Team und dem Anspruch, jede Arbeit so auszuführen, als wäre es unser eigenes Zuhause.</p>
+    </div>
+    <div class="about-grid">
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <div class="team-avatar" style="background: var(--red);">PC</div>
+        </div>
+        <div class="team-role">Geschäftsführer</div>
+        <div class="team-name">Pino Cueni</div>
+        <p class="team-text">Nach meiner Malerlehre und 16 Jahren als Kundenmaler in einem renommierten Basler Betrieb habe ich 2012 mein eigenes Geschäft gegründet. Vorarbeiterschule (2009), Lehrlingsbetreuer, Auslandeinsatz mit der Schweizer Armee im Kosovo — diese Erfahrungen prägen meine Arbeit täglich.</p>
+        <div class="team-contact">
+          <a href="tel:+41792421487">📞 079 242 14 87</a>
+          <a href="mailto:pino@cuenimaler.ch">✉ pino@cuenimaler.ch</a>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-photo-wrap">
+          <div class="team-avatar" style="background: var(--red-dark);">JC</div>
+        </div>
+        <div class="team-role">Administration</div>
+        <div class="team-name">Jacqueline Cueni</div>
+        <p class="team-text">Kaufmännische Ausbildung, ein Jahr USA, Berufsmatura 2004, Studium Betriebsökonomie 2010. Mit 14 Jahren Berufserfahrung und konstanter Weiterbildung sorge ich dafür, dass im Hintergrund alles reibungslos läuft.</p>
+        <div class="team-contact">
+          <a href="tel:+41798743322">📞 079 874 33 22</a>
+          <a href="mailto:jacqueline@cuenimaler.ch">✉ jacqueline@cuenimaler.ch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section id="referenzen" class="referenzen">
+  <div class="reveal" style="max-width:560px;margin-bottom:3rem;">
+    <div class="section-label">Unsere Arbeiten</div>
+    <h2 class="section-title" style="color:var(--white);">Ausgeführte <em style="color:var(--red-light);">Projekte</em></h2>
+  </div>
+  <div class="ref-grid reveal">
+    <div class="ref-item large">
+      <img src="images/ref-bg.jpg" alt="Garage Röschenz" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Garage · Röschenz</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Dachgeschoss Grindel" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Dachgeschoss · Grindel</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Haussockel Bärschwil" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Haussockel · Bärschwil</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Keller Laufen" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Keller · Laufen</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Fassade Gempen" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Fassade & Dachhimmel · Gempen</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Büro Grindel" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Büro · Grindel</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Keller Dittingen" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Keller & Boden · Dittingen</span></div>
+    </div>
+    <div class="ref-item">
+      <img src="images/ref-bg.jpg" alt="Schimmelentfernung" style="opacity:0.5">
+      <div class="ref-logo-center"><img src="images/logo.png" alt="Cueni Maler GmbH"></div>
+      <div class="ref-overlay"><span class="ref-label">Schimmelentfernung · Röschenz</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="kontakt">
+  <div class="kontakt-inner">
+    <div>
+      <div class="section-label reveal">Kontakt</div>
+      <h2 class="section-title reveal">Projekt anfragen</h2>
+      <p class="section-sub reveal" style="margin-bottom:2rem;">Beschreiben Sie uns Ihr Vorhaben — wir melden uns innerhalb von 24 Stunden.</p>
+      
+      <form class="kontakt-form reveal" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Vorname</label>
+            <input type="text" placeholder="Max">
+          </div>
+          <div class="form-group">
+            <label>Nachname</label>
+            <input type="text" placeholder="Mustermann">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" placeholder="061 000 00 00">
+          </div>
+          <div class="form-group">
+            <label>E-Mail</label>
+            <input type="email" placeholder="max@beispiel.ch">
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Leistung</label>
+          <select>
+            <option value="">Bitte wählen…</option>
+            <option>Malen</option>
+            <option>Tapezieren</option>
+            <option>Renovieren</option>
+            <option>Schimmelsanierung</option>
+            <option>Kreativgestaltung / Farbberatung</option>
+            <option>Individuell / Anderes</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Nachricht</label>
+          <textarea placeholder="Beschreiben Sie kurz Ihr Projekt (Ort, Umfang, Wunschtermin…)"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;">Anfrage senden</button>
+      </form>
+    </div>
+    <div class="kontakt-info reveal reveal-delay-1">
+      <div class="section-label">Direkt erreichen</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--dark);margin-bottom:0.8rem;">Cueni Maler GmbH</h3>
+      <p class="section-sub" style="margin-bottom:2rem;">Wir sind ein kleines Team und nehmen uns Zeit für Ihre Anfrage.</p>
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-text"><strong>Adresse</strong>Laufenstrasse 7<br>4244 Röschenz</div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div class="info-text"><strong>Telefon</strong><a href="tel:+41617618181">061 761 81 81</a></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📱</div>
+        <div class="info-text"><strong>Mobil Pino</strong><a href="tel:+41792421487">079 242 14 87</a></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✉</div>
+        <div class="info-text"><strong>E-Mail</strong><a href="mailto:info@cuenimaler.ch">info@cuenimaler.ch</a></div>
+      </div>
+      
+      <div class="bexio-note">
+        <strong>Automatisierung möglich</strong>
+        Dieses Formular kann direkt mit Ihrem Bexio-Konto verbunden werden — jede Anfrage landet automatisch als neuer Kontakt in Bexio. Kein manuelles Abtippen mehr.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <iframe
+    class="footer-map"
+    src="https://maps.google.com/maps?q=Laufenstrasse+7+4244+Röschenz+Schweiz&output=embed"
+    allowfullscreen loading="lazy"
+    title="Cueni Maler GmbH – Standort"></iframe>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Cueni Maler GmbH</div>
+      <div class="footer-brand-tag">weil Farbe Spass macht!</div>
+      <p>Professionelle Maler- und Renovierungsarbeiten in Röschenz und der ganzen Region Basel-Landschaft.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Leistungen</div>
+      <a href="#leistungen">Malen</a>
+      <a href="#leistungen">Tapezieren</a>
+      <a href="#leistungen">Renovieren</a>
+      <a href="#leistungen">Schimmelsanierungen</a>
+      <a href="#leistungen">Kreativgestaltung</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Kontakt</div>
+      <a href="tel:+41617618181">061 761 81 81</a>
+      <a href="mailto:info@cuenimaler.ch">info@cuenimaler.ch</a>
+      <a href="#">Laufenstrasse 7, Röschenz</a>
+      <div class="social-btns">
+        <a href="https://www.facebook.com/cuenimaler" target="_blank" rel="noopener" class="social-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="social-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Cueni Maler GmbH · Röschenz · Alle Rechte vorbehalten</span>
+    <div class="footer-legal">
+      <a href="#" data-modal="impressum">Impressum</a>
+      <a href="#" data-modal="datenschutz">Datenschutz</a>
+    </div>
+  </div>
+  <div class="footer-made">Website by <a href="https://crowe-digital.ch" target="_blank" rel="noopener">Crowe Digital</a></div>
+</footer>
+
+<!-- MODAL: Impressum -->
+<div id="modal-impressum" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" data-close>&#x2715;</button>
+    <h2 class="modal-title">Impressum</h2>
+    <div class="modal-body">
+      <p><strong>Cueni Maler GmbH</strong><br>
+      Giuseppe Cueni<br>
+      Laufenstrasse 7<br>
+      4244 Röschenz<br>
+      Schweiz</p>
+      <p>Telefon: <a href="tel:+41617618181">061 761 81 81</a><br>
+      E-Mail: <a href="mailto:info@cuenimaler.ch">info@cuenimaler.ch</a><br>
+      Website: www.cuenimaler.ch</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Datenschutz -->
+<div id="modal-datenschutz" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" data-close>&#x2715;</button>
+    <h2 class="modal-title">Datenschutzerklärung</h2>
+    <div class="modal-body">
+      <p style="font-size:0.72rem;color:rgba(255,255,255,0.2)">Letzte Aktualisierung: Juni 2026</p>
+      <h3>Verantwortliche Person</h3>
+      <p><strong>Giuseppe Cueni</strong><br>Laufenstrasse 7, 4244 Röschenz<br>
+      E-Mail: <a href="mailto:info@cuenimaler.ch">info@cuenimaler.ch</a></p>
+      <h3>Datenerhebung</h3>
+      <p>Bei der Nutzung des Kontaktformulars werden Name, E-Mail und Ihre Nachricht übermittelt und ausschliesslich zur Bearbeitung Ihrer Anfrage verwendet.</p>
+      <h3>Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten. Anfragen per E-Mail an: <a href="mailto:info@cuenimaler.ch">info@cuenimaler.ch</a></p>
+      <p class="modal-note">Erstellt gemäss Schweizer Datenschutzgesetz (DSG), in Kraft seit 1. September 2023.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">Demo Website · Crowe Digital</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/41792421487" class="wa-float" target="_blank" rel="noopener" title="Auf WhatsApp schreiben">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => { hamburger.classList.remove('open'); navLinks.classList.remove('open'); });
+});
+
+// Modals
+function openModal(id) { document.getElementById('modal-' + id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(modal) { modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('[data-modal]').forEach(el => {
+  el.addEventListener('click', e => { e.preventDefault(); openModal(el.dataset.modal); });
+});
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
+});
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.closest('.modal')));
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(closeModal);
+});
+
+// Mock-Formular (Demo)
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  alert('Danke für Ihre Anfrage! Wir melden uns so schnell wie möglich bei Ihnen.');
+});
+
+// Scroll track brush
+const scrollBrush = document.getElementById('scrollBrush');
+const scrollTrack = document.querySelector('.scroll-track');
+function updateBrush() {
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? window.scrollY / total : 0;
+  const y = pct * scrollTrack.offsetHeight - scrollBrush.offsetHeight / 2;
+  scrollBrush.style.transform = `translateY(${y}px)`;
+}
+window.addEventListener('scroll', updateBrush, { passive: true });
+updateBrush();
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
