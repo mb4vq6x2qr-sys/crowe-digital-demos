@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friede GmbH — Gartenbau & Hauswartung in Basel</title>
+<meta name="description" content="Friede GmbH Basel: Gartenbau, Gartenunterhalt, Hauswartung und Renovationen. Zuverlässig, sorgfältig und zu fairen Preisen ausgeführt.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────
+   FRIEDE GMBH · Demo · Crowe Digital
+   Design-System: ui-ux-pro-max "Trust & Authority"
+   Natural Green · Lora / Raleway
+───────────────────────────────────────────── */
+
+:root{
+  --green-900:#0d4a2b;
+  --green-800:#14532d;   /* foreground / headings */
+  --green-700:#15803d;   /* primary */
+  --green-600:#166534;
+  --green-500:#22c55e;   /* secondary */
+  --green-100:#dcf3e3;
+  --bloom:#e0739b;       /* dezenter floraler Akzent */
+  --bg:#ffffff;
+  --bg-soft:#f0fdf4;     /* muted */
+  --bg-mute:#f4f7f5;
+  --text:#1f2d26;
+  --text-mute:#5d6f65;
+  --border:#dce9df;
+  --white:#ffffff;
+  --shadow-sm:0 2px 10px rgba(13,74,43,.06);
+  --shadow-md:0 10px 30px rgba(13,74,43,.10);
+  --shadow-lg:0 24px 60px rgba(13,74,43,.16);
+  --radius:18px;
+  --radius-lg:26px;
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Raleway',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.65;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:38px; /* Platz für Demo-Banner unten */
+}
+h1,h2,h3{font-family:'Lora',Georgia,serif;color:var(--green-800);line-height:1.15;letter-spacing:-.01em;font-weight:600}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--green-500);color:#fff}
+
+.container{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.section{padding:84px 0}
+.section--soft{background:var(--bg-soft)}
+
+.eyebrow{
+  display:inline-block;font-family:'Raleway',sans-serif;font-weight:600;
+  font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green-700);margin-bottom:14px;
+}
+.eyebrow::before{content:"";display:inline-block;width:22px;height:1.5px;background:var(--green-500);vertical-align:middle;margin-right:10px;transform:translateY(-3px)}
+
+.section-head{max-width:640px;margin-bottom:46px}
+.section-head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.section-head p{margin-top:14px;color:var(--text-mute);font-size:1.05rem}
+.center{text-align:center;margin-inline:auto}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:'Raleway',sans-serif;font-weight:600;font-size:.95rem;
+  padding:.85rem 1.6rem;border-radius:999px;border:1.5px solid transparent;
+  cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease),color .25s var(--ease);
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--green-700);color:#fff;box-shadow:0 8px 22px rgba(21,128,61,.28)}
+.btn-primary:hover{background:var(--green-800);transform:translateY(-2px);box-shadow:0 12px 30px rgba(21,128,61,.36)}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.24);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--green-700);border-color:var(--green-700)}
+.btn-outline:hover{background:var(--green-700);color:#fff;transform:translateY(-2px)}
+
+/* ── Nav ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .35s var(--ease),box-shadow .35s var(--ease),padding .35s var(--ease);
+  padding:20px 0;
+}
+.nav.scrolled{background:rgba(13,74,43,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(0,0,0,.18);padding:9px 0}
+.nav__inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:inline-flex;align-items:center}
+.brand .logo{height:50px;width:auto;display:block;transition:height .35s var(--ease)}
+.nav.scrolled .brand .logo{height:42px}
+.nav__links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav__links a{font-weight:500;font-size:.95rem;color:rgba(255,255,255,.92);transition:color .25s}
+.nav.scrolled .nav__links a{color:rgba(255,255,255,.92)}
+.nav__links a:hover,.nav.scrolled .nav__links a:hover{color:#c9f5d6}
+.nav__cta .btn{padding:.6rem 1.3rem}
+.nav.scrolled .btn-ghost{background:var(--green-500);color:#0d4a2b;border-color:transparent}
+.nav.scrolled .btn-ghost:hover{background:#c9f5d6}
+.nav__burger{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center}
+.nav__burger span{display:block;width:24px;height:2px;background:#fff;position:relative;transition:.3s var(--ease)}
+.nav__burger span::before,.nav__burger span::after{content:"";position:absolute;left:0;width:24px;height:2px;background:inherit;transition:.3s var(--ease)}
+.nav__burger span::before{top:-7px}.nav__burger span::after{top:7px}
+.nav__burger.open span{background:transparent}
+.nav__burger.open span::before{top:0;transform:rotate(45deg)}
+.nav__burger.open span::after{top:0;transform:rotate(-45deg)}
+.nav__menu,.nav__overlay{display:none} /* nur im Mobile-Breakpoint sichtbar */
+
+/* ── Hero (Shader) ── */
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;align-items:center;overflow:hidden}
+#shader-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.gradient-fallback{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#f0fdf4,#86c98e,#15803d,#0d4a2b);background-size:300% 300%;animation:gradShift 12s ease infinite}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(13,74,43,.30) 0%,rgba(13,74,43,.05) 35%,rgba(13,74,43,.45) 100%);pointer-events:none}
+.hero__content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
+.hero__eyebrow{display:inline-block;font-weight:600;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:22px}
+.hero__eyebrow::before{content:"";display:inline-block;width:26px;height:1.5px;background:rgba(255,255,255,.7);vertical-align:middle;margin-right:12px;transform:translateY(-4px)}
+.hero h1{font-size:clamp(2.5rem,6.5vw,4.6rem);font-weight:700;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 40px rgba(0,0,0,.25)}
+.hero h1 .accent{color:#c9f5d6}
+.hero__sub{margin-top:22px;font-size:clamp(1.05rem,2.2vw,1.25rem);color:rgba(255,255,255,.9);max-width:540px;line-height:1.6;font-weight:400}
+.hero__cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.hero__scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.75);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero__scroll svg{width:20px;height:20px;animation:bob 2s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ── Trust strip / stats ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat__num{font-family:'Lora',serif;font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;color:var(--green-700)}
+.stat__label{font-size:.86rem;color:var(--text-mute);font-weight:500;margin-top:4px;letter-spacing:.02em}
+
+/* ── Intro split ── */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.split__media{position:relative}
+.split__media img{width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);aspect-ratio:4/5;object-fit:cover}
+.split__badge{position:absolute;left:-22px;bottom:34px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 22px;display:flex;align-items:center;gap:14px;max-width:260px}
+.split__badge .ic{width:46px;height:46px;border-radius:12px;background:var(--green-100);display:grid;place-items:center;flex:none}
+.split__badge .ic svg{width:24px;height:24px;color:var(--green-700)}
+.split__badge b{display:block;font-family:'Lora',serif;color:var(--green-800);font-size:1.05rem}
+.split__badge span{font-size:.82rem;color:var(--text-mute)}
+.split__body h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.split__body p{margin-top:18px;color:var(--text-mute);font-size:1.05rem}
+.checklist{list-style:none;margin-top:24px;display:grid;gap:12px}
+.checklist li{display:flex;align-items:flex-start;gap:12px;font-weight:500;color:var(--text)}
+.checklist svg{width:22px;height:22px;color:var(--green-600);flex:none;margin-top:2px}
+
+/* ── Leistungen (2 grosse Karten) ── */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.scard{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:440px;display:flex;align-items:flex-end;box-shadow:var(--shadow-md);isolation:isolate}
+.scard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s var(--ease)}
+.scard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(13,74,43,0) 30%,rgba(13,74,43,.85) 100%)}
+.scard:hover img{transform:scale(1.06)}
+.scard__body{padding:34px;color:#fff}
+.scard__body h3{color:#fff;font-size:1.7rem;margin-bottom:10px}
+.scard__list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 20px}
+.scard__list li{font-size:.82rem;font-weight:500;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:.34rem .8rem;border-radius:999px;backdrop-filter:blur(4px)}
+.scard__body .btn{background:#fff;color:var(--green-800)}
+.scard__body .btn:hover{background:var(--green-100);transform:translateY(-2px)}
+
+/* ── Service grid (Detail) ── */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feature{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.feature:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--green-100)}
+.feature__ic{width:54px;height:54px;border-radius:14px;background:var(--green-100);display:grid;place-items:center;margin-bottom:18px;transition:background .3s}
+.feature:hover .feature__ic{background:var(--green-500)}
+.feature__ic svg{width:27px;height:27px;color:var(--green-700);transition:color .3s}
+.feature:hover .feature__ic svg{color:#fff}
+.feature h3{font-size:1.2rem;margin-bottom:8px}
+.feature p{color:var(--text-mute);font-size:.95rem}
+
+/* ── Pillars / Why us ── */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.pillar{text-align:center}
+.pillar__ic{width:66px;height:66px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);display:grid;place-items:center;margin:0 auto 18px;border:1px solid var(--border)}
+.pillar__ic svg{width:30px;height:30px;color:var(--green-700)}
+.pillar h3{font-size:1.15rem;margin-bottom:8px}
+.pillar p{color:var(--text-mute);font-size:.92rem}
+
+/* ── Gallery ── */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gallery figure{overflow:hidden;border-radius:var(--radius);position:relative}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gallery figure:hover img{transform:scale(1.08)}
+.gallery .tall{grid-row:span 2}
+.gallery .wide{grid-column:span 2}
+
+/* ── Kontakt ── */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:start}
+.contact__info h2{font-size:clamp(1.8rem,4vw,2.5rem)}
+.contact__info p{margin-top:16px;color:var(--text-mute)}
+.contact__rows{margin-top:30px;display:grid;gap:18px}
+.crow{display:flex;align-items:center;gap:16px}
+.crow__ic{width:48px;height:48px;border-radius:14px;background:var(--green-100);display:grid;place-items:center;flex:none}
+.crow__ic svg{width:23px;height:23px;color:var(--green-700)}
+.crow b{display:block;color:var(--green-800);font-family:'Lora',serif}
+.crow span{color:var(--text-mute);font-size:.95rem}
+.form{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:34px;box-shadow:var(--shadow-md)}
+.field{margin-bottom:18px}
+.field label{display:block;font-weight:600;font-size:.88rem;color:var(--green-800);margin-bottom:7px}
+.field input,.field textarea{
+  width:100%;padding:.85rem 1rem;border:1.5px solid var(--border);border-radius:12px;
+  font-family:inherit;font-size:.95rem;color:var(--text);background:var(--bg-soft);
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--green-500);background:#fff;box-shadow:0 0 0 4px rgba(34,197,94,.14)}
+.field textarea{resize:vertical;min-height:120px}
+.form .btn{width:100%;justify-content:center;margin-top:6px}
+.form__hint{margin-top:14px;font-size:.8rem;color:var(--text-mute);text-align:center}
+
+/* ── Map + Footer ── */
+.map iframe{display:block;width:100%;height:380px;border:0;filter:saturate(.9)}
+.footer{background:var(--green-900);color:rgba(255,255,255,.78)}
+.footer__main{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding:64px 0 44px}
+.footer__brand .brand{margin-bottom:18px}
+.footer .brand .logo{height:74px}
+.footer__brand p{font-size:.95rem;max-width:340px;line-height:1.7}
+.footer h4{color:#fff;font-family:'Raleway',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+.footer ul{list-style:none;display:grid;gap:11px}
+.footer ul a,.footer ul li{font-size:.95rem;color:rgba(255,255,255,.74);transition:color .25s}
+.footer ul a:hover{color:var(--green-500)}
+.footer__bottom{border-top:1px solid rgba(255,255,255,.12);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem}
+.footer__bottom a{color:rgba(255,255,255,.74)}
+.footer__bottom a:hover{color:#fff}
+
+/* ── Demo-Banner (sticky unten) ── */
+.demo-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--green-800);color:#fff;text-align:center;
+  padding:.5rem 1rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.demo-banner a{color:#c9f5d6;text-decoration:none;font-weight:700}
+.demo-banner a:hover{text-decoration:underline}
+
+/* ── Reveal animation ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:960px){
+  .split{grid-template-columns:1fr;gap:36px}
+  .split__media{order:-1;max-width:440px;margin-inline:auto}
+  .duo{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .pillars{grid-template-columns:1fr 1fr;gap:34px}
+  .contact{grid-template-columns:1fr;gap:34px}
+  .footer__main{grid-template-columns:1fr 1fr}
+  .footer__brand{grid-column:1/-1}
+}
+@media(max-width:720px){
+  .section{padding:60px 0}
+  .nav__links,.nav__cta{display:none}
+  .nav__burger{display:flex}
+  .nav__menu{
+    position:fixed;inset:0 0 38px auto;top:0;width:min(80vw,320px);
+    background:#fff;box-shadow:var(--shadow-lg);z-index:99;
+    transform:translateX(100%);transition:transform .4s var(--ease);
+    display:flex;flex-direction:column;padding:90px 30px 30px;gap:6px;
+  }
+  .nav__menu.open{transform:translateX(0)}
+  .nav__menu a{color:var(--text)!important;font-size:1.05rem;font-weight:600;padding:12px 0;border-bottom:1px solid var(--border)}
+  .nav__menu .btn{margin-top:18px;justify-content:center;background:var(--green-700);color:#fff;border-color:var(--green-700)}
+  .nav__overlay{display:block;position:fixed;inset:0;background:rgba(13,74,43,.4);z-index:98;opacity:0;visibility:hidden;transition:.3s}
+  .nav__overlay.open{opacity:1;visibility:visible}
+  .stats{grid-template-columns:1fr 1fr;gap:30px 16px}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+  .gallery .wide{grid-column:span 2}
+}
+@media(max-width:460px){
+  .grid-3{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .footer__main{grid-template-columns:1fr}
+  .hero__cta .btn{flex:1;justify-content:center}
+  .split__badge{left:50%;transform:translateX(-50%);bottom:-24px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#top" class="brand" aria-label="Friede GmbH — Startseite">
+      <img class="logo" src="assets/logo.png" alt="Friede GmbH" width="306" height="119">
+    </a>
+    <ul class="nav__links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#garten">Gartenservice</a></li>
+      <li><a href="#haus">Hausservice</a></li>
+      <li><a href="#warum">Warum wir</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="#kontakt" class="btn btn-ghost">Offerte anfragen</a>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="nav__menu" id="menu">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#garten">Gartenservice</a>
+    <a href="#haus">Hausservice</a>
+    <a href="#warum">Warum wir</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="btn">Offerte anfragen</a>
+  </div>
+  <div class="nav__overlay" id="overlay"></div>
+</nav>
+
+<!-- ══ HERO (Shader-Snippet) ══ -->
+<header class="hero" id="top">
+  <canvas id="shader-canvas"></canvas>
+  <div class="container hero__content">
+    <span class="hero__eyebrow">Garten- &amp; Hausunterhalt · Basel</span>
+    <h1>Gepflegte Gärten,<br><span class="accent">zuverlässiger Unterhalt.</span></h1>
+    <p class="hero__sub">Friede GmbH aus Basel — Gartenbau, Gartenunterhalt, Hauswartung und Renovationen. Sorgfältig ausgeführt, das ganze Jahr, zu fairen Preisen.</p>
+    <div class="hero__cta">
+      <a href="#kontakt" class="btn btn-primary">
+        Offerte anfragen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#leistungen" class="btn btn-ghost">Unsere Leistungen</a>
+    </div>
+  </div>
+  <a href="#leistungen" class="hero__scroll" aria-label="Nach unten scrollen">
+    Mehr
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</header>
+
+<!-- ══ STATS / TRUST ══ -->
+<section class="section">
+  <div class="container">
+    <div class="stats reveal">
+      <!-- Zahlen sind Platzhalter — bitte ersetzen -->
+      <div class="stat"><div class="stat__num">10+</div><div class="stat__label">Jahre Erfahrung</div></div>
+      <div class="stat"><div class="stat__num">100%</div><div class="stat__label">Zuverlässigkeit</div></div>
+      <div class="stat"><div class="stat__num">Basel</div><div class="stat__label">&amp; ganze Region</div></div>
+      <div class="stat"><div class="stat__num">Fair</div><div class="stat__label">Transparente Preise</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRO / ABOUT ══ -->
+<section class="section section--soft" id="leistungen">
+  <div class="container split">
+    <div class="split__media reveal">
+      <!-- Foto ersetzen -->
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80" alt="Gepflegter Garten mit frisch gemähtem Rasen">
+      <div class="split__badge">
+        <span class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        </span>
+        <div><b>Aus einer Hand</b><span>Garten &amp; Gebäude</span></div>
+      </div>
+    </div>
+    <div class="split__body reveal">
+      <span class="eyebrow">Wer wir sind</span>
+      <h2>Wir kümmern uns — drinnen wie draussen</h2>
+      <p>Friede GmbH (vormals Zion-Services GmbH) ist Ihr Partner für Gartenbau &amp; Gartenunterhalt sowie Hauswartung &amp; Renovationen in Basel und Umgebung. Unsere Arbeiten führen wir zuverlässig, sorgfältig und zu fairen Preisen aus — immer mit einem Auge fürs Detail und einem hohen Anspruch an Qualität.</p>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Erfahrene Fachleute für Garten und Gebäude</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Saubere, termingerechte Ausführung</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Persönlicher Kontakt, faire Offerten</li>
+      </ul>
+      <a href="#kontakt" class="btn btn-outline" style="margin-top:28px">Unverbindlich anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LEISTUNGEN — 2 Bereiche ══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Unsere Bereiche</span>
+      <h2>Zwei Bereiche, ein Anspruch</h2>
+      <p>Ob rund ums Haus oder im Garten — wir übernehmen den Unterhalt zuverlässig und mit Sorgfalt.</p>
+    </div>
+    <div class="duo">
+      <article class="scard reveal" id="garten">
+        <!-- Foto ersetzen -->
+        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=900&q=80" alt="Gärtner bei der Heckenpflege">
+        <div class="scard__body">
+          <h3>Gartenservice</h3>
+          <p style="color:rgba(255,255,255,.88)">Vom regelmässigen Unterhalt bis zur Neugestaltung — Ihr Garten in besten Händen.</p>
+          <ul class="scard__list">
+            <li>Rasenpflege</li><li>Hecken- &amp; Baumschnitt</li><li>Bepflanzung</li><li>Beetpflege</li><li>Winterdienst</li>
+          </ul>
+          <a href="#kontakt" class="btn">Mehr erfahren</a>
+        </div>
+      </article>
+      <article class="scard reveal" id="haus">
+        <!-- Foto ersetzen -->
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Hauswartung und Renovation">
+        <div class="scard__body">
+          <h3>Hausservice</h3>
+          <p style="color:rgba(255,255,255,.88)">Hauswartung, Reinigung und Renovationen — wir halten Ihre Liegenschaft in Schuss.</p>
+          <ul class="scard__list">
+            <li>Hauswartung</li><li>Reinigung</li><li>Renovationen</li><li>Kleinreparaturen</li><li>Räumungen</li>
+          </ul>
+          <a href="#kontakt" class="btn">Mehr erfahren</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICE DETAIL GRID ══ -->
+<section class="section section--soft" id="warum-leistungen">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Im Detail</span>
+      <h2>Was wir für Sie übernehmen</h2>
+    </div>
+    <div class="grid-3">
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c2-4 6-7 11-7M21 3c-2 8-6 13-12 14"/><path d="M21 3c-5 0-8 2-9 6"/></svg></div>
+        <h3>Rasen &amp; Wiesen</h3>
+        <p>Mähen, Vertikutieren, Düngen und Bewässerung für einen dichten, gesunden Rasen.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg></div>
+        <h3>Hecken &amp; Bäume</h3>
+        <p>Fachgerechter Form- und Rückschnitt von Hecken, Sträuchern und Bäumen.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8M12 8c0-3 2-5 5-5 0 3-2 5-5 5Zm0 0c0-2.5-1.7-4-4.5-4C7.5 6.5 9.5 8 12 8Z"/><path d="M5 22h14"/></svg></div>
+        <h3>Bepflanzung</h3>
+        <p>Beete, Stauden und saisonale Bepflanzung — durchdacht angelegt und gepflegt.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></div>
+        <h3>Hauswartung</h3>
+        <p>Regelmässiger Unterhalt von Liegenschaften, Treppenhaus und Umgebung.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 3 3 6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2z"/></svg></div>
+        <h3>Renovationen</h3>
+        <p>Auffrischungen, Reparaturen und kleinere Umbauten — sauber umgesetzt.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 7l7 4 7-4M5 12l7 4 7-4M5 17l7 4 7-4"/></svg></div>
+        <h3>Winterdienst</h3>
+        <p>Schneeräumung und Salzen — damit Wege und Zufahrten sicher bleiben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILLARS / WARUM WIR ══ -->
+<section class="section" id="warum">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Warum Friede GmbH</span>
+      <h2>Worauf Sie sich verlassen können</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Zuverlässig</h3>
+        <p>Vereinbarte Termine werden eingehalten — Wort gehalten, Arbeit erledigt.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Sorgfältig</h3>
+        <p>Wir arbeiten mit Auge fürs Detail — sauber, gründlich, mit Anspruch an Qualität.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.1-2 2.5-2s2.5.8 2.5 2-1 1.7-2.5 2-2.5.8-2.5 2 1.1 2 2.5 2 2.5-.6 2.5-2"/></svg></div>
+        <h3>Faire Preise</h3>
+        <p>Transparente Offerten ohne versteckte Kosten — Sie wissen, woran Sie sind.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <h3>Aus Leidenschaft</h3>
+        <p>Garten und Gebäude sind unser Handwerk — und unsere Freude an jedem Auftrag.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Einblicke</span>
+      <h2>Arbeiten, die für sich sprechen</h2>
+    </div>
+    <div class="gallery reveal">
+      <!-- Fotos ersetzen -->
+      <figure class="tall"><img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80" alt="Angelegter Vorgarten"></figure>
+      <figure class="wide"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80" alt="Gepflegte Rasenfläche"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1599629954294-14df9ec8bc05?auto=format&fit=crop&w=600&q=80" alt="Blühende Beetbepflanzung"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=600&q=80" alt="Heckenschnitt"></figure>
+      <figure class="wide"><img src="https://images.unsplash.com/photo-1558693168-c370615b54e0?auto=format&fit=crop&w=800&q=80" alt="Gartenweg mit Bepflanzung"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=600&q=80" alt="Naturnaher Garten"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KONTAKT ══ -->
+<section class="section" id="kontakt">
+  <div class="container contact">
+    <div class="contact__info reveal">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Lassen Sie uns über Ihr Projekt sprechen</h2>
+      <p>Ob einmaliger Auftrag oder regelmässiger Unterhalt — schreiben Sie uns oder rufen Sie an. Wir melden uns rasch mit einer unverbindlichen Offerte.</p>
+      <div class="contact__rows">
+        <a class="crow" href="tel:0798497752">
+          <span class="crow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><b>079 849 77 52</b><span>Mo–Fr, direkt erreichbar</span></div>
+        </a>
+        <a class="crow" href="mailto:info@zufriede.ch">
+          <span class="crow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <div><b>info@zufriede.ch</b><span>Antwort innert 24 Stunden</span></div>
+        </a>
+        <div class="crow">
+          <span class="crow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Rixheimerstrasse 34</b><span>4055 Basel</span></div>
+        </div>
+      </div>
+    </div>
+    <form class="form reveal" id="contactForm" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Ihr Name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="email" placeholder="ihre@mail.ch" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="phone">Telefon</label>
+        <input type="tel" id="phone" name="phone" placeholder="079 000 00 00" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="msg">Ihr Anliegen</label>
+        <textarea id="msg" name="msg" placeholder="Beschreiben Sie kurz, worum es geht…" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Anfrage senden
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+      <p class="form__hint">Wir behandeln Ihre Angaben vertraulich.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ══ GOOGLE MAPS (vor Footer-Grid) ══ -->
+<div class="map">
+  <iframe
+    src="https://maps.google.com/maps?q=Rixheimerstrasse%2034,%204055%20Basel&t=&z=15&ie=UTF8&iwloc=&output=embed"
+    loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    title="Standort Friede GmbH — Rixheimerstrasse 34, 4055 Basel"></iframe>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container footer__main">
+    <div class="footer__brand">
+      <a href="#top" class="brand" aria-label="Friede GmbH — Startseite">
+        <img class="logo" src="assets/logo.png" alt="Friede GmbH" width="306" height="119">
+      </a>
+      <p>Gartenbau, Gartenunterhalt, Hauswartung und Renovationen in Basel und Umgebung — zuverlässig, sorgfältig und zu fairen Preisen.</p>
+    </div>
+    <div>
+      <h4>Leistungen</h4>
+      <ul>
+        <li><a href="#garten">Gartenservice</a></li>
+        <li><a href="#haus">Hausservice</a></li>
+        <li><a href="#warum-leistungen">Unterhalt &amp; Pflege</a></li>
+        <li><a href="#kontakt">Renovationen</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li>Rixheimerstrasse 34</li>
+        <li>4055 Basel</li>
+        <li><a href="tel:0798497752">079 849 77 52</a></li>
+        <li><a href="mailto:info@zufriede.ch">info@zufriede.ch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 Friede GmbH · Alle Rechte vorbehalten</span>
+    <span>
+      <a href="#">Impressum</a> &nbsp;·&nbsp; <a href="#">Datenschutz</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ══ DEMO-BANNER (sticky unten) ══ -->
+<div class="demo-banner">
+  Demo Website · <a href="https://crowe-digital.ch" target="_blank" rel="noopener">Crowe Digital</a>
+</div>
+
+<script>
+/* ── Nav scroll state ── */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+/* ── Mobile menu ── */
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+const overlay = document.getElementById('overlay');
+function toggleMenu(open){
+  burger.classList.toggle('open', open);
+  menu.classList.toggle('open', open);
+  overlay.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+burger.addEventListener('click', () => toggleMenu(!menu.classList.contains('open')));
+overlay.addEventListener('click', () => toggleMenu(false));
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+/* ── Scroll reveal ── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── Mock-Formular (Demo) ── */
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if(!e.target.checkValidity()){ e.target.reportValidity(); return; }
+  alert('Danke für Ihre Anfrage! \n\nDies ist eine Demo-Website — es wird keine Nachricht versendet.');
+  e.target.reset();
+});
+
+/* ── HERO Shader (WebGL1, grüne Palette, mit reduced-motion Fallback) ── */
+(function(){
+  const COLORS = ['#f0fdf4','#a7e8b8','#22c55e','#15803d','#0d4a2b','#2f8f5b'];
+  let SPEED = 0.28;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function hexToVec3(hex){
+    const r=parseInt(hex.slice(1,3),16)/255, g=parseInt(hex.slice(3,5),16)/255, b=parseInt(hex.slice(5,7),16)/255;
+    return `vec3(${r.toFixed(4)},${g.toFixed(4)},${b.toFixed(4)})`;
+  }
+  function buildPalette(colors){
+    const n=colors.length, step=1/(n-1); let code=`vec3 palette(float t){\n`;
+    for(let i=0;i<n-1;i++){
+      const hi=((i+1)*step).toFixed(5), lo=(i*step).toFixed(5), a=hexToVec3(colors[i]), b=hexToVec3(colors[i+1]);
+      code += i===0 ? `  if(t<${hi}) return mix(${a},${b},t/${hi});\n`
+                    : `  else if(t<${hi}) return mix(${a},${b},(t-${lo})/${step.toFixed(5)});\n`;
+    }
+    return code + `  return ${hexToVec3(colors[n-1])};\n}\n`;
+  }
+  const vertSrc = `attribute vec2 a_pos; void main(){ gl_Position=vec4(a_pos,0.0,1.0); }`;
+  const fragSrc = `
+    precision mediump float;
+    uniform float u_time; uniform vec2 u_res;
+    ${buildPalette(COLORS)}
+    void main(){
+      vec2 uv = gl_FragCoord.xy/u_res; float t=u_time;
+      float n=0.0;
+      n += sin(uv.x*2.8+t*0.9)*cos(uv.y*2.1+t*0.6)*0.40;
+      n += sin(uv.x*1.4-t*0.7+1.3)*sin(uv.y*3.2+t*0.5)*0.25;
+      n += cos(uv.x*4.1+t*0.4)*sin(uv.y*1.6-t*0.8)*0.20;
+      n += sin((uv.x+uv.y)*2.2+t*1.1)*0.15;
+      n += cos(uv.x*0.9+uv.y*1.3-t*0.35)*0.12;
+      float mixer = clamp(0.5+n*0.7,0.0,1.0);
+      vec3 col = palette(mixer);
+      vec2 v = uv-0.5; float vig = 1.0-dot(v,v)*0.6;
+      col *= clamp(vig,0.6,1.0);
+      gl_FragColor = vec4(col,1.0);
+    }`;
+
+  const canvas = document.getElementById('shader-canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if(!gl){
+    const div=document.createElement('div'); div.className='gradient-fallback';
+    canvas.parentNode.prepend(div); canvas.style.display='none'; return;
+  }
+  function compile(type,src){ const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return s; }
+  const prog=gl.createProgram();
+  gl.attachShader(prog,compile(gl.VERTEX_SHADER,vertSrc));
+  gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fragSrc));
+  gl.linkProgram(prog); gl.useProgram(prog);
+  const buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const pos=gl.getAttribLocation(prog,'a_pos'); gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+  const uTime=gl.getUniformLocation(prog,'u_time'), uRes=gl.getUniformLocation(prog,'u_res');
+  function resize(){
+    const dpr=Math.min(devicePixelRatio,2);
+    canvas.width=canvas.clientWidth*dpr; canvas.height=canvas.clientHeight*dpr;
+    gl.viewport(0,0,canvas.width,canvas.height); gl.uniform2f(uRes,canvas.width,canvas.height);
+  }
+  resize(); addEventListener('resize', resize);
+  if(reduce){ gl.uniform1f(uTime, 2.0); gl.drawArrays(gl.TRIANGLES,0,6); return; }
+  let start=null;
+  (function render(ts){
+    if(!start) start=ts;
+    gl.uniform1f(uTime,(ts-start)/1000*SPEED);
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    requestAnimationFrame(render);
+  })();
+})();
+</script>
+</body>
+</html>
