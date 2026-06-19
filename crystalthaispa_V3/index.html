@@ -340,6 +340,17 @@ section { padding: 8rem 4rem; }
   filter: brightness(0.95) saturate(1.1);
 }
 .service-card:hover .service-img { transform: scale(1.04); }
+/* Platzhalter-Foto: echtes Bild folgt — gedimmt + Wasserzeichen */
+.service-img-wrap { position: relative; overflow: hidden; }
+.service-img-wrap .service-img { filter: brightness(0.5) saturate(0.85) grayscale(0.2); opacity: 0.5; }
+.service-card:hover .service-img-wrap .service-img { transform: scale(1.04); }
+.service-photo-soon {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  color: var(--cream); font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 600; padding: 1rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.75); pointer-events: none;
+}
 .service-body { padding: 2.2rem 2.5rem; flex: 1; display: flex; flex-direction: column; }
 .service-card::after {
   content: ''; position: absolute; bottom: 0; left: 0;
@@ -896,7 +907,7 @@ footer {
 <!-- STATS -->
 <div class="stats">
   <div class="stat reveal"><div class="stat-num">10+</div><div class="stat-label" data-en="Years of Experience">Jahre Erfahrung</div></div>
-  <div class="stat reveal reveal-delay-1"><div class="stat-num">9</div><div class="stat-label" data-en="Massage Types">Massage-Arten</div></div>
+  <div class="stat reveal reveal-delay-1"><div class="stat-num">13</div><div class="stat-label" data-en="Massage Types">Massage-Arten</div></div>
   <div class="stat reveal reveal-delay-2"><div class="stat-num">5★</div><div class="stat-label" data-en="Google Rating">Google Bewertung</div></div>
   <div class="stat reveal reveal-delay-3"><div class="stat-num">∞</div><div class="stat-label" data-en="Relaxation">Entspannung</div></div>
 </div>
@@ -908,100 +919,111 @@ footer {
   <p class="section-sub reveal" data-en="Each treatment is individually tailored to your body and needs — for deep relaxation and lasting effects.">Jede Behandlung wird individuell auf Ihren Körper und Ihre Bedürfnisse abgestimmt — für tiefe Entspannung und nachhaltige Wirkung.</p>
   <div class="divider"><div class="divider-line"></div><div class="divider-icon">✦</div><div class="divider-line r"></div></div>
 
+  <div class="services-intro reveal" style="max-width:760px;margin:0 auto 3.5rem;text-align:center;">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--text);line-height:1.6;" data-en="Welcome drink with homemade fresh lemongrass, ginger and bael fruit tea with coconut sugar or honey — and enjoy a foot bath before your treatment.">Zur Begrüssung ein hausgemachter, frischer Tee aus Zitronengras, Ingwer und Bael-Frucht mit Kokoszucker oder Honig — und vor der Behandlung geniessen Sie ein wohltuendes Fussbad.</p>
+    <p style="margin-top:1.6rem;font-size:0.8rem;color:var(--text-light);line-height:1.7;letter-spacing:0.03em;" data-en="Please note: if you have any health concerns or are pregnant, kindly let us know before your treatment so we can tailor the massage to your needs.">Hinweis: Bei gesundheitlichen Beschwerden oder in der Schwangerschaft informieren Sie uns bitte vor der Behandlung, damit wir die Massage optimal auf Sie abstimmen können.</p>
+  </div>
+
   <div class="services-grid reveal">
-    <div class="service-card">
-      <img src="images/massagen/m-01.jpg" alt="Traditionelle Thaimassage" class="service-img">
-      <div class="service-body">
-        <span class="service-num">01</span>
-        <div class="service-name" data-en="Traditional Thai Massage">Traditionelle Thaimassage</div>
-        <p class="service-desc" data-en="The classic full-body massage with stretching techniques and acupressure along energy lines. Invigorating, deeply effective and tried for centuries.">Die klassische Ganzkörpermassage mit Dehntechniken und Akupressur entlang der Energielinien. Belebend, tiefenwirksam und seit Jahrhunderten erprobt.</p>
-        <div class="service-price-row">
-          <div class="service-price">60 Min CHF 100</div>
-          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
-        </div>
-      </div>
-    </div>
-    <div class="service-card">
-      <img src="images/massagen/m-02.jpg" alt="Kräuterstempel-Massage" class="service-img">
-      <div class="service-body">
-        <span class="service-num">02</span>
-        <div class="service-name" data-en="Herbal Stamp Massage">Kräuterstempel-Massage</div>
-        <p class="service-desc" data-en="Warm herbal packages with traditional Thai healing herbs relieve tension, activate circulation and provide a unique feeling of warmth.">Warme Kräuterpäckchen mit traditionellen Thai-Heilkräutern lösen Verspannungen, aktivieren die Durchblutung und schenken ein einzigartiges Wärmegefühl.</p>
-        <div class="service-price-row">
-          <div class="service-price">60 Min CHF 115</div>
-          <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 180</div>
-        </div>
-      </div>
-    </div>
-    <div class="service-card">
-      <img src="images/massagen/m-03.jpg" alt="Kerzenwachs-Massage" class="service-img">
-      <div class="service-body">
-        <span class="service-num">03</span>
-        <div class="service-name" data-en="Candle Wax Massage">Kerzenwachs-Massage</div>
-        <p class="service-desc" data-en="Warm organic candle wax glides gently over the skin. Deeply nourishing, sensually relaxing — an experience for all the senses.">Warmes Bio-Kerzenwachs gleitet sanft über die Haut. Tief pflegend, sinnlich entspannend — ein Erlebnis für alle Sinne.</p>
-        <div class="service-price-row">
-          <div class="service-price">60 Min CHF 115</div>
-          <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 180</div>
-        </div>
-      </div>
-    </div>
-    <div class="service-card">
-      <img src="images/massagen/m-04.jpg" alt="Büro-Syndrom-Massage" class="service-img">
-      <div class="service-body">
-        <span class="service-num">04</span>
-        <div class="service-name" data-en="Office Syndrome Massage">Büro-Syndrom-Massage</div>
-        <p class="service-desc" data-en="Targeted relief for neck, shoulder and back pain from long hours at a screen. Ideal after a demanding workday.">Gezielt gegen Nacken-, Schulter- und Rückenschmerzen durch langes Sitzen am Bildschirm. Ideal nach einem anstrengenden Arbeitstag.</p>
-        <div class="service-price-row">
-          <div class="service-price">60 Min CHF 95</div>
-          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
-        </div>
-      </div>
-    </div>
-    <div class="service-card">
-      <img src="images/massagen/m-05.jpg" alt="Sportmassage" class="service-img">
-      <div class="service-body">
-        <span class="service-num">05</span>
-        <div class="service-name" data-en="Sports Massage">Sportmassage</div>
-        <p class="service-desc" data-en="Intensive deep work for active people. Promotes recovery after sport, relieves muscle tension and helps prevent injuries.">Intensive Tiefenarbeit für aktive Menschen. Fördert die Regeneration nach dem Sport, löst Muskelverspannungen und beugt Verletzungen vor.</p>
-        <div class="service-price-row">
-          <div class="service-price">60 Min CHF 99</div>
-          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
-        </div>
-      </div>
-    </div>
     <div class="service-card">
       <img src="images/massagen/m-06.jpg" alt="Fuss-Reflexzonenmassage" class="service-img">
       <div class="service-body">
-        <span class="service-num">06</span>
-        <div class="service-name" data-en="Foot Reflexology">Fuss-Reflexzonenmassage</div>
+        <span class="service-num">01</span>
+        <div class="service-name" data-en="Foot Reflexology Massage">Fuss-Reflexzonenmassage</div>
         <p class="service-desc" data-en="Stimulates the reflex zones of the sole and has a harmonising effect on organs and body systems. Deep relaxation from the ground up.">Stimuliert die Reflexzonen der Fusssohle und wirkt harmonisierend auf Organe und Körpersysteme. Tiefenentspannung vom Boden auf.</p>
         <div class="service-price-row">
-          <div class="service-price">30 Min CHF 60</div>
-          <div class="service-price-note">60 Min CHF 95</div>
+          <div class="service-price">30 Min CHF 50</div>
+          <div class="service-price-note">60 Min CHF 90</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="images/massagen/m-10.jpg" alt="Rücken-, Schulter-, Kopfmassage" class="service-img">
+        <div class="service-photo-soon" data-en="Photo coming soon">Foto kommt bald</div>
+      </div>
+      <div class="service-body">
+        <span class="service-num">02</span>
+        <div class="service-name" data-en="Back, Shoulder &amp; Head Massage">Rücken-, Schulter-, Kopfmassage</div>
+        <p class="service-desc" data-en="Targeted treatment of back, shoulders, neck and head. Releases tension, relieves tension headaches and brings immediate relief.">Gezielte Behandlung von Rücken, Schultern, Nacken und Kopf. Löst Verspannungen, lindert Spannungskopfschmerzen und bringt sofortige Erleichterung.</p>
+        <div class="service-price-row">
+          <div class="service-price">30 Min CHF 50</div>
+          <div class="service-price-note">60 Min CHF 95 &nbsp;·&nbsp; 90 Min CHF 135</div>
         </div>
       </div>
     </div>
     <div class="service-card">
       <img src="images/massagen/m-07.jpg" alt="Fuss- & Schultermassage" class="service-img">
       <div class="service-body">
-        <span class="service-num">07</span>
+        <span class="service-num">03</span>
         <div class="service-name" data-en="Foot &amp; Shoulder Massage">Fuss- &amp; Schultermassage</div>
         <p class="service-desc" data-en="The perfect combination of foot reflexology and relaxing shoulder massage — beneficial from head to toe.">Die perfekte Kombination aus Reflexzonenmassage der Füsse und entspannender Schultermassage — wohltuend von Kopf bis Fuss.</p>
         <div class="service-price-row">
-          <div class="service-price">30 Min CHF 60</div>
-          <div class="service-price-note">60 Min CHF 90 &nbsp;·&nbsp; 90 Min CHF 120</div>
+          <div class="service-price">30 Min CHF 50</div>
+          <div class="service-price-note">60 Min CHF 95 &nbsp;·&nbsp; 90 Min CHF 135</div>
         </div>
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-08.jpg" alt="Hot Stone Massage" class="service-img">
+      <img src="images/massagen/m-01.jpg" alt="Traditionelle Thaimassage" class="service-img">
+      <div class="service-body">
+        <span class="service-num">04</span>
+        <div class="service-name" data-en="Thai Traditional Massage (clothes on)">Traditionelle Thaimassage (angezogen)</div>
+        <p class="service-desc" data-en="The classic full-body massage with stretching techniques and acupressure along energy lines. Invigorating, deeply effective and tried for centuries.">Die klassische Ganzkörpermassage mit Dehntechniken und Akupressur entlang der Energielinien. Belebend, tiefenwirksam und seit Jahrhunderten erprobt.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 175</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/massagen/m-04.jpg" alt="Büro-Syndrom-Massage" class="service-img">
+      <div class="service-body">
+        <span class="service-num">05</span>
+        <div class="service-name" data-en="Office Syndrome Massage">Büro-Syndrom-Massage</div>
+        <p class="service-desc" data-en="Targeted relief for neck, shoulder and back pain from long hours at a screen. Ideal after a demanding workday.">Gezielt gegen Nacken-, Schulter- und Rückenschmerzen durch langes Sitzen am Bildschirm. Ideal nach einem anstrengenden Arbeitstag.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 145 &nbsp;·&nbsp; 120 Min CHF 175</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/massagen/m-05.jpg" alt="Sportmassage" class="service-img">
+      <div class="service-body">
+        <span class="service-num">06</span>
+        <div class="service-name" data-en="Sport Massage">Sportmassage</div>
+        <p class="service-desc" data-en="Intensive deep work for active people. Promotes recovery after sport, relieves muscle tension and helps prevent injuries.">Intensive Tiefenarbeit für aktive Menschen. Fördert die Regeneration nach dem Sport, löst Muskelverspannungen und beugt Verletzungen vor.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 175</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="images/massagen/m-10.jpg" alt="Schwedische Massage" class="service-img">
+        <div class="service-photo-soon" data-en="Photo coming soon">Foto kommt bald</div>
+      </div>
+      <div class="service-body">
+        <span class="service-num">07</span>
+        <div class="service-name" data-en="Swedish Massage">Schwedische Massage</div>
+        <p class="service-desc" data-en="The classic Western massage with flowing, kneading strokes. Boosts circulation, releases muscle tension and relaxes deeply.">Die klassische westliche Massage mit fliessenden, knetenden Bewegungen. Fördert die Durchblutung, löst Muskelverspannungen und entspannt tief.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 175</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/massagen/m-10.jpg" alt="Schwangerschaftsmassage" class="service-img">
       <div class="service-body">
         <span class="service-num">08</span>
-        <div class="service-name">Hot Stone Massage</div>
-        <p class="service-desc" data-en="Warm basalt stones along the energy points — heat penetrates deep into the muscles, releases chronic tension and calms the nervous system.">Warme Basaltsteine entlang der Energiepunkte — Wärme dringt tief in die Muskulatur, löst chronische Verspannungen und beruhigt das Nervensystem.</p>
+        <div class="service-name" data-en="Pre-Natal Massage">Schwangerschaftsmassage</div>
+        <p class="service-desc" data-en="Gentle massage tailored to expectant mothers. Relieves back pain, water retention and provides deep relaxation.">Sanfte, auf die Bedürfnisse werdender Mütter abgestimmte Massage. Lindert Rückenschmerzen, Wassereinlagerungen und schenkt tiefe Entspannung.</p>
         <div class="service-price-row">
-          <div class="service-price">60 Min CHF 120</div>
-          <div class="service-price-note">90 Min CHF 150 &nbsp;·&nbsp; 120 Min CHF 190</div>
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 175</div>
         </div>
       </div>
     </div>
@@ -1012,20 +1034,62 @@ footer {
         <div class="service-name" data-en="Lymphatic Drainage Massage">Lymph-Drainagemassage</div>
         <p class="service-desc" data-en="Gentle techniques activate the lymphatic system, promote detoxification and reduce water retention. Beneficial and cleansing.">Sanfte Grifftechniken aktivieren das Lymphsystem, fördern die Entgiftung und reduzieren Wassereinlagerungen. Wohltuend und entschlackend.</p>
         <div class="service-price-row">
-          <div class="service-price">60 Min CHF 95</div>
-          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 180</div>
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 175</div>
         </div>
       </div>
     </div>
     <div class="service-card">
-      <img src="images/massagen/m-10.jpg" alt="Schwangerschaftsmassage" class="service-img">
+      <div class="service-img-wrap">
+        <img src="images/massagen/m-10.jpg" alt="Anti-Stressmassage" class="service-img">
+        <div class="service-photo-soon" data-en="Photo coming soon">Foto kommt bald</div>
+      </div>
       <div class="service-body">
         <span class="service-num">10</span>
-        <div class="service-name" data-en="Pregnancy Massage">Schwangerschaftsmassage</div>
-        <p class="service-desc" data-en="Gentle massage tailored to expectant mothers. Relieves back pain, water retention and provides deep relaxation.">Sanfte, auf die Bedürfnisse werdender Mütter abgestimmte Massage. Lindert Rückenschmerzen, Wassereinlagerungen und schenkt tiefe Entspannung.</p>
+        <div class="service-name" data-en="Anti Stress Massage">Anti-Stressmassage</div>
+        <p class="service-desc" data-en="A gentle, calming massage to reduce stress and inner tension. Brings body and mind back into balance.">Sanfte, beruhigende Massage zum Abbau von Stress und innerer Anspannung. Bringt Körper und Geist zurück ins Gleichgewicht.</p>
         <div class="service-price-row">
-          <div class="service-price">60 Min CHF 95</div>
-          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 170</div>
+          <div class="service-price">60 Min CHF 100</div>
+          <div class="service-price-note">90 Min CHF 140 &nbsp;·&nbsp; 120 Min CHF 175</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-img-wrap">
+        <img src="images/massagen/m-10.jpg" alt="Thai Aroma Oelmassage" class="service-img">
+        <div class="service-photo-soon" data-en="Photo coming soon">Foto kommt bald</div>
+      </div>
+      <div class="service-body">
+        <span class="service-num">11</span>
+        <div class="service-name" data-en="Thai Aroma Oil Massage">Thai Aroma Oelmassage</div>
+        <p class="service-desc" data-en="A soothing massage with warm, fragrant aroma oils. Nourishes the skin, calms the senses and creates deep, holistic relaxation.">Wohltuende Massage mit warmen, duftenden Aromaölen. Pflegt die Haut, beruhigt die Sinne und sorgt für tiefe, ganzheitliche Entspannung.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 110</div>
+          <div class="service-price-note">90 Min CHF 150 &nbsp;·&nbsp; 120 Min CHF 185</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/massagen/m-08.jpg" alt="Hot Stone Massage" class="service-img">
+      <div class="service-body">
+        <span class="service-num">12</span>
+        <div class="service-name">Hot Stone Massage</div>
+        <p class="service-desc" data-en="Warm basalt stones along the energy points — heat penetrates deep into the muscles, releases chronic tension and calms the nervous system.">Warme Basaltsteine entlang der Energiepunkte — Wärme dringt tief in die Muskulatur, löst chronische Verspannungen und beruhigt das Nervensystem.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 120</div>
+          <div class="service-price-note">90 Min CHF 155 &nbsp;·&nbsp; 120 Min CHF 185</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="images/massagen/m-02.jpg" alt="Kräuterstempelmassage" class="service-img">
+      <div class="service-body">
+        <span class="service-num">13</span>
+        <div class="service-name" data-en="Herbal Compress Massage">Kräuterstempelmassage</div>
+        <p class="service-desc" data-en="Warm herbal packages with traditional Thai healing herbs relieve tension, activate circulation and provide a unique feeling of warmth.">Warme Kräuterpäckchen mit traditionellen Thai-Heilkräutern lösen Verspannungen, aktivieren die Durchblutung und schenken ein einzigartiges Wärmegefühl.</p>
+        <div class="service-price-row">
+          <div class="service-price">60 Min CHF 120</div>
+          <div class="service-price-note">90 Min CHF 155 &nbsp;·&nbsp; 120 Min CHF 185</div>
         </div>
       </div>
     </div>
