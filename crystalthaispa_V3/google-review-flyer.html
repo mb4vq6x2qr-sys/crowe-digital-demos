@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal Thai Spa – Google Bewertung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 148mm;
+      height: 210mm;
+      font-family: 'Jost', sans-serif;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 148mm;
+      height: 210mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10mm 10mm 8mm;
+      position: relative;
+      background: #fff;
+    }
+
+    /* Goldene Rahmen-Linien oben und unten */
+    .card::before, .card::after {
+      content: '';
+      position: absolute;
+      left: 8mm; right: 8mm;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #C9A96E, transparent);
+    }
+    .card::before { top: 7mm; }
+    .card::after  { bottom: 7mm; }
+
+    /* Logo */
+    .logo {
+      width: 28mm;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Trennlinie */
+    .divider {
+      display: flex; align-items: center; gap: 3mm;
+      width: 100%; margin: 3mm 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(201,169,110,0.3); }
+    .divider-dot  { color: #C9A96E; font-size: 8px; }
+
+    /* Headline */
+    .headline {
+      text-align: center;
+    }
+    .headline-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 8pt;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #C9A96E;
+      margin-bottom: 2mm;
+    }
+    .headline-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22pt;
+      font-weight: 400;
+      color: #2C1F14;
+      line-height: 1.15;
+    }
+    .headline-main em {
+      font-style: italic;
+      color: #C9A96E;
+    }
+
+    /* Mitte: Foto + QR */
+    .middle {
+      display: flex;
+      align-items: flex-end;
+      gap: 6mm;
+      width: 100%;
+    }
+    .photo {
+      width: 42mm;
+      height: 52mm;
+      object-fit: cover;
+      object-position: top center;
+      flex-shrink: 0;
+    }
+    .qr-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3mm;
+    }
+    .qr-text {
+      text-align: center;
+      font-size: 8.5pt;
+      color: #6B5B4E;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .qr-code {
+      width: 36mm;
+      height: 36mm;
+      image-rendering: pixelated;
+    }
+    .qr-hint {
+      font-size: 7pt;
+      color: #C9A96E;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* Sterne */
+    .stars {
+      font-size: 16pt;
+      color: #C9A96E;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      color: #2C1F14;
+      letter-spacing: 0.05em;
+    }
+    .footer-address {
+      font-size: 7.5pt;
+      color: #9B8B7E;
+      letter-spacing: 0.08em;
+      margin-top: 1mm;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <img class="logo" src="/Users/daniel.crowe/Documents/crystalthaispa-backup/Backup_pictures_wp/cropped-cropped-logo-500.png" alt="Crystal Thai Spa">
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-dot">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="headline">
+    <div class="headline-sub">Ihre Meinung zählt</div>
+    <div class="headline-main">Wie war Ihre<br><em>Erfahrung bei uns?</em></div>
+  </div>
+
+  <div class="middle">
+    <img class="photo" src="/Users/daniel.crowe/Documents/crystalthaispa-backup/Original pics/portrait_bootsadee-weiss-frei.jpg" alt="Bootsadee">
+    <div class="qr-side">
+      <p class="qr-text">Wir würden uns sehr über<br>Ihre Bewertung auf<br><strong>Google</strong> freuen 🙏</p>
+      <img class="qr-code" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAhKADAAQAAAABAAAAhAAAAADOBoV4AAAMf0lEQVR4Ae2ci24bORJFk0X+/5ezKQ9OzxF1m2RbcoBxl4FBkffFVpkpOXY8P3/8+PH7z38vffz+/U/Ez58/n3LgTCSdedbJC+e6m2dPyk456GZc5Sbe57Ge5aE5q3gTv3t+8hr7nze97g7UH+mPP96z25fa5BuJN2HJawwPGYkz5vVnPPbXejfDOp55zNrZk+OMXYx89Oyrpjzzs7W9PSFmnboh92t8zb4tI1f7dDvRmZvlWMd6pj87d+Xhuaicxb7qKiN5EkbmKm/Fjzk+a9c7ZrAfq7PhekLQia4fHegL0RfhoQNPbxkP7MXN1ZFW8cnDKEtceiT0ifMZr+Qlr8+d8ebwGOO54dj72WsNby+YPa+se0K80r1v6H3rhEj98Q32zUZrHmxWnXHVO8s1l87wWfDU8sIbIxOO/Vm1d+aZcWfZu3hPiN1O3UTXF+Imn+jdl/n0lvHucZTGoDEe1OcmfhdLeWQ7Awy9q3Veo8Frzmt0CcNLRfsV9TNn9IT4is/EfzjzmBDpNr/yuridq9yk+yosvR4/H+daB2adeda7OvTOe8VLXqo+A56zar/i8aCjgo+VbOtmmP09IdyNXv94+mtn6gm3y1zCVrxvrLW1dh66hNmHzlhaOyfxYORZD4bGNemMoU2Yc+GNsYYja6yJT96EjVm17wmRunJjrC/EjT/56aUfv6iTRgpYMq4wRpkzwFbeGb+bZx15Pj/xM13yGsM7yy1N8uB9V+UZ0llwPsu6nhDuTK9/HP9/iKu98K3Cu7p9SUeOvWDoq8KbA7OOtXVgrrveXZ2zWeNdPQv6VMkwt5tn78xjXU8Id7rX/beMvgOPHdi+ZTxK17s0yhhL5YbfxXwiHjIS5zPMpzV5iVudkTx/A7v6XCt94vst4298Jv9DZ1z+n5+n18afNqo16RaaT2tyVl50zgCzN2F4kg6uavImDA8c+7Fy3ko3+lZ7ckuXshNGprmeEHSl60cH+kL0RXjowPGLOh4bD4qTjUdUksA7F4xaPvNjzoyzNuXZa96+Wls3crXHax2Y9fCJs471Skce+lXd1a/O7Qmx6vTN+GNC8LpXN2j3JpLnijedkTD0lQH/GczPwJo89mfV551pCt/Nm2Ukzrk8izGvk3/EyDDujJ4Q7kyv+zuVfQceO/D0lvFIX9t59OA0NhtXiSOjKvwqD92u13n2fPU6PaefhXXSJSw9LxnFsV55+y0jdfLG2FsnhG/f7EZaR+/R1x7eGDpXePTmvN7V4XEeXrgr1Tmjz7kznX32GB/XKS9hKa8nxNjNm+/7Qtz8Aowv/+ktI42W0XRl77E0yzZnD2eZB0NHBa9qPWvrwJLHOvPj2hl4VtiYUXu8iVthPm/UzjhrresJ4c70+scxIV65pamP3DrnsoYrH1jKMJZ05CRu5TXPmhxyCwdD82olL51hLJ2T+FneboZ1PSHcjV73dyr7Djx24P8Ap5U+aLifRwAAAABJRU5ErkJggg==" alt="QR Code Google Bewertung">
+      <div class="qr-hint">Scannen &amp; bewerten</div>
+    </div>
+  </div>
+
+  <div class="stars">★★★★★</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-dot">✦</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-name">Crystal Thai Spa &amp; Therapy</div>
+    <div class="footer-address">Mittlerer Kreis 2 · 4106 Therwil · +41 79 907 90 99</div>
+  </div>
+
+</div>
+</body>
+</html>
