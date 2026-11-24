@@ -185,3 +185,11 @@ button.link { background: none; border: 0; color: var(--cyan-dunkel); font: inhe
   .kopf, .kennzahl { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Zusammenfassung (Kundenansicht) und Trennlinie zur Daniel-Ansicht */
+.zusammenfassung { margin: 18px 0; }
+.zusammenfassung h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.zusammenfassung ul { margin: 0; padding-left: 1.2em; }
+.zusammenfassung li { margin: .45em 0; }
+.zusammenfassung li::marker { color: var(--cyan-dunkel); }
+.nur-dani { margin-top: 2.4em; padding-top: 1em; border-top: 2px dashed var(--linie); color: var(--text-2); }

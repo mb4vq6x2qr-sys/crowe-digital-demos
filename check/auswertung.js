@@ -7,7 +7,9 @@
 "use strict";
 
 const API = window.DC_API || "";
-const ID = location.hash.slice(1);
+// #ID = Ansicht für den Kunden, #ID&voll = Ansicht für Daniel (mit Potenzial, Ideen, allen Antworten)
+const ID = location.hash.slice(1).split("&")[0];
+const VOLL = location.hash.includes("&voll");
 const SVGNS = "http://www.w3.org/2000/svg";
 const FARBE = { zeit: "#3d5afe", muehe: "#e8590c", auto: "#00a3b5" };
 const GUT = 3.6, TEIL = 2.6;   // Grenzen für «gut automatisierbar» / «teilweise»
@@ -72,14 +74,15 @@ function rechne(b) {
   const top = (wert("schluss_top3") || []).indexOf(b.id);
   const bonus = top >= 0 ? [1.5, 1, 0.5][top] : 0;
   const prio = Math.round((((z + m) / 2) * (auto / 5) + bonus) * 100) / 100;
+  if (leer) return { b, zeit: null, stunden: null, muehe: null, auto: null, prio: 0, leer };
   return { b, zeit: zeitStufe, stunden, muehe, auto, prio, leer };
 }
 
 /* ---------- Spider ---------- */
-function spider(werte) {
+function spider(werte, voll) {
   const n = werte.length;
   const B = 760, H = 640, cx = B / 2, cy = H / 2 + 6, R = 220;
-  const svg = s("svg", { viewBox: `0 0 ${B} ${H}`, role: "img", "aria-label": "Netz-Grafik: Zeit, Mühe und Automatisierungs-Potenzial pro Bereich" });
+  const svg = s("svg", { viewBox: `0 0 ${B} ${H}`, role: "img", "aria-label": voll ? "Netz-Grafik: Zeit, Mühe und Automatisierungs-Potenzial pro Bereich" : "Netz-Grafik: Zeit und Mühe pro Bereich" });
   const winkel = (i) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
   const pt = (i, v) => [cx + Math.cos(winkel(i)) * R * (v / 5), cy + Math.sin(winkel(i)) * R * (v / 5)];
 
@@ -95,11 +98,15 @@ function spider(werte) {
     const [lx, ly] = pt(i, 6.05);
     const cos = Math.cos(winkel(i));
     const anker = Math.abs(cos) < 0.25 ? "middle" : cos > 0 ? "start" : "end";
-    const hoch = w.auto >= GUT;
+    const hoch = voll && !w.leer && w.auto >= GUT;
     const g = s("g", {});
-    const t = s("text", { x: lx, y: ly, "text-anchor": anker, "dominant-baseline": "middle", "font-size": 17, "font-weight": 700, fill: hoch ? "#007c8a" : "#17171c", "font-family": "DM Sans, system-ui, sans-serif" });
+    const t = s("text", { x: lx, y: ly, "text-anchor": anker, "dominant-baseline": "middle", "font-size": 17, "font-weight": 700, fill: w.leer ? "#9a9aa6" : hoch ? "#007c8a" : "#17171c", "font-family": "DM Sans, system-ui, sans-serif" });
     t.append(s("tspan", {}, w.b.icon + " " + (w.b.kurz || w.b.titel)));
     g.append(t);
+    if (w.leer) {
+      g.append(s("text", { x: lx, y: ly + 20, "text-anchor": anker, "dominant-baseline": "middle", "font-size": 13, "font-weight": 700, fill: "#9a9aa6", "font-family": "DM Sans, system-ui, sans-serif" }, "noch offen"));
+      svg.append(s("line", { x1: cx, y1: cy, x2: x, y2: y, stroke: "#c4c4cc", "stroke-width": 1.5, "stroke-dasharray": "4 4" }));
+    }
     if (hoch) {
       g.append(s("text", { x: lx, y: ly + 20, "text-anchor": anker, "dominant-baseline": "middle", "font-size": 13, "font-weight": 700, fill: "#007c8a", "font-family": "DM Sans, system-ui, sans-serif" }, "gut automatisierbar"));
     }
@@ -108,15 +115,17 @@ function spider(werte) {
   // Skala-Zahlen
   for (let r = 1; r <= 5; r++) svg.append(s("text", { x: cx + 4, y: cy - (R * r) / 5 - 3, "font-size": 11, fill: "#9a9aa6", "font-family": "DM Sans, sans-serif" }, String(r)));
 
-  const reihen = [
+  const alleReihen = [
     { key: "auto", name: "Automatisierungs-Potenzial", farbe: FARBE.auto, fuell: 0.16, strich: "7 5" },
     { key: "zeit", name: "Zeitaufwand", farbe: FARBE.zeit, fuell: 0.1, strich: "" },
     { key: "muehe", name: "Wie mühsam", farbe: FARBE.muehe, fuell: 0.1, strich: "" },
   ];
+  const reihen = voll ? alleReihen : alleReihen.filter((x) => x.key !== "auto");
   const gruppen = {};
   for (const r of reihen) {
     const g = s("g", { "data-reihe": r.key });
-    const punkte = werte.map((w, i) => pt(i, w[r.key] ?? 0).join(",")).join(" ");
+    // Offene Bereiche überspringen: die Linie verbindet die Nachbarn, statt eine falsche Delle zu zeigen
+    const punkte = werte.map((w, i) => (w.leer ? null : pt(i, w[r.key] ?? 0).join(","))).filter(Boolean).join(" ");
     g.append(s("polygon", { points: punkte, fill: r.farbe, "fill-opacity": r.fuell, stroke: r.farbe, "stroke-width": 3, "stroke-linejoin": "round", "stroke-dasharray": r.strich }));
     werte.forEach((w, i) => {
       if (w[r.key] == null) return;
@@ -138,7 +147,9 @@ function spider(werte) {
     return k;
   }));
   return h("div", { class: "spider-box" }, svg, legende,
-    h("p", { class: "spider-hinweis" }, "Je weiter aussen, desto mehr. Antippen in der Legende blendet eine Linie aus. Bereiche in Türkis lassen sich gut automatisieren."));
+    h("p", { class: "spider-hinweis" }, voll
+      ? "Je weiter aussen, desto mehr. Antippen in der Legende blendet eine Linie aus. Bereiche in Türkis lassen sich gut automatisieren."
+      : "Je weiter aussen, desto mehr Zeit bzw. Mühe. Grau = noch nicht ausgefüllt."));
 }
 
 /* ---------- Text einer Antwort ---------- */
@@ -162,27 +173,58 @@ function antwortText(f) {
 function zeichnen() {
   const aktiv = FB.bereiche.filter((b) => AKTIV.includes(b.id));
   const werte = aktiv.map(rechne);
-  const sortiert = [...werte].sort((a, b) => b.prio - a.prio);
-  const top = sortiert.filter((w) => w.prio > 0).slice(0, 3);
 
-  const sumStunden = werte.reduce((a, w) => a + (w.stunden || 0), 0);
-  const stundenTop = top.reduce((a, w) => a + (w.stunden || 0), 0);
-  const gut = werte.filter((w) => w.auto >= GUT).length;
-  const mueh = werte.filter((w) => (w.muehe || 0) >= 4).length;
+  const gefuellt = werte.filter((w) => !w.leer);
+  const offen = werte.filter((w) => w.leer);
+  const sumStunden = gefuellt.reduce((a, w) => a + (w.stunden || 0), 0);
+  const gut = gefuellt.filter((w) => w.auto >= GUT).length;
+  const mueh = gefuellt.filter((w) => (w.muehe || 0) >= 4);
   const fmt = (x) => (Math.round(x * 10) / 10).toLocaleString("de-CH");
+  const liste = (arr) => arr.length <= 1 ? arr.join("") : arr.slice(0, -1).join(", ") + " und " + arr[arr.length - 1];
 
   const teile = [];
-  teile.push(h("p", { class: "vorzeile" }, "Auswertung Digital-Check"));
+  teile.push(h("p", { class: "vorzeile" }, "Digital-Check · Aufnahme"));
   teile.push(h("h1", {}, FB.kunde || "Auswertung"));
-  teile.push(h("p", { class: "gross" }, `Danke${wert("person_name") ? ", " + wert("person_name") : ""}! Hier siehst du auf einen Blick, wo bei euch Zeit und Nerven draufgehen und wo sich Automatisierung am meisten lohnt.`));
+  teile.push(h("p", { class: "gross" }, `Danke${wert("person_name") ? ", " + wert("person_name") : ""}! Hier siehst du auf einen Blick, wo bei euch heute Zeit und Nerven draufgehen – so, wie ihr es beschrieben habt.`));
 
   teile.push(h("div", { class: "kennzahlen" },
-    h("div", { class: "kennzahl" }, h("b", {}, "≈ " + fmt(stundenTop) + " h"), h("span", {}, "pro Woche in den 3 Bereichen, wo ich anfangen würde")),
-    h("div", { class: "kennzahl" }, h("b", {}, String(mueh)), h("span", {}, mueh === 1 ? "Bereich nervt sehr (4–5 von 5)" : "Bereiche nerven sehr (4–5 von 5)")),
-    h("div", { class: "kennzahl" }, h("b", {}, `${gut} von ${werte.length}`), h("span", {}, "Bereichen lassen sich gut automatisieren"))));
-  teile.push(h("p", { class: "kleingedrucktes" }, `Alle Zeitschätzungen zusammen: ca. ${fmt(sumStunden)} h pro Woche – grob, Überschneidungen zwischen Bereichen sind möglich.`));
+    h("div", { class: "kennzahl" }, h("b", {}, "≈ " + fmt(sumStunden) + " h"), h("span", {}, "pro Woche für diese Arbeiten (eure Schätzung)")),
+    h("div", { class: "kennzahl" }, h("b", {}, String(mueh.length)), h("span", {}, mueh.length === 1 ? "Bereich ist sehr mühsam (4–5 von 5)" : "Bereiche sind sehr mühsam (4–5 von 5)")),
+    h("div", { class: "kennzahl" }, h("b", {}, `${gefuellt.length} von ${werte.length}`), h("span", {}, "Bereichen ausgefüllt")),
+    VOLL ? h("div", { class: "kennzahl" }, h("b", {}, `${gut} von ${gefuellt.length}`), h("span", {}, "gut automatisierbar (nur deine Ansicht)")) : null));
+  teile.push(h("p", { class: "kleingedrucktes" }, "Grobe Schätzungen – Überschneidungen zwischen Bereichen sind möglich."));
 
-  if (werte.length >= 3) teile.push(spider(werte));
+  if (werte.length >= 3) teile.push(spider(werte, VOLL));
+
+  // Kurze Zusammenfassung: nur eigene Angaben, keine Lösungen
+  const nachZeit = gefuellt.filter((w) => w.stunden).sort((a, b) => b.stunden - a.stunden).slice(0, 3);
+  const nachMuehe = [...mueh].sort((a, b) => b.muehe - a.muehe);
+  const eigeneTop = (wert("schluss_top3") || []).map((id) => FB.bereiche.find((b) => b.id === id)).filter(Boolean);
+  const punkte = [];
+  if (nachZeit.length) punkte.push(h("li", {}, h("strong", {}, "Am meisten Zeit: "), liste(nachZeit.map((w) => `${w.b.kurz || w.b.titel} (≈ ${fmt(w.stunden)} h/Woche)`)) + "."));
+  if (nachMuehe.length) punkte.push(h("li", {}, h("strong", {}, "Am mühsamsten: "), liste(nachMuehe.map((w) => w.b.kurz || w.b.titel)) + "."));
+  if (eigeneTop.length) punkte.push(h("li", {}, h("strong", {}, "Deine Prioritäten: "), eigeneTop.map((b, i) => `${i + 1}. ${b.kurz || b.titel}`).join(", ")));
+  if (wert("schluss_wann")) punkte.push(h("li", {}, h("strong", {}, "Zeitrahmen: "), antwortText(FB.schluss.find((f) => f.id === "schluss_wann")) + "."));
+  if (offen.length) punkte.push(h("li", {}, h("strong", {}, "Noch offen: "), liste(offen.map((w) => w.b.kurz || w.b.titel)) + " – das kann gerne noch jemand aus dem Büro mit dem gleichen Link ergänzen."));
+  if (punkte.length) {
+    teile.push(h("section", { class: "bkarte zusammenfassung" }, h("h2", {}, "Das habe ich aufgenommen"), h("ul", {}, ...punkte)));
+  }
+  teile.push(h("section", { class: "dani-idee" },
+    h("h2", {}, h("span", {}, "Wie geht es weiter?")),
+    h("p", {}, "Ich schaue mir eure Antworten in Ruhe an und melde mich bei dir mit konkreten Vorschlägen – was sich lohnt, was es kostet und womit man am besten anfängt."),
+    h("p", {}, "Die besprechen wir dann gemeinsam. Entschieden wird erst danach, und nur, was für euch Sinn macht."),
+    h("p", {}, "– Daniel Crowe, Crowe Digital")));
+
+  if (!VOLL) {
+    teile.push(h("div", { class: "aktionen" }, h("button", { type: "button", class: "knopf", onclick: () => window.print() }, "Als PDF speichern / drucken")));
+    document.getElementById("app").replaceChildren(...teile);
+    return;
+  }
+
+  // ---------- Ab hier nur Daniels Ansicht ----------
+  const sortiert = [...gefuellt].sort((a, b) => b.prio - a.prio);
+  const top = sortiert.filter((w) => w.prio > 0).slice(0, 3);
+  teile.push(h("h2", { class: "nur-dani" }, "Nur für Daniel: Vorbereitung fürs Gespräch"));
 
   if (top.length) {
     teile.push(h("h2", {}, "Wo ich anfangen würde"));
