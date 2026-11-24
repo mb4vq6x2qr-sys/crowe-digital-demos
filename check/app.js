@@ -332,7 +332,7 @@ async function start() {
     if (!r.ok) throw 0;
     FB = await r.json();
   } catch (e) {
-    document.getElementById("app").replaceChildren(h("h1", {}, "Link ungültig"), h("p", {}, "Dieser Link funktioniert nicht. Bitte melde dich bei Daniel Crowe."));
+    document.getElementById("app").replaceChildren(h("h1", {}, "Link ungültig"), h("p", {}, "Dieser Link funktioniert nicht. Bitte melde dich bei Dani Crowe."));
     return;
   }
   document.getElementById("kopf-titel").textContent = "Digital-Check · " + (FB.kunde || "");

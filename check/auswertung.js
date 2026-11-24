@@ -7,7 +7,7 @@
 "use strict";
 
 const API = window.DC_API || "";
-// #ID = Ansicht für den Kunden, #ID&voll = Ansicht für Daniel (mit Potenzial, Ideen, allen Antworten)
+// #ID = Ansicht für den Kunden, #ID&voll = Ansicht für Dani (mit Potenzial, Ideen, allen Antworten)
 const ID = location.hash.slice(1).split("&")[0];
 const VOLL = location.hash.includes("&voll");
 const SVGNS = "http://www.w3.org/2000/svg";
@@ -213,7 +213,7 @@ function zeichnen() {
     h("h2", {}, h("span", {}, "Wie geht es weiter?")),
     h("p", {}, "Ich schaue mir eure Antworten in Ruhe an und melde mich bei dir mit konkreten Vorschlägen – was sich lohnt, was es kostet und womit man am besten anfängt."),
     h("p", {}, "Die besprechen wir dann gemeinsam. Entschieden wird erst danach, und nur, was für euch Sinn macht."),
-    h("p", {}, "– Daniel Crowe, Crowe Digital")));
+    h("p", {}, "– Dani, Crowe Digital")));
 
   if (!VOLL) {
     teile.push(h("div", { class: "aktionen" }, h("button", { type: "button", class: "knopf", onclick: () => window.print() }, "Als PDF speichern / drucken")));
@@ -221,10 +221,10 @@ function zeichnen() {
     return;
   }
 
-  // ---------- Ab hier nur Daniels Ansicht ----------
+  // ---------- Ab hier nur Danis Ansicht ----------
   const sortiert = [...gefuellt].sort((a, b) => b.prio - a.prio);
   const top = sortiert.filter((w) => w.prio > 0).slice(0, 3);
-  teile.push(h("h2", { class: "nur-dani" }, "Nur für Daniel: Vorbereitung fürs Gespräch"));
+  teile.push(h("h2", { class: "nur-dani" }, "Nur für Dani: Vorbereitung fürs Gespräch"));
 
   if (top.length) {
     teile.push(h("h2", {}, "Wo ich anfangen würde"));
@@ -281,7 +281,7 @@ function zeichnen() {
 
   teile.push(h("div", { class: "aktionen" },
     h("button", { type: "button", class: "knopf haupt", onclick: () => window.print() }, "Als PDF speichern / drucken")));
-  teile.push(h("p", { class: "kleingedrucktes" }, "Die Werte beruhen auf euren Antworten und einer Einschätzung von Crowe Digital (Branchen-Recherche). Hinweise zu Gesetzen sind keine Rechtsberatung – im Zweifel Treuhänder oder Verband fragen. Ich melde mich bei dir für ein kurzes Gespräch. – Daniel Crowe"));
+  teile.push(h("p", { class: "kleingedrucktes" }, "Die Werte beruhen auf euren Antworten und einer Einschätzung von Crowe Digital (Branchen-Recherche). Hinweise zu Gesetzen sind keine Rechtsberatung – im Zweifel Treuhänder oder Verband fragen. Ich melde mich bei dir für ein kurzes Gespräch. – Dani"));
 
   document.getElementById("app").replaceChildren(...teile);
 }
